@@ -9,7 +9,6 @@
         h1 { color: #ee4d2d; text-align: center; font-size: 20px; margin-bottom: 5px; }
         .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 20px; }
         
-        /* Chia gian hàng thành 2 cột */
         .container { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -27,6 +26,14 @@
             justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             border: 1px solid #eee;
+        }
+        
+        /* Định dạng ảnh sản phẩm */
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 8px;
         }
         
         .product-card strong { font-size: 14px; color: #333; line-height: 1.4; display: block; margin-bottom: 5px; }
@@ -52,19 +59,35 @@
 
     <div class="container">
         <div class="product-card">
+            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmu9r8389v6v9a" alt="Nước giặt">
             <strong>Combo 2 Túi Nước Giặt Hygiene</strong>
-            <p>Sạch vết bẩn, lưu hương thơm ngát từ Thái Lan</p>
+            <p>Sạch vết bẩn, thơm ngát từ Thái Lan</p>
             <a href="https://s.shopee.vn/20pS0YFUMD" class="btn">MUA NGAY</a>
         </div>
 
         <div class="product-card">
-            <strong style="color: #ee4d2d;">🔥 BÁN CHẠY (20K+)</strong>
+            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljvswq5l0o4e8c" alt="Giấy ăn">
+            <strong style="color: #ee4d2d;">🔥 BÁN CHẠY (100K+)</strong>
             <strong>Thùng Giấy Ăn Gấu Trúc Sipiao</strong>
             <p>Siêu dai, an toàn cho cả gia đình</p>
             <a href="https://s.shopee.vn/4AtwfXeL01" class="btn">XEM GIÁ SỐC</a>
         </div>
-        
+
+        <div class="product-card">
+            <img src="ẢNH_BỘ_LAU_NHÀ_TẠI_ĐÂY" alt="Bộ lau nhà">
+            <strong style="color: #26aa99;">⭐ TOP ĐÁNH GIÁ (20K+)</strong>
+            <strong>Bộ Lau Nhà Tự Vắt Thông Minh</strong>
+            <p>Vắt khô cực nhanh, lau sạch mọi ngóc ngách</p>
+            <a href="DÁN_LINK_BỘ_LAU_NHÀ_VÀO_ĐÂY" class="btn">GIẢM 40%</a>
         </div>
+
+        <div class="product-card">
+            <img src="ẢNH_TÚI_RÁC_TẠI_ĐÂY" alt="Túi rác">
+            <strong>Túi Rác Tự Hủy Sinh Học</strong>
+            <p>Combo 3 cuộn siêu bền, giá cực rẻ</p>
+            <a href="DÁN_LINK_TÚI_RÁC_VÀO_ĐÂY" class="btn">SĂN DEAL 1K</a>
+        </div>
+    </div>
 
     <footer>© 2026 Nam Nguyễn Affiliate</footer>
 </body>
