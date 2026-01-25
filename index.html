@@ -4,91 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cửa Hàng Di Động - Nam Nguyễn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f5f5f5; margin: 0; padding: 10px; }
-        h1 { color: #ee4d2d; text-align: center; font-size: 20px; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 20px; }
-        
+        :root {
+            --shopee-orange: #ee4d2d;
+            --shopee-gradient: linear-gradient(135deg, #ee4d2d, #ff7337);
+            --bg-color: #f5f5f5;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 10px; 
+            color: #333; 
+        }
+
+        /* Header phong cách hiện đại */
+        header { 
+            text-align: center; 
+            padding: 25px 15px; 
+            background: var(--shopee-gradient); 
+            color: white; 
+            border-radius: 15px; 
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(238, 77, 45, 0.2);
+        }
+        header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
+        header p { margin: 8px 0 0; font-size: 13px; opacity: 0.9; font-weight: 300; }
+
+        /* Container Grid 2 cột đặc trưng của bạn */
         .container { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
-            gap: 10px; 
+            gap: 12px; 
             max-width: 600px; 
             margin: 0 auto; 
         }
         
+        /* Thẻ sản phẩm nâng cấp giao diện */
         .product-card { 
             background: white; 
-            border-radius: 8px; 
+            border-radius: 12px; 
             padding: 10px; 
             display: flex; 
             flex-direction: column; 
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             border: 1px solid #eee;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        .product-card:active { transform: scale(0.98); }
         
-        /* Định dạng ảnh sản phẩm */
+        /* Fix ảnh vuông đều tăm tắp */
         .product-card img {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 8px;
+            aspect-ratio: 1/1; 
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
         }
         
-        .product-card strong { font-size: 14px; color: #333; line-height: 1.4; display: block; margin-bottom: 5px; }
-        .product-card p { font-size: 11px; color: #888; margin: 5px 0; line-height: 1.3; flex-grow: 1; }
+        /* Tiêu đề sản phẩm (giới hạn 2 dòng) */
+        .product-card strong { 
+            font-size: 14px; 
+            color: #222;
+            height: 40px; 
+            overflow: hidden; 
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
         
+        .product-card p { 
+            font-size: 11px; 
+            color: #777; 
+            margin: 0; 
+            min-height: 32px; 
+            line-height: 1.3;
+        }
+        
+        /* Giá sản phẩm */
+        .price-tag {
+            color: var(--shopee-orange);
+            font-weight: bold;
+            font-size: 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Nút bấm lôi cuốn */
         .btn { 
-            background-color: #ee4d2d; 
+            background: var(--shopee-gradient);
             color: white; 
             text-decoration: none; 
-            padding: 8px 2px; 
-            border-radius: 4px; 
+            padding: 10px 5px; 
+            border-radius: 8px; 
             text-align: center; 
-            font-size: 11px; 
+            font-size: 12px; 
             font-weight: bold;
-            margin-top: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(238, 77, 45, 0.2);
         }
-        footer { text-align: center; margin-top: 30px; font-size: 11px; color: #bbb; padding-bottom: 20px; }
+
+        /* Nút My Collection Tổng */
+        .btn-all {
+            grid-column: span 2; 
+            background: #222;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        footer { text-align: center; margin: 40px 0 20px; font-size: 11px; color: #aaa; }
+        
+        /* Hiệu ứng nháy cho Deal sốc */
+        .badge-hot {
+            color: #ee4d2d;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
-    <h1>🛍️ Cửa Hàng Của Nam</h1>
-    <p class="subtitle">Tổng hợp Deal hời - Công cụ tốt cho người thông minh!</p>
+    <header>
+        <h1>🛍️ CỬA HÀNG CỦA NAM</h1>
+        <p>Tuyển chọn Deal hời từ Kim Tứ Đồ Shopee</p>
+    </header>
 
     <div class="container">
         <div class="product-card">
             <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmu9r8389v6v9a" alt="Nước giặt">
-            <strong>Combo 2 Túi Nước Giặt Hygiene</strong>
-            <p>Sạch vết bẩn, thơm ngát từ Thái Lan</p>
+            <strong>Combo 2 Túi Nước Giặt Hygiene Thái Lan</strong>
+            <p>Sạch vết bẩn cứng đầu, hương thơm bền lâu.</p>
+            <div class="price-tag">🛍️ Deal Hot</div>
             <a href="https://s.shopee.vn/20pS0YFUMD" class="btn">MUA NGAY</a>
         </div>
 
         <div class="product-card">
             <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljvswq5l0o4e8c" alt="Giấy ăn">
-            <strong style="color: #ee4d2d;">🔥 BÁN CHẠY (100K+)</strong>
-            <strong>Thùng Giấy Ăn Gấu Trúc Sipiao</strong>
-            <p>Siêu dai, an toàn cho cả gia đình</p>
-            <a href="https://s.shopee.vn/4AtwfXeL01" class="btn">XEM GIÁ SỐC</a>
+            <strong><span class="badge-hot">🔥 BÁN CHẠY:</span> Thùng Giấy Ăn Gấu Trúc Sipiao</strong>
+            <p>Siêu dai, an toàn, dùng cực tiết kiệm.</p>
+            <div class="price-tag">💰 Giá Sốc</div>
+            <a href="https://s.shopee.vn/4AtwfXeL01" class="btn">XEM GIÁ</a>
         </div>
 
         <div class="product-card">
-            <img src="ẢNH_BỘ_LAU_NHÀ_TẠI_ĐÂY" alt="Bộ lau nhà">
-            <strong style="color: #26aa99;">⭐ TOP ĐÁNH GIÁ (20K+)</strong>
-            <strong>Bộ Lau Nhà Tự Vắt Thông Minh</strong>
-            <p>Vắt khô cực nhanh, lau sạch mọi ngóc ngách</p>
-            <a href="DÁN_LINK_BỘ_LAU_NHÀ_VÀO_ĐÂY" class="btn">GIẢM 40%</a>
+            <img src="https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lgv38p82m00s80" alt="Bộ lau nhà">
+            <strong>Bộ Lau Nhà Tự Vắt Thông Minh V6</strong>
+            <p>Vắt khô cực nhanh, bảo vệ đôi tay bạn.</p>
+            <div class="price-tag">⭐ Top Đánh Giá</div>
+            <a href="DÁN_LINK_BỘ_LAU_NHÀ_VÀO_ĐÂY" class="btn">MUA NGAY</a>
         </div>
 
         <div class="product-card">
-            <img src="ẢNH_TÚI_RÁC_TẠI_ĐÂY" alt="Túi rác">
-            <strong>Túi Rác Tự Hủy Sinh Học</strong>
-            <p>Combo 3 cuộn siêu bền, giá cực rẻ</p>
-            <a href="DÁN_LINK_TÚI_RÁC_VÀO_ĐÂY" class="btn">SĂN DEAL 1K</a>
+            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lquu7q6z8l476d" alt="Túi rác">
+            <strong>Túi Rác Tự Hủy Sinh Học Siêu Bền</strong>
+            <p>Combo 3 cuộn, dai khó rách, giá cực rẻ.</p>
+            <div class="price-tag">🎁 Deal 1k</div>
+            <a href="DÁN_LINK_TÚI_RÁC_VÀO_ĐÂY" class="btn">SĂN DEAL</a>
         </div>
+
+        <a href="https://mycollection.shop/NAM_NGUYEN_CUA_BAN" class="btn-all">
+            <i class="fas fa-shopping-cart"></i> GHÉ THĂM CỬA HÀNG TỔNG
+        </a>
     </div>
 
-    <footer>© 2026 Nam Nguyễn Affiliate</footer>
+    <footer>© 2026 Nam Nguyễn Affiliate Hub</footer>
 </body>
 </html>
