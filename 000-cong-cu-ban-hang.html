@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Lý Affiliate - Nam Nguyễn</title>
+    <style>
+        :root { --primary: #ee4d2d; --dark: #2c3e50; --light: #ecf0f1; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; padding: 10px; }
+        .container { max-width: 1100px; margin: 0 auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: var(--primary); text-align: center; text-transform: uppercase; }
+        
+        /* Menu chọn Loại */
+        .type-selector { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; justify-content: center; }
+        .type-btn { padding: 10px 15px; border: none; border-radius: 20px; background: var(--light); cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .type-btn.active { background: var(--primary); color: white; }
+
+        .control-panel { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; background: #fff0eb; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; font-size: 13px; }
+        th { background: var(--dark); color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #eee; }
+        
+        .badge-sales { background: #ffbe00; color: #000; padding: 3px 7px; border-radius: 5px; font-weight: bold; }
+        .badge-time { background: #3498db; color: white; padding: 3px 7px; border-radius: 5px; }
+        .btn-copy { background: #27ae60; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>💎 Hệ Thống Lọc Siêu Cấp 7 Loại</h2>
+
+    <div class="type-selector">
+        <button class="type-btn" onclick="setMode(1)">Loại 1: Chữ cuối</button>
+        <button class="type-btn active" onclick="setMode(2)">Loại 2: Số bán (22k-42k)</button>
+        <button class="type-btn" onclick="setMode(3)">Loại 3: Hoa hồng cao</button>
+        <button class="type-btn" onclick="setMode(4)">Loại 4: Kim Tứ Đồ</button>
+        <button class="type-btn" onclick="setMode(5)">Loại 5: Đầu tư ROI</button>
+        <button class="type-btn" onclick="setMode(6)">Loại 6: Thị trường Tết</button>
+    </div>
+
+    <div class="control-panel">
+        <div>
+            <label><b>1. Nạp File CSV (Shopee):</b></label>
+            <input type="file" id="csvInput" accept=".csv" style="margin-top:5px;">
+        </div>
+        <div>
+            <label><b>2. Nhịp sinh học:</b></label>
+            <select id="bioTime">
+                <option value="08:00">Dân công sở (08:00)</option>
+                <option value="12:00">Nghỉ trưa (12:00)</option>
+                <option value="20:30">Mẹ bỉm sữa (20:30)</option>
+                <option value="22:00">Cú đêm (22:00)</option>
+            </select>
+        </div>
+        <button onclick="processData()" style="background:var(--primary); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">CHẠY HỆ THỐNG</button>
+    </div>
+
+    <div id="statSummary" style="margin-bottom:10px; font-weight:bold; color:var(--dark);"></div>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số bán</th>
+                <th>Hoa hồng</th>
+                <th>Giờ đăng bài</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody id="dataBody"></tbody>
+    </table>
+</div>
+
+<script>
+    let currentMode = 2; // Mặc định là Loại 2
+
+    function setMode(mode) {
+        currentMode = mode;
+        document.querySelectorAll('.type-btn').forEach((btn, idx) => {
+            btn.classList.toggle('active', idx + 1 === mode);
+        });
+        alert("Đã chuyển sang chế độ Loại " + mode);
+    }
+
+    function parseCSV(text) {
+        return text.split('\n').map(line => {
+            let fields = [], cur = '', inQ = false;
+            for (let c of line) {
+                if (c === '"') inQ = !inQ;
+                else if (c === ',' && !inQ) { fields.push(cur.trim()); cur = ''; }
+                else cur += c;
+            }
+            fields.push(cur.trim());
+            return fields;
+        });
+    }
+
+    function processData() {
+        const file = document.getElementById('csvInput').files[0];
+        const bioTime = document.getElementById('bioTime').value;
+        if (!file) return alert("Chọn file CSV trước Nam ơi!");
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = parseCSV(e.target.result);
+            const body = document.getElementById('dataBody');
+            body.innerHTML = '';
+            
+            // Các mức số bán mục tiêu của Loại 2
+            const targets = ["22k+", "30k+", "32k+", "40k+", "42k+"];
+            let count = 0;
+
+            data.forEach((cols, i) => {
+                if (i === 0 || cols.length < 5) return;
+
+                const name = cols[1] || "Không tên";
+                const sales = cols[3] || "0";
+                const hh = cols[5] || "0%";
+                const link = cols[8] || "#";
+
+                let match = false;
+                if (currentMode === 2) {
+                    // Kiểm tra nếu số bán nằm trong danh sách 22k, 30k...
+                    match = targets.some(t => sales.toLowerCase().includes(t.toLowerCase()));
+                } else {
+                    // Tạm thời các loại khác cho hiện tất cả để bạn test
+                    match = true;
+                }
+
+                if (match) {
+                    count++;
+                    body.innerHTML += `
+                        <tr>
+                            <td>${name.substring(0, 40)}...</td>
+                            <td><span class="badge-sales">${sales}</span></td>
+                            <td><b style="color:red">${hh}</b></td>
+                            <td><span class="badge-time">${bioTime}</span></td>
+                            <td><a href="${link}" target="_blank">Lấy Link</a></td>
+                        </tr>
+                    `;
+                }
+            });
+            document.getElementById('statSummary').innerText = `Tìm thấy ${count} siêu phẩm phù hợp tiêu chí Loại ${currentMode}`;
+        };
+        reader.readAsText(file);
+    }
+</script>
+
+</body>
+</html>
