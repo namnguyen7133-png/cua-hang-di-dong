@@ -12,181 +12,170 @@
             --bg-color: #f5f5f5;
         }
 
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: var(--bg-color); 
-            margin: 0; 
-            padding: 10px; 
-            color: #333; 
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); margin: 0; padding: 10px; color: #333; }
 
-        /* Header phong cách hiện đại */
         header { 
-            text-align: center; 
-            padding: 25px 15px; 
-            background: var(--shopee-gradient); 
-            color: white; 
-            border-radius: 15px; 
-            margin-bottom: 20px;
+            text-align: center; padding: 25px 15px; background: var(--shopee-gradient); 
+            color: white; border-radius: 15px; margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(238, 77, 45, 0.2);
         }
-        header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
-        header p { margin: 8px 0 0; font-size: 13px; opacity: 0.9; font-weight: 300; }
 
-        /* Container Grid 2 cột đặc trưng của bạn */
+        /* KHU VỰC ADMIN (Mặc định ẩn) */
+        #admin-panel {
+            display: none; background: white; padding: 15px; border-radius: 12px;
+            margin-bottom: 20px; border: 2px dashed var(--shopee-orange);
+        }
+
         .container { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 12px; 
-            max-width: 600px; 
-            margin: 0 auto; 
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; 
+            max-width: 600px; margin: 0 auto; 
         }
         
-        /* Thẻ sản phẩm nâng cấp giao diện */
         .product-card { 
-            background: white; 
-            border-radius: 12px; 
-            padding: 10px; 
-            display: flex; 
-            flex-direction: column; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border: 1px solid #eee;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: white; border-radius: 12px; padding: 10px; 
+            display: flex; flex-direction: column; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #eee;
+            transition: transform 0.2s;
         }
         .product-card:active { transform: scale(0.98); }
         
-        /* Fix ảnh vuông đều tăm tắp */
         .product-card img {
-            width: 100%;
-            aspect-ratio: 1/1; 
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background: #f9f9f9;
+            width: 100%; aspect-ratio: 1/1; object-fit: cover;
+            border-radius: 8px; margin-bottom: 10px; background: #f9f9f9;
         }
         
-        /* Tiêu đề sản phẩm (giới hạn 2 dòng) */
         .product-card strong { 
-            font-size: 14px; 
-            color: #222;
-            height: 40px; 
-            overflow: hidden; 
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            margin-bottom: 6px;
-            line-height: 1.4;
+            font-size: 14px; color: #222; height: 40px; overflow: hidden; 
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+            margin-bottom: 6px; line-height: 1.4;
         }
         
-        .product-card p { 
-            font-size: 11px; 
-            color: #777; 
-            margin: 0; 
-            min-height: 32px; 
-            line-height: 1.3;
-        }
+        .product-card p { font-size: 11px; color: #777; margin: 0; min-height: 32px; line-height: 1.3; }
         
-        /* Giá sản phẩm */
-        .price-tag {
-            color: var(--shopee-orange);
-            font-weight: bold;
-            font-size: 15px;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .price-tag { color: var(--shopee-orange); font-weight: bold; font-size: 14px; margin: 10px 0; }
 
-        /* Nút bấm lôi cuốn */
         .btn { 
-            background: var(--shopee-gradient);
-            color: white; 
-            text-decoration: none; 
-            padding: 10px 5px; 
-            border-radius: 8px; 
-            text-align: center; 
-            font-size: 12px; 
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 2px 4px rgba(238, 77, 45, 0.2);
+            background: var(--shopee-gradient); color: white; text-decoration: none; 
+            padding: 10px 5px; border-radius: 8px; text-align: center; 
+            font-size: 12px; font-weight: bold; text-transform: uppercase;
         }
 
-        /* Nút My Collection Tổng */
         .btn-all {
-            grid-column: span 2; 
-            background: #222;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            grid-column: span 2; background: #222; color: white; padding: 16px;
+            text-align: center; text-decoration: none; border-radius: 12px;
+            margin-top: 15px; font-weight: bold; display: flex; align-items: center;
+            justify-content: center; gap: 10px;
         }
 
         footer { text-align: center; margin: 40px 0 20px; font-size: 11px; color: #aaa; }
-        
-        /* Hiệu ứng nháy cho Deal sốc */
-        .badge-hot {
-            color: #ee4d2d;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
+
+    <div id="admin-panel">
+        <h3 style="margin: 0 0 10px 0; color: var(--shopee-orange);">🛠️ QUẢN TRỊ VIÊN</h3>
+        <p style="font-size: 12px;">Nhập dữ liệu JSON từ bộ lọc để cập nhật kho hàng nhanh:</p>
+        <textarea id="jsonInput" style="width: 100%; height: 60px; border-radius: 8px; border: 1px solid #ccc;" placeholder="Dán mã JSON vào đây..."></textarea>
+        <button onclick="importData()" style="margin-top: 10px; padding: 8px 15px; background: #222; color: white; border: none; border-radius: 5px; cursor: pointer;">Cập nhật kho</button>
+        <button onclick="clearStore()" style="background: none; border: none; color: red; font-size: 11px; margin-left: 10px; cursor: pointer;">Xóa sạch kho</button>
+    </div>
+
     <header>
-        <h1>🛍️ CỬA HÀNG CỦA NAM</h1>
+        <h1 id="shop-title">🛍️ CỬA HÀNG CỦA NAM</h1>
         <p>Tuyển chọn Deal hời từ Shopee</p>
     </header>
 
+    <div class="container" id="product-container">
+        </div>
+
     <div class="container">
-        <div class="product-card">
-            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmu9r8389v6v9a" alt="Nước giặt">
-            <strong>Combo 2 Túi Nước Giặt Hygiene Thái Lan</strong>
-            <p>Sạch vết bẩn cứng đầu, hương thơm bền lâu.</p>
-            <div class="price-tag">🛍️ Deal Hot</div>
-            <a href="https://s.shopee.vn/20pS0YFUMD" class="btn">MUA NGAY</a>
-        </div>
-
-        <div class="product-card">
-            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljvswq5l0o4e8c" alt="Giấy ăn">
-            <strong><span class="badge-hot">🔥 BÁN CHẠY:</span> Thùng Giấy Ăn Gấu Trúc Sipiao</strong>
-            <p>Siêu dai, an toàn, dùng cực tiết kiệm.</p>
-            <div class="price-tag">💰 Giá Sốc</div>
-            <a href="https://s.shopee.vn/4AtwfXeL01" class="btn">XEM GIÁ</a>
-        </div>
-
-        <div class="product-card">
-            <img src="https://down-vn.img.susercontent.com/file/vn-11134258-820l4-mjs2hgtadvr5ff" alt="Bộ lau nhà">
-            <strong>Bộ Lau Nhà Tự Vắt Thông Minh V6</strong>
-            <p>Vắt khô cực nhanh, bảo vệ đôi tay bạn.</p>
-            <div class="price-tag">⭐ Top Đánh Giá</div>
-            <a href="https://s.shopee.vn/7VARJs1Fnn" class="btn">MUA NGAY</a>
-        </div>
-
-        <div class="product-card">
-            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lquu7q6z8l476d" alt="Túi rác">
-            <strong>Túi Rác Tự Hủy Sinh Học Siêu Bền</strong>
-            <p>Combo 3 cuộn, dai khó rách, giá cực rẻ.</p>
-            <div class="price-tag">🎁 Deal 1k</div>
-            <a href="https://s.shopee.vn/1LZo1knf9o" class="btn">SĂN DEAL</a>
-        </div>
-
         <a href="https://mycollection.shop/NAM_NGUYEN_CUA_BAN" class="btn-all">
             <i class="fas fa-shopping-cart"></i> GHÉ THĂM CỬA HÀNG TỔNG
         </a>
     </div>
 
-  <footer>
+    <footer>
         <p>© 2026 Nam Nguyễn Affiliate Hub</p>
-        <a href="000-cong-cu-ban-hang.html" style="color: #666; font-size: 11px; text-decoration: none; opacity: 0.5;">Quản trị viên</a>
+        <div id="admin-link"></div>
     </footer>
+
+<script>
+    // 1. CẤU HÌNH DỮ LIỆU MẪU (Sẽ hiện nếu chưa có dữ liệu nào khác)
+    const defaultProducts = [
+        { name: "Combo 2 Túi Nước Giặt Hygiene", price: "Deal Hot", link: "https://s.shopee.vn/20pS0YFUMD", img: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmu9r8389v6v9a", desc: "Sạch vết bẩn, hương thơm bền lâu." },
+        { name: "Thùng Giấy Ăn Gấu Trúc Sipiao", price: "Giá Sốc", link: "https://s.shopee.vn/4AtwfXeL01", img: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljvswq5l0o4e8c", desc: "Siêu dai, an toàn, cực tiết kiệm." }
+    ];
+
+    // 2. HÀM TỰ ĐỘNG NHẬN DIỆN ADMIN
+    function checkAdmin() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('admin') === 'true' || localStorage.getItem('is_nam_admin')) {
+            document.getElementById('admin-panel').style.display = 'block';
+            document.getElementById('shop-title').innerText = "👨‍💻 QUẢN LÝ KHO HÀNG";
+            localStorage.setItem('is_nam_admin', 'true');
+            // Hiện link vào bản đồ tác chiến ở footer
+            document.getElementById('admin-link').innerHTML = '<a href="015-ban-do-tac-chien.html" style="color:#ee4d2d; text-decoration:none;">Mở Bản đồ tác chiến 015</a>';
+        }
+    }
+
+    // 3. HÀM LOAD DỮ LIỆU (ƯU TIÊN: GitHub -> LocalStorage -> Mẫu)
+    async function initStore() {
+        checkAdmin();
+        let products = [];
+
+        try {
+            // Thử lấy từ GitHub
+            const response = await fetch('files.json');
+            if (response.ok) {
+                const data = await response.json();
+                products = data.products;
+            }
+        } catch (e) {
+            // Nếu không có mạng hoặc chưa đẩy lên GitHub, lấy từ máy cá nhân
+            const localData = localStorage.getItem('shopee_kho_tong');
+            if (localData) {
+                products = JSON.parse(localData);
+            } else {
+                products = defaultProducts;
+            }
+        }
+        render(products);
+    }
+
+    // 4. HÀM HIỂN THỊ RA MÀN HÌNH
+    function render(data) {
+        const container = document.getElementById('product-container');
+        container.innerHTML = data.map(item => `
+            <div class="product-card">
+                <img src="${item.img || 'https://via.placeholder.com/150'}" alt="${item.name}">
+                <strong>${item.name}</strong>
+                <p>${item.desc || 'Sản phẩm chất lượng từ Shopee'}</p>
+                <div class="price-tag">🛍️ ${item.price}</div>
+                <a href="${item.link}" target="_blank" class="btn">MUA NGAY</a>
+            </div>
+        `).join('');
+    }
+
+    // 5. HÀM NHẬP DỮ LIỆU (Dành cho Admin)
+    function importData() {
+        const raw = document.getElementById('jsonInput').value;
+        if(!raw) return;
+        try {
+            const parsed = JSON.parse(raw);
+            localStorage.setItem('shopee_kho_tong', JSON.stringify(parsed));
+            alert("Đã cập nhật kho hàng thành công!");
+            location.reload();
+        } catch (e) { alert("Mã JSON không đúng định dạng!"); }
+    }
+
+    function clearStore() {
+        if(confirm("Xóa sạch kho hàng trên máy này?")) {
+            localStorage.removeItem('shopee_kho_tong');
+            location.reload();
+        }
+    }
+
+    window.onload = initStore;
+</script>
 </body>
 </html>
