@@ -1,210 +1,81 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cửa Hàng Di Động - Nam Nguyễn</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root{
---shopee-orange:#ee4d2d;
---shopee-gradient:linear-gradient(135deg,#ee4d2d,#ff7337);
---bg-color:#f5f5f5;
-}
-body{
-font-family:'Segoe UI',sans-serif;
-background:var(--bg-color);
-margin:0;
-padding:10px
-}
-header{
-text-align:center;
-padding:25px 15px;
-background:var(--shopee-gradient);
-color:#fff;
-border-radius:15px;
-margin-bottom:20px
-}
-.container{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-max-width:600px;
-margin:0 auto
-}
-.product-card{
-background:#fff;
-border-radius:12px;
-padding:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.06)
-}
-.product-card img{
-width:100%;
-aspect-ratio:1/1;
-object-fit:cover;
-border-radius:8px;
-margin-bottom:8px
-}
-.product-card strong{
-font-size:14px;
-display:-webkit-box;
--webkit-line-clamp:2;
--webkit-box-orient:vertical;
-overflow:hidden
-}
-.product-card p{
-font-size:11px;
-color:#777
-}
-.price-tag{
-color:var(--shopee-orange);
-font-weight:bold;
-margin:6px 0
-}
-.btn{
-background:var(--shopee-gradient);
-color:#fff;
-text-decoration:none;
-padding:8px;
-border-radius:8px;
-text-align:center;
-font-size:12px;
-font-weight:bold;
-display:block
-}
-.btn-all{
-grid-column:span 2;
-background:#222;
-color:#fff;
-padding:15px;
-text-align:center;
-border-radius:12px;
-text-decoration:none;
-margin-top:15px
-}
-footer{
-text-align:center;
-font-size:11px;
-color:#aaa;
-margin:30px 0
-}
-#admin-panel{
-display:none;
-background:#fff;
-padding:12px;
-border-radius:12px;
-margin-bottom:15px;
-border:2px dashed var(--shopee-orange)
-}
-</style>
-</head>
-
-<body>
-
-<!-- ===== ADMIN ===== -->
-<div id="admin-panel">
-<h3 style="color:#ee4d2d;margin:0 0 8px">🛠️ QUẢN TRỊ</h3>
-<textarea id="jsonInput" style="width:100%;height:80px"></textarea>
-<button onclick="importData()">Cập nhật kho</button>
-<button onclick="clearStore()" style="color:red">Xóa kho</button>
-</div>
-
-<header>
-<h1 id="shop-title">🛍️ CỬA HÀNG CỦA NAM</h1>
-<p>Tuyển chọn Deal hời từ Shopee</p>
-</header>
-
-<!-- ===== KHO ===== -->
-<div class="container" id="product-container"></div>
-
-<div class="container">
-<a class="btn-all" href="https://mycollection.shop/NAM_NGUYEN_CUA_BAN">
-<i class="fas fa-shopping-cart"></i> GHÉ CỬA HÀNG TỔNG
-</a>
-</div>
-
-<footer>© 2026 Nam Nguyễn Affiliate Hub</footer>
-
 <script>
 // ===== DỮ LIỆU DỰ PHÒNG =====
-const defaultProducts = [
-{
-name:"Tổng hợp đồ chơi nhà tắm cho bé",
-price:"79.000đ",
-link:"https://s.shopee.vn/20pS0YFUMD",
-img:"https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmu9r8389v6v9a",
-desc:"Đồ chơi phun nước vui nhộn"
-}
-];
+const defaultProducts = [];
 
 // ===== ADMIN =====
 function checkAdmin(){
-const p=new URLSearchParams(location.search);
-if(p.get("admin")==="true"){
-localStorage.setItem("is_admin","1");
-}
-if(localStorage.getItem("is_admin")){
-document.getElementById("admin-panel").style.display="block";
-document.getElementById("shop-title").innerText="👨‍💻 QUẢN LÝ KHO";
-}
+  const p=new URLSearchParams(location.search);
+  if(p.get("admin")==="true"){
+    localStorage.setItem("is_admin","1");
+  }
+  if(localStorage.getItem("is_admin")){
+    document.getElementById("admin-panel").style.display="block";
+    document.getElementById("shop-title").innerText="👨‍💻 QUẢN LÝ KHO";
+  }
 }
 
-// ===== LOAD TỪ GITHUB files.json =====
+// ===== LOAD + LỌC THEO TRẺ =====
 async function initStore(){
-checkAdmin();
-let products=[...defaultProducts];
+  checkAdmin();
 
-try{
-const res=await fetch("./files.json?nocache="+Date.now());
-const data=await res.json();
-if(data.products && data.products.length){
-products=data.products;
-}
-}catch(e){
-const local=localStorage.getItem("shopee_kho_tong");
-if(local) products=JSON.parse(local);
-}
+  const params = new URLSearchParams(location.search);
+  const tre = params.get("tre") || "all";
 
-render(products);
+  let products = [];
+
+  try{
+    const res = await fetch("./files.json?nocache=" + Date.now());
+    const data = await res.json();
+    if(data.products && data.products.length){
+      products = data.products;
+    }
+  }catch(e){
+    const local = localStorage.getItem("shopee_kho_tong");
+    if(local) products = JSON.parse(local);
+  }
+
+  // ===== LỌC THEO CON =====
+  if(tre !== "all"){
+    products = products.filter(p => !p.tre || p.tre == tre);
+  }
+
+  render(products);
 }
 
 // ===== RENDER =====
 function render(list){
-const box=document.getElementById("product-container");
-if(!list || !list.length){
-box.innerHTML="<p style='grid-column:span 2;text-align:center'>Chưa có sản phẩm</p>";
-return;
-}
-box.innerHTML=list.map(i=>`
-<div class="product-card">
-<img src="${i.img||''}" onerror="this.src='https://via.placeholder.com/300'">
-<strong>${i.name}</strong>
-<p>${i.desc||''}</p>
-<div class="price-tag">${i.price||''}</div>
-<a class="btn" target="_blank" href="${i.link||'#'}">MUA NGAY</a>
-</div>
-`).join("");
+  const box=document.getElementById("product-container");
+
+  if(!list || !list.length){
+    box.innerHTML="<p style='grid-column:span 2;text-align:center'>Chưa có sản phẩm</p>";
+    return;
+  }
+
+  box.innerHTML=list.map(i=>`
+    <div class="product-card">
+      <img src="${i.img||''}" onerror="this.src='https://via.placeholder.com/300'">
+      <strong>${i.name||''}</strong>
+      <p>${i.desc||''}</p>
+      <div class="price-tag">${i.price||''}</div>
+      <a class="btn" target="_blank" href="${i.link||'#'}">MUA NGAY</a>
+    </div>
+  `).join("");
 }
 
 // ===== ADMIN ACTION =====
 function importData(){
-try{
-const d=JSON.parse(jsonInput.value);
-localStorage.setItem("shopee_kho_tong",JSON.stringify(d.products||d));
-location.reload();
-}catch{
-alert("JSON sai định dạng");
-}
+  try{
+    const d=JSON.parse(jsonInput.value);
+    localStorage.setItem("shopee_kho_tong",JSON.stringify(d.products||d));
+    location.reload();
+  }catch{
+    alert("JSON sai định dạng");
+  }
 }
 function clearStore(){
-localStorage.removeItem("shopee_kho_tong");
-location.reload();
+  localStorage.removeItem("shopee_kho_tong");
+  location.reload();
 }
 
 window.onload=initStore;
 </script>
-
-</body>
-</html>
