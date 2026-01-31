@@ -2,35 +2,25 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Marketing Gia Đình 2026 - TỔNG HỢP V13</title>
+    <title>Marketing Gia Đình 2026 - TỔNG HỢP V14</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --x: #000000; --gpt: #10a37f; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 15px; margin: 0; }
         .box { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
         h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 0; font-size: 16px; text-transform: uppercase; }
-        
-        /* Cấu hình & Nhập liệu */
         .form-row { display: flex; gap: 8px; flex-wrap: wrap; background: #e3f2fd; padding: 12px; border-radius: 10px; margin-bottom: 15px; align-items: center; }
         input, select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; }
-        
-        /* Grid Người nhận */
         .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); gap: 8px; max-height: 200px; overflow-y: auto; padding: 10px; background: #f9f9f9; border-radius: 8px; border: 1px inset #eee; }
-        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #fff; font-size: 11px; position: relative; text-align: left; transition: 0.2s; }
+        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #fff; font-size: 11px; position: relative; text-align: left; }
         .m-btn.active { background: var(--v); color: white; border-color: var(--v); font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .del-btn { position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; cursor: pointer; font-size: 10px; z-index: 5; }
-
-        /* Bộ lọc tầng giá */
         .filter-group { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
         .f-btn { border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; background: white; border: 1px solid var(--s); font-size: 10px; font-weight: bold; color: var(--s); }
         .f-btn.active { background: var(--s); color: white; }
-
-        /* Bảng hàng hóa */
         .table-container { max-height: 400px; overflow-y: auto; border: 1px solid #eee; border-radius: 8px; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; background: white; }
         th { background: var(--dark); color: white; padding: 12px; position: sticky; top: 0; z-index: 10; }
         td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; }
-        
-        /* Nút bấm AI */
         .btn-ai { font-size: 9px; margin: 2px; width: 65px; padding: 6px 0; border-radius: 4px; border: none; color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; }
         .status-msg { background: #fff3bf; color: #856404; padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 10px; border: 1px solid #ffeeba; }
         .action-bar { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
@@ -39,45 +29,43 @@
 <body>
 
 <div style="max-width: 1200px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p); margin-bottom: 20px;">🏠 HỆ THỐNG MARKETING GIA ĐÌNH TOÀN DIỆN 2026</h1>
+    <h1 style="text-align: center; color: var(--p); margin-bottom: 20px;">🏠 HỆ THỐNG MARKETING GIA ĐÌNH TOÀN DIỆN V14</h1>
 
     <div class="box" style="border: 2px solid #fab005; background: #fff9db;">
-        <strong>🌐 ĐỊA CHỈ WEB ĐĂNG BÀI (GitHub):</strong><br>
-        <input type="text" id="ghLink" style="width: 80%; margin-top: 8px;" 
-               placeholder="Dán link file 001-kho-hang.html của bố vào đây..."
-               value="https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html" onchange="saveAll()">
-        <p style="font-size: 11px; color: #666; margin: 5px 0;">(Link này dùng để AI tạo mã sản phẩm tự động khi khách bấm vào)</p>
+        <strong>🌐 ĐỊA CHỈ WEB GITHUB (Link đích):</strong><br>
+        <input type="text" id="ghLink" style="width: 80%; margin-top: 8px;" value="https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html" onchange="saveAll()">
     </div>
 
     <div class="box">
-        <h2>1. CHỌN NGƯỜI NHẬN & THÊM KHÁCH MỚI</h2>
+        <h2>1. DANH SÁCH NGƯỜI NHẬN & KHÁCH HÀNG</h2>
         <div class="form-row">
-            <strong>Thêm mới:</strong>
-            <input type="text" id="newName" placeholder="Tên khách..." style="width:150px">
+            <input type="text" id="newName" placeholder="Tên khách mới..." style="width:150px">
             <input type="date" id="newBirth">
             <select id="newGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
-            <button onclick="addM()" style="background:var(--g); color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">+ THÊM VÀO DANH SÁCH</button>
+            <button onclick="addM()" style="background:var(--g); color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">+ THÊM</button>
         </div>
         <div class="member-grid" id="mList"></div>
     </div>
 
     <div class="box">
-        <h2>2. KHO HÀNG & BỐC THĂM MAY MẮN THEO TÊN</h2>
-        <div id="statusMsg" class="status-msg">👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!</div>
+        <h2>2. LỌC TẦNG GIÁ & BỐC HÀNG THEO TÊN</h2>
+        <div id="statusMsg" class="status-msg">👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI Ở TRÊN!</div>
         
         <div class="filter-group">
-            <strong>Lọc Tầng Giá:</strong>
+            <strong>Tầng giá:</strong>
             <button class="f-btn active" onclick="setPriceFilter(0, 999999999, this)">TẤT CẢ</button>
             <button class="f-btn" onclick="setPriceFilter(0, 9000, this)">DƯỚI 9K</button>
-            <button class="f-btn" onclick="setPriceFilter(0, 20000, this)">DƯỚI 20K</button>
             <button class="f-btn" onclick="setPriceFilter(0, 50000, this)">DƯỚI 50K</button>
-            <button class="f-btn" onclick="setPriceFilter(0, 100000, this)">DƯỚI 100K</button>
+            <button class="f-btn" onclick="setPriceFilter(0, 200000, this)">DƯỚI 200K</button>
             <button class="f-btn" onclick="setPriceFilter(0, 1000000, this)">DƯỚI 1TR</button>
+            <button class="f-btn" onclick="setPriceFilter(0, 5000000, this)" style="border-color:#e67e22; color:#e67e22">DƯỚI 5TR</button>
+            <button class="f-btn" onclick="setPriceFilter(0, 10000000, this)" style="border-color:#e67e22; color:#e67e22">DƯỚI 10TR</button>
+            <button class="f-btn" onclick="setPriceFilter(0, 100000000, this)" style="border-color:#e67e22; color:#e67e22">DƯỚI 100TR</button>
         </div>
 
         <div class="action-bar">
             <input type="file" id="csv" multiple accept=".csv" style="flex:1">
-            <button class="f-btn" style="border-color:var(--g); color:var(--g); height:35px" onclick="renderW()">🔄 ĐỔI MÓN (BỐC LẠI)</button>
+            <button class="f-btn" style="border-color:var(--g); color:var(--g); height:35px" onclick="renderW()">🔄 BỐC LẠI BỘ KHÁC</button>
             <button class="f-btn" style="border-color:var(--v); color:var(--v); height:35px" onclick="exportJson()">💾 XUẤT FILES.JSON</button>
             <button class="f-btn" style="border-color:red; color:red; height:35px" onclick="clearW()">🗑️ XÓA KHO</button>
         </div>
@@ -86,9 +74,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Tên Sản Phẩm (Bốc theo chữ cái tên)</th>
-                        <th width="90">Giá Tiền</th>
-                        <th width="300">Chọn AI (Tự copy lệnh & Mở Web)</th>
+                        <th>Tên Sản Phẩm (Bốc theo số chữ cái)</th>
+                        <th width="95">Giá Tiền</th>
+                        <th width="300">Gửi Lệnh Prompt Cho AI</th>
                     </tr>
                 </thead>
                 <tbody id="pArea"></tbody>
@@ -117,15 +105,15 @@
         {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
     ];
 
-    let extraMems = JSON.parse(localStorage.getItem('ext_v13')) || [];
-    let warehouse = JSON.parse(localStorage.getItem('war_v13')) || [];
+    let extraMems = JSON.parse(localStorage.getItem('ext_v14')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('war_v14')) || [];
     let selM = null;
     let priceRange = { min: 0, max: 999999999 };
 
     function saveAll() {
-        localStorage.setItem('ext_v13', JSON.stringify(extraMems));
-        localStorage.setItem('war_v13', JSON.stringify(warehouse));
-        localStorage.setItem('gh_v13', document.getElementById('ghLink').value);
+        localStorage.setItem('ext_v14', JSON.stringify(extraMems));
+        localStorage.setItem('war_v14', JSON.stringify(warehouse));
+        localStorage.setItem('gh_v14', document.getElementById('ghLink').value);
     }
 
     function addM() {
@@ -202,23 +190,17 @@
                     <button class="btn-ai" style="background:var(--x)" onclick="goAI('Grok','${p.id}')">Grok</button>
                 </td>
             </tr>
-        `).join('') : `<tr><td colspan="3">Không có hàng ở tầng giá này bố ơi!</td></tr>`;
+        `).join('') : `<tr><td colspan="3">Không tìm thấy hàng ở tầng giá này bố ơi!</td></tr>`;
     }
 
     function goAI(ai, id) {
         const p = warehouse.find(x => x.id === id);
         const base = document.getElementById('ghLink').value;
         const link = `${base}?id=${id}`;
-        let prompt = `Viết bài Facebook cực hài hước và ý nghĩa về kỷ niệm của tôi (${selM.g}) với ${selM.n} (${selM.age} tuổi) và món đồ ${p.name}. Giọng văn ${ai === 'Grok' ? 'bá đạo' : 'thân mật'}. Link xem: ${link}`;
-        
+        let prompt = `Viết bài Facebook mặn mà về món ${p.name} dành cho ${selM.n} (${selM.age}t). Link: ${link}`;
         navigator.clipboard.writeText(prompt).then(() => {
-            alert(`Đã copy Prompt cho ${ai}!\nBố dán vào cửa sổ AI vừa hiện ra nhé.`);
-            const urls = {
-                'ChatGPT':"https://chatgpt.com",
-                'DeepSeek':"https://chat.deepseek.com",
-                'Gemini':"https://gemini.google.com/app",
-                'Grok':"https://x.com/i/grok"
-            };
+            alert(`Đã copy cho ${ai}!`);
+            const urls = {'ChatGPT':"https://chatgpt.com",'DeepSeek':"https://chat.deepseek.com",'Gemini':"https://gemini.google.com/app",'Grok':"https://x.com/i/grok"};
             window.open(urls[ai], "_blank");
         });
     }
@@ -227,11 +209,8 @@
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
-
     function clearW() { if(confirm("Xóa sạch kho?")) { warehouse=[]; saveAll(); renderW(); } }
-
-    // Tải lại dữ liệu cũ
-    if(localStorage.getItem('gh_v13')) document.getElementById('ghLink').value = localStorage.getItem('gh_v13');
+    if(localStorage.getItem('gh_v14')) document.getElementById('ghLink').value = localStorage.getItem('gh_v14');
     renderM();
 </script>
 </body>
