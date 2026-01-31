@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Marketing Gia Đình V18.1 - Hướng Dẫn Từng Bước</title>
+    <title>Marketing Gia Đình V18.2 - LƯU DANH SÁCH BẠN BÈ</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --x: #000000; --gpt: #10a37f; --shopee: #ff4742; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 15px; margin: 0; }
@@ -10,63 +10,73 @@
         .step-1 { border-left-color: var(--s); }
         .step-2 { border-left-color: var(--v); }
         .step-3 { border-left-color: var(--g); }
-        .step-4 { border-left-color: var(--p); }
         h2 { color: var(--dark); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 0; font-size: 16px; text-transform: uppercase; }
         .guide { font-size: 12px; color: #555; margin-bottom: 10px; display: block; font-style: italic; }
         input, select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; }
-        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; }
-        .m-btn.active { background: var(--v); color: white; font-weight: bold; }
+        .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; max-height: 250px; overflow-y: auto; padding: 10px; background: #f9f9f9; border-radius: 8px; }
+        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; position: relative; width: 100%; }
+        .m-btn.active { background: var(--v); color: white; font-weight: bold; border-color: var(--v); }
+        .del-m { position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; cursor: pointer; font-size: 10px; z-index: 5; }
         .filter-group { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 15px; background: #fff9db; padding: 10px; border-radius: 8px; }
         .f-btn { border: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; background: white; border: 1px solid var(--s); font-size: 10px; font-weight: bold; color: var(--s); }
         .f-btn.active { background: var(--s); color: white; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
         th { background: var(--dark); color: white; padding: 10px; }
         td { border-bottom: 1px solid #eee; padding: 8px; text-align: center; }
-        .btn-ai { font-size: 9px; padding: 6px 10px; border-radius: 4px; border: none; color: white; cursor: pointer; font-weight: bold; }
+        .btn-ai { font-size: 9px; padding: 6px 10px; border-radius: 4px; border: none; color: white; cursor: pointer; font-weight: bold; width: 60px; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1300px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🏠 HỆ THỐNG MARKETING 4 BƯỚC V18.1</h1>
+    <h1 style="text-align: center; color: var(--p);">🚀 MARKETING GIA ĐÌNH & BẠN BÈ V18.2</h1>
 
     <div class="box step-1">
-        <h2>🔵 BƯỚC 1: CẤU HÌNH & LÊN KHO GITHUB</h2>
-        <span class="guide">Dán link web của bố và nạp file CSV, sau đó tải file JSON lên GitHub để cập nhật hàng mới.</span>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+        <h2>🔵 BƯỚC 1: CẤU HÌNH KHO HÀNG GITHUB</h2>
+        <span class="guide">Nạp CSV, sau đó Xuất JSON để đưa lên GitHub (giúp Web di động cập nhật hàng).</span>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <input type="text" id="ghLink" style="flex:1" value="https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html" onchange="saveAll()">
             <input type="file" id="csv" multiple accept=".csv">
-            <button onclick="exportJson()" style="background:var(--v); color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;">💾 XUẤT FILE CHO GITHUB</button>
-            <button onclick="clearW()" style="background:#eee; border:none; padding:8px; border-radius:6px; cursor:pointer;">🗑️ XÓA KHO</button>
+            <button onclick="exportJson()" style="background:var(--v); color:white; border:none; padding:8px; border-radius:6px; cursor:pointer; font-weight:bold;">💾 XUẤT FILE CHO GITHUB</button>
+            <button onclick="clearW()" style="background:#eee; border:none; padding:8px; border-radius:6px; cursor:pointer;">🗑️ DỌN KHO</button>
         </div>
     </div>
 
     <div class="box step-2">
-        <h2>🟣 BƯỚC 2: CHỌN NGƯỜI NHẬN & TẦNG GIÁ</h2>
-        <span class="guide">Bấm chọn tên người nhận (bốc số lượng theo tên) và chọn mức giá phù hợp túi tiền.</span>
-        <div class="filter-group" id="priceFilters">
-            <button class="f-btn active" onclick="setPriceFilter(0, 999999999, this)">TẤT CẢ</button>
-             <button class="f-btn" onclick="setPriceFilter(10000, 50000, this)">10K - 50K</button>
-             <button class="f-btn" onclick="setPriceFilter(50000, 200000, this)">50K - 200K</button>
-             <button class="f-btn" onclick="setPriceFilter(200000, 1000000, this)">200K - 1TR</button>
-             <button class="f-btn" onclick="setPriceFilter(1000000, 10000000, this)">1TR - 10TR</button>
-             <button class="f-btn" onclick="setPriceFilter(10000000, 100000000, this)">TRÊN 10TR</button>
+        <h2>🟣 BƯỚC 2: QUẢN LÝ NGƯỜI NHẬN (Gia đình & Bạn bè)</h2>
+        <div style="background: #e3f2fd; padding: 10px; border-radius: 8px; margin-bottom: 10px; display: flex; gap: 8px; align-items: center;">
+            <strong>➕ Thêm bạn mới:</strong>
+            <input type="text" id="newName" placeholder="Tên..." style="width:150px">
+            <input type="date" id="newBirth">
+            <select id="newGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
+            <button onclick="addM()" style="background:var(--g); color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">THÊM VÀO DANH SÁCH</button>
         </div>
-        <div id="mList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 5px;"></div>
+        
+        <div class="filter-group">
+            <strong>💰 Chọn mức giá:</strong>
+            <button class="f-btn active" onclick="setPriceFilter(0, 999999999, this)">TẤT CẢ</button>
+            <button class="f-btn" onclick="setPriceFilter(10000, 50000, this)">10K - 50K</button>
+            <button class="f-btn" onclick="setPriceFilter(50000, 200000, this)">50K - 200K</button>
+            <button class="f-btn" onclick="setPriceFilter(200000, 1000000, this)">200K - 1TR</button>
+            <button class="f-btn" onclick="setPriceFilter(1000000, 10000000, this)">1TR - 10TR</button>
+            <button class="f-btn" onclick="setPriceFilter(10000000, 999999999, this)">TRÊN 10TR</button>
+        </div>
+
+        <div id="mList" class="m-grid"></div>
     </div>
 
     <div class="box step-3">
-        <h2>🟢 BƯỚC 3 & 4: RÚT GỌN LINK & ĐĂNG BÀI AI</h2>
-        <span class="guide">Bấm vào Link GitHub để Copy -> Đi rút gọn link -> Dán lại vào ô Shopee -> Bấm chọn AI để viết bài.</span>
+        <h2>🟢 BƯỚC 3 & 4: RÚT GỌN LINK & ĐĂNG BÀI</h2>
+        <span class="guide">Click "Copy Link Gốc" -> Đi rút gọn -> Dán vào "Link Rút Gọn" -> Bấm AI.</span>
         <div style="overflow-x: auto;">
             <table>
                 <thead>
                     <tr>
                         <th>Sản phẩm</th>
                         <th>Giá</th>
-                        <th>1. Click Copy Link Gốc</th>
-                        <th>2. Dán Link Rút Gọn</th>
-                        <th>3. Chọn AI Viết Bài</th>
+                        <th>1. Lấy Link Gốc</th>
+                        <th>2. Dán Link Đã Rút Gọn</th>
+                        <th>3. Gửi AI</th>
                     </tr>
                 </thead>
                 <tbody id="pArea"></tbody>
@@ -76,7 +86,6 @@
 </div>
 
 <script>
-    // Toàn bộ Logic xử lý giống V18 nhưng con bổ sung thêm hướng dẫn
     const fixedMems = [
         {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
         {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
@@ -96,20 +105,39 @@
         {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
     ];
 
-    let warehouse = JSON.parse(localStorage.getItem('war_v18')) || [];
+    let extraMems = JSON.parse(localStorage.getItem('extra_v18_2')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('war_v18_2')) || [];
     let selM = null;
     let priceRange = { min: 0, max: 999999999 };
 
     function saveAll() {
-        localStorage.setItem('war_v18', JSON.stringify(warehouse));
-        localStorage.setItem('gh_v18', document.getElementById('ghLink').value);
+        localStorage.setItem('extra_v18_2', JSON.stringify(extraMems));
+        localStorage.setItem('war_v18_2', JSON.stringify(warehouse));
+        localStorage.setItem('gh_v18_2', document.getElementById('ghLink').value);
     }
 
+    function addM() {
+        const n = document.getElementById('newName').value;
+        const d = document.getElementById('newBirth').value;
+        const g = document.getElementById('newGen').value;
+        if(n && d) { 
+            extraMems.unshift({n, d, g}); 
+            document.getElementById('newName').value=""; 
+            saveAll(); renderM(); 
+        } else { alert("Bố điền đủ Tên và Ngày sinh nhé!"); }
+    }
+
+    function delM(i) { if(confirm("Xóa người này khỏi danh sách?")) { extraMems.splice(i,1); saveAll(); renderM(); } }
+
     function renderM() {
-        document.getElementById('mList').innerHTML = fixedMems.map(m => `
-            <button class="m-btn ${selM?.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>
-                ${m.n}
-            </button>
+        const all = [...extraMems, ...fixedMems];
+        document.getElementById('mList').innerHTML = all.map((m, i) => `
+            <div style="position:relative">
+                <button class="m-btn ${selM?.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>
+                    <strong>${m.n}</strong>
+                </button>
+                ${i < extraMems.length ? `<button class="del-m" onclick="event.stopPropagation(); delM(${i})">×</button>` : ''}
+            </div>
         `).join('');
     }
 
@@ -152,14 +180,19 @@
         let pool = warehouse.filter(p => p.price >= priceRange.min && p.price <= priceRange.max);
         let selected = pool.sort(() => 0.5 - Math.random()).slice(0, limit);
 
+        if(selected.length === 0) {
+            area.innerHTML = `<tr><td colspan="5">Không có hàng ở giá này. Bố nạp CSV hoặc chọn mức khác nhé!</td></tr>`;
+            return;
+        }
+
         area.innerHTML = selected.map(p => {
             const gh = `${document.getElementById('ghLink').value}?id=${p.id}`;
             return `
             <tr>
                 <td style="text-align:left"><b>${p.name}</b></td>
-                <td style="color:var(--p)">${p.price.toLocaleString()}đ</td>
-                <td><input type="text" value="${gh}" readonly style="width:120px; font-size:9px; cursor:pointer" onclick="this.select(); document.execCommand('copy'); alert('Đã copy link gốc! Bố đi rút gọn rồi dán vào ô bên cạnh nhé.')"></td>
-                <td><input type="text" id="shopee_${p.id}" style="width:120px; border:1px solid var(--g)" placeholder="Dán link đẹp vào đây..."></td>
+                <td style="color:var(--p); font-weight:bold;">${p.price.toLocaleString()}đ</td>
+                <td><input type="text" value="${gh}" readonly style="width:110px; font-size:9px; cursor:pointer" onclick="this.select(); document.execCommand('copy'); alert('Đã copy Link Gốc!')"></td>
+                <td><input type="text" id="shopee_${p.id}" style="width:110px; border:1px solid var(--g)" placeholder="Dán link đẹp..."></td>
                 <td>
                     <button class="btn-ai" style="background:var(--gpt)" onclick="goAI('ChatGPT','${p.id}')">GPT</button>
                     <button class="btn-ai" style="background:var(--x)" onclick="goAI('Grok','${p.id}')">Grok</button>
@@ -171,9 +204,8 @@
     function goAI(ai, id) {
         const p = warehouse.find(x => x.id === id);
         const sLink = document.getElementById(`shopee_${id}`).value;
-        if(!sLink) { alert("Bố chưa dán link rút gọn vào ô xanh lá cây kìa!"); return; }
-        
-        let prompt = `Viết bài Facebook cực hay cho ${selM.n} (${selM.age}t) về ${p.name}. Link mua: ${sLink}`;
+        if(!sLink) { alert("Bố chưa dán link rút gọn vào ô màu xanh!"); return; }
+        let prompt = `Viết bài Facebook hài hước tặng ${selM.n} (${selM.age}t) món ${p.name}. Link mua: ${sLink}`;
         navigator.clipboard.writeText(prompt).then(() => {
             alert("Đã copy lệnh AI!");
             const urls = {'ChatGPT':"https://chatgpt.com",'Grok':"https://x.com/i/grok"};
@@ -185,8 +217,9 @@
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
-    function clearW() { if(confirm("Xóa kho?")) { warehouse=[]; saveAll(); renderW(); } }
-    if(localStorage.getItem('gh_v18')) document.getElementById('ghLink').value = localStorage.getItem('gh_v18');
+    function clearW() { if(confirm("Xóa kho hàng?")) { warehouse=[]; saveAll(); renderW(); } }
+    
+    if(localStorage.getItem('gh_v18_2')) document.getElementById('ghLink').value = localStorage.getItem('gh_v18_2');
     renderM();
 </script>
 </body>
