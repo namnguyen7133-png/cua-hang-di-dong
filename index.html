@@ -2,115 +2,110 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Marketing Gia Đình - Link GitHub Auto</title>
+    <title>Hệ Thống Marketing Gia Đình - Quản Lý Kho</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
         .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 250px; overflow-y: auto; padding: 10px; border: 1px inset #eee; }
-        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; position: relative; }
-        .m-btn.active { background: var(--v); color: white; font-weight: bold; }
-        .del-btn { position: absolute; top: 0; right: 0; background: red; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; cursor: pointer; }
         
-        /* Ô nhập link GitHub */
-        .config-row { background: #fff3bf; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 2px solid #fab005; }
-        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: var(--dark); color: white; padding: 10px; }
-        td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; }
+        /* Member Grid */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 200px; overflow-y: auto; }
+        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; position: relative; }
+        .m-btn.active { background: var(--v); color: white; }
+        .del-x { position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; }
+
+        /* Warehouse Table */
+        .scroll-table { max-height: 400px; overflow-y: auto; border: 1px solid #eee; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th { background: var(--dark); color: white; padding: 10px; position: sticky; top: 0; }
+        td { border-bottom: 1px solid #eee; padding: 8px; text-align: center; font-size: 12px; }
+        
+        /* Controls */
+        input, select { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
         .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; }
-        .btn-ai { font-size: 10px; margin: 2px; width: 80px; }
+        .btn-sm { padding: 5px 10px; font-size: 10px; }
+        .search-box { width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid var(--s); border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1100px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🚀 TRẠM ĐIỀU HÀNH MARKETING GIA ĐÌNH</h1>
+    <h1 style="text-align: center; color: var(--p);">🚀 ĐIỀU HÀNH KHO & AI MARKETING</h1>
 
-    <div class="box config-row">
-        <strong>🌐 ĐỊA CHỈ WEB GITHUB CỦA BẠN:</strong><br>
-        <input type="text" id="ghBase" style="width: 80%; margin-top: 5px;" 
-               placeholder="Ví dụ: https://namnguyen7133.github.io/kho-hang/" 
-               value="https://namnguyen7133.github.io/kho-hang/" onchange="saveGH()">
-        <p style="font-size: 11px; color: #666; margin: 5px 0 0 0;">(Hệ thống sẽ tự động dùng link này để các bé đăng bài Facebook)</p>
+    <div class="box" style="background: #fff3bf;">
+        <strong>🌐 WEB GITHUB:</strong> 
+        <input type="text" id="ghBase" style="width: 60%;" value="https://namnguyen7133.github.io/kho-hang/" onchange="saveConfig()">
+        <button class="btn" style="background:var(--g)" onclick="exportJson()">💾 Xuất files.json</button>
     </div>
 
     <div class="box">
-        <h2>1. CHỌN NGƯỜI NHẬN</h2>
+        <h2>1. NGƯỜI NHẬN (${members.length})</h2>
         <div style="margin-bottom: 10px;">
-            <input type="text" id="inN" placeholder="Tên...">
+            <input type="text" id="inN" placeholder="Tên khách...">
             <input type="date" id="inD">
-            <button class="btn" style="background:var(--g)" onclick="addM()">+ Thêm Người</button>
-            <button class="btn" style="background:#ff4757" onclick="clearM()">🗑️ Xóa hết khách</button>
+            <button class="btn" style="background:var(--s)" onclick="addM()">+ Thêm</button>
         </div>
         <div class="member-grid" id="mList"></div>
     </div>
 
     <div class="box">
-        <h2>2. CHỌN SẢN PHẨM & AI KỂ CHUYỆN</h2>
-        <input type="file" id="csv" multiple accept=".csv" style="margin-bottom:10px">
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên SP</th>
-                    <th>Link GitHub Gốc (Tự tạo)</th>
-                    <th>Gọi AI (Tự Copy Prompt)</th>
-                </tr>
-            </thead>
-            <tbody id="pArea"></tbody>
-        </table>
-        <div style="margin-top: 20px;">
-             <button class="btn" style="background:var(--s)" onclick="exportJson()">💾 Xuất files.json cho GitHub</button>
+        <h2>2. QUẢN LÝ KHO HÀNG (<span id="countP">0</span> món)</h2>
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <input type="file" id="csv" multiple accept=".csv" class="btn" style="background:#eee; color:#333; flex:1">
+            <button class="btn" style="background:#ff4757" onclick="clearWare()">🗑️ Xóa sạch kho</button>
+        </div>
+        
+        <input type="text" id="searchP" class="search-box" placeholder="🔍 Tìm tên sản phẩm trong kho..." oninput="renderW()">
+
+        <div class="scroll-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="50">Xóa</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th width="180">Link GitHub</th>
+                        <th width="180">Gọi AI</th>
+                    </tr>
+                </thead>
+                <tbody id="pArea"></tbody>
+            </table>
         </div>
     </div>
 </div>
 
 <script>
-    const fixedM = [
-        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
-        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"}
-        // ... (Bạn hãy dán nốt 32 người của bạn vào đây nhé)
+    // Dữ liệu mẫu (Bố hãy dán danh sách 32 người vào đây)
+    let members = JSON.parse(localStorage.getItem('mems_v5')) || [
+        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"},
+        {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"}
     ];
-
-    let extraM = JSON.parse(localStorage.getItem('extraM')) || [];
-    let warehouse = JSON.parse(localStorage.getItem('wareV4')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('ware_v5')) || [];
     let activeM = null;
-    let ghBase = localStorage.getItem('ghBase') || "https://namnguyen7133.github.io/kho-hang/";
 
-    function saveGH() { 
-        ghBase = document.getElementById('ghBase').value; 
-        if(!ghBase.endsWith('/')) ghBase += '/';
-        localStorage.setItem('ghBase', ghBase); 
-        renderW(); 
-    }
+    function saveConfig() { localStorage.setItem('ghBase', document.getElementById('ghBase').value); renderW(); }
 
+    // --- QUẢN LÝ NGƯỜI ---
     function renderM() {
         const list = document.getElementById('mList');
-        const all = [...extraM, ...fixedM];
-        list.innerHTML = all.map((m, i) => `
+        list.innerHTML = members.map((m, i) => `
             <div style="position:relative">
-                <button class="m-btn ${activeM && activeM.n === m.n ? 'active' : ''}" onclick='activeM=${JSON.stringify(m)};renderM()'>
-                    <b>${m.n}</b><br><small>${m.g} - ${calcAge(m.d)}t</small>
+                <button class="m-btn ${activeM && activeM.n === m.n ? 'active' : ''}" onclick='activeM=members[${i}];renderM()'>
+                    <b>${m.n}</b><br><small>${calcAge(m.d)} tuổi</small>
                 </button>
-                ${i < extraM.length ? `<button class="del-btn" onclick="delM(${i})">×</button>` : ''}
+                <button class="del-x" onclick="delM(${i})">×</button>
             </div>
         `).join('');
     }
-
-    function calcAge(d) { return Math.floor((new Date() - new Date(d))/31557600000); }
-
     function addM() {
         const n = document.getElementById('inN').value;
         const d = document.getElementById('inD').value;
-        if(!n || !d) return alert("Nhập đủ tên, ngày sinh!");
-        extraM.unshift({n, d, g:"Nam"});
-        localStorage.setItem('extraM', JSON.stringify(extraM));
-        renderM();
+        if(n && d) { members.unshift({n, d, g:"Nam"}); saveM(); }
     }
+    function delM(i) { members.splice(i,1); saveM(); }
+    function saveM() { localStorage.setItem('mems_v5', JSON.stringify(members)); renderM(); }
+    function calcAge(d) { return Math.floor((new Date() - new Date(d))/31557600000); }
 
-    function delM(i) { extraM.splice(i,1); localStorage.setItem('extraM', JSON.stringify(extraM)); renderM(); }
-    function clearM() { extraM=[]; localStorage.setItem('extraM','[]'); renderM(); }
-
+    // --- QUẢN LÝ KHO ---
     document.getElementById('csv').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -118,49 +113,65 @@
             const lines = text.split('\n').slice(1);
             lines.forEach(l => {
                 const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if(c.length >= 8) {
+                if(c.length >= 2) {
                     const id = c[0].trim();
                     if(!warehouse.some(p => p.id === id)) {
-                        warehouse.push({ id, n: c[1]?.replace(/"/g, '').split(' ').slice(0, 5).join(' ').trim() });
+                        warehouse.push({ id, n: c[1]?.replace(/"/g, '').split(' ').slice(0, 6).join(' ').trim() });
                     }
                 }
             });
         }
-        renderW();
+        saveW();
     };
 
     function renderW() {
         const area = document.getElementById('pArea');
-        area.innerHTML = warehouse.slice(-10).reverse().map(p => {
-            // TỰ TẠO LINK GITHUB: Link Base + mã sản phẩm
-            // Ví dụ: https://.../index.html?id=123
-            const myGitHubLink = `${ghBase}index.html?id=${p.id}`;
+        const search = document.getElementById('searchP').value.toLowerCase();
+        const ghBase = document.getElementById('ghBase').value;
+        
+        const filtered = warehouse.filter(p => p.n.toLowerCase().includes(search));
+        document.getElementById('countP').innerText = warehouse.length;
+
+        area.innerHTML = filtered.slice().reverse().map((p, idx) => {
+            const finalLink = `${ghBase}${p.id}.html`; // Hoặc cấu hình link theo ý bố
             return `
                 <tr>
-                    <td style="font-size:12px">${p.n}</td>
-                    <td><input value="${myGitHubLink}" readonly style="width:90%; font-size:10px; color:blue; border:none; background:none;"></td>
+                    <td><button class="btn-sm" style="background:#ff4757;border:none;color:white;border-radius:4px" onclick="delP('${p.id}')">Xóa</button></td>
+                    <td style="text-align:left">${p.n}</td>
+                    <td><small style="color:blue">${p.id}.html</small></td>
                     <td>
-                        <button class="btn btn-ai" style="background:var(--v)" onclick="goAI('DeepSeek', '${p.id}', '${myGitHubLink}')">DeepSeek</button>
-                        <button class="btn btn-ai" style="background:var(--s)" onclick="goAI('Gemini', '${p.id}', '${myGitHubLink}')">Gemini</button>
+                        <button class="btn-sm" style="background:var(--v);border:none;color:white" onclick="goAI('DeepSeek','${p.id}','${finalLink}')">DS</button>
+                        <button class="btn-sm" style="background:var(--s);border:none;color:white" onclick="goAI('Gemini','${p.id}','${finalLink}')">GM</button>
                     </td>
                 </tr>
             `;
         }).join('');
     }
 
-    function goAI(ai, id, finalLink) {
+    function delP(id) {
+        warehouse = warehouse.filter(p => p.id !== id);
+        saveW();
+    }
+
+    function clearWare() {
+        if(confirm("Bạn có chắc muốn xóa sạch toàn bộ kho hàng không?")) {
+            warehouse = [];
+            saveW();
+        }
+    }
+
+    function saveW() {
+        localStorage.setItem('ware_v5', JSON.stringify(warehouse));
+        renderW();
+    }
+
+    function goAI(ai, id, link) {
         if(!activeM) return alert("Bé chọn người nhận trước!");
         const p = warehouse.find(x => x.id === id);
-        const age = calcAge(activeM.d);
-        
-        const prompt = `Viết bài đăng Facebook cực vui kể về ${activeM.n} (${age} tuổi). 
-Trong truyện có dùng: ${p.n}. 
-Kêu gọi mọi người xem ảnh và giá tại link GitHub gia đình em: ${finalLink}`;
-
+        const prompt = `Viết truyện hài Facebook về ${activeM.n} (${calcAge(activeM.d)}t) gắn với món ${p.n}. Link xem: ${link}`;
         navigator.clipboard.writeText(prompt).then(() => {
-            alert(`✅ ĐÃ COPY LỆNH!\nBé sang dán vào ${ai} nhé.`);
-            const urls = { 'DeepSeek': "https://chat.deepseek.com", 'Gemini': "https://gemini.google.com/app" };
-            window.open(urls[ai], '_blank');
+            alert("Đã copy lệnh AI!");
+            window.open(ai === 'DeepSeek' ? "https://chat.deepseek.com" : "https://gemini.google.com/app", "_blank");
         });
     }
 
