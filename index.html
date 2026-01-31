@@ -2,100 +2,119 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Affiliate Gia Đình Toàn Năng</title>
+    <title>Hệ Thống Marketing Gia Đình - Bản Chuẩn 32 Thành Viên</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
         .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
         .step-num { background: var(--dark); color: white; padding: 5px 12px; border-radius: 50%; margin-right: 10px; }
         
-        /* Friend Form */
-        .friend-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-        input, select { padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
+        /* Grid danh sách 32 người */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 15px 0; }
+        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; transition: 0.3s; }
+        .m-btn:hover { border-color: var(--s); background: #f0f7ff; }
+        .m-btn.active { background: var(--v); color: white; border-color: var(--v); box-shadow: 0 4px 10px rgba(155, 89, 182, 0.4); }
 
-        /* Table */
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: var(--dark); color: white; padding: 12px; }
-        td { border-bottom: 1px solid #eee; padding: 12px; text-align: center; }
+        /* Bảng hàng hóa */
+        .table-wrap { overflow-x: auto; border-radius: 10px; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; background: white; min-width: 900px; }
+        th { background: var(--dark); color: white; padding: 12px; font-size: 13px; }
+        td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; }
         
-        .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; transition: 0.3s; }
-        .btn-ai { background: var(--v); margin: 2px; font-size: 11px; }
-        .btn-github { background: #24292e; }
-        .img-slot { width: 60px; height: 60px; border: 2px dashed #ccc; cursor: pointer; margin: auto; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        .edit-name { width: 90%; font-weight: bold; color: var(--s); }
+        .aff-link { width: 90%; border: 1.5px solid #ff7675; background: #fff5f5; font-size: 11px; color: #d63031; }
+
+        .btn { border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; font-size: 11px; }
+        .img-slot { width: 60px; height: 60px; border: 2px dashed #ccc; border-radius: 8px; margin: auto; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
         .img-slot img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1200px; margin: auto;">
-    
+    <h1 style="text-align: center; color: var(--p);">🏪 HỆ THỐNG AFFILIATE GIA ĐÌNH 2026</h1>
+
+    <div class="box" id="step1">
+        <h2><span class="step-num">1</span> CHỌN NGƯỜI NHẬN (Ưu tiên sinh nhật)</h2>
+        <div class="member-grid" id="memberList"></div>
+        <p id="selectedShow" style="font-weight:bold; color:var(--v); text-align:center; font-size: 18px;">👉 Hãy chọn một người để bắt đầu!</p>
+    </div>
+
     <div class="box">
-        <h2><span class="step-num">1</span> NHẬP DANH SÁCH BẠN BÈ</h2>
-        <div class="friend-form">
-            <input type="text" id="fName" placeholder="Họ và tên bạn bè...">
-            <input type="number" id="fAge" placeholder="Tuổi...">
-            <select id="fGender">
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-            </select>
-            <button class="btn" style="background:var(--s)" onclick="addFriend()">+ Thêm Bạn</button>
+        <h2><span class="step-num">2</span> NHẬP KHO CSV Shopee (Chọn nhiều file)</h2>
+        <input type="file" id="csvFiles" multiple accept=".csv" style="padding: 10px; background: #eee; border-radius: 8px; width: 300px;">
+        <button class="btn" style="background:var(--dark); margin-left: 10px" onclick="exportJS()">📤 Xuất File Bày Hàng (GitHub)</button>
+        <span id="storageNote" style="font-size: 12px; margin-left: 10px; color: #666;"></span>
+    </div>
+
+    <div class="box">
+        <h2><span class="step-num">3</span> BIÊN TẬP & KỂ CHUYỆN AI</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="80">Ảnh</th>
+                        <th>Bé sửa Tên ngắn</th>
+                        <th width="250">Link Affiliate (Bố dán)</th>
+                        <th>Chọn AI kể truyện</th>
+                        <th width="60">Xong</th>
+                    </tr>
+                </thead>
+                <tbody id="productArea"></tbody>
+            </table>
         </div>
-        <div id="friendTags" style="margin-top:10px"></div>
     </div>
-
-    <div class="box">
-        <h2><span class="step-num">2</span> NHẬP KHO HÀNG (CSV NHIỀU TỆP)</h2>
-        <input type="file" id="csvFiles" multiple accept=".csv">
-        <p id="storageInfo" style="font-size:12px; color:#666; margin-top:5px"></p>
-    </div>
-
-    <div class="box">
-        <h2><span class="step-num">3</span> BÀY HÀNG & CHỌN AI KỂ CHUYỆN</h2>
-        <div style="margin-bottom:10px">
-            <button class="btn btn-github" onclick="exportToGithub()">📤 Xuất File Bày Hàng (GitHub)</button>
-            <button class="btn" style="background:#d63031" onclick="cleanOldProducts()">🧹 Xóa Sản Phẩm Cũ (>30 ngày)</button>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Ảnh</th>
-                    <th>Sửa Tên</th>
-                    <th>Link Affiliate (Bố dán)</th>
-                    <th>Chọn AI Kể Chuyện</th>
-                    <th>Xong</th>
-                </tr>
-            </thead>
-            <tbody id="productArea"></tbody>
-        </table>
-    </div>
-
 </div>
 
 <script>
-    let friends = JSON.parse(localStorage.getItem('myFriends') || '[]');
-    let warehouse = JSON.parse(localStorage.getItem('myWarehouse') || '[]');
+    // DỮ LIỆU CHUẨN 32 NGƯỜI THÂN
+    const familyMembers = [
+        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam", c:"n c g"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ", c:"ô ị à"},
+        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam", c:"n h m"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ", c:"n ị m h"},
+        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ", c:"n ô n n"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ", c:"n ô h u"},
+        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ", c:"n ô h c"}, {n:"NGUYỄN THỊ MINH HẰNG", d:"1974-01-07", g:"Nữ", c:"n ị h g"},
+        {n:"NGÔ QUÝ CƯỜNG", d:"1973-05-23", g:"Nam", c:"ô ý g"}, {n:"NGÔ GIA BÁCH", d:"2000-10-12", g:"Nam", c:"ô a h"},
+        {n:"NGÔ GIA LINH", d:"2005-04-05", g:"Nữ", c:"ô a h"}, {n:"NGUYỄN THỊ MINH PHƯƠNG", d:"1978-11-06", g:"Nữ", c:"n ị h g"},
+        {n:"HOÀNG ANH DŨNG", d:"1978-09-21", g:"Nam", c:"g h g"}, {n:"HOÀNG HẢI VINH", d:"2010-06-03", g:"Nam", c:"g i h"},
+        {n:"HOÀNG THIÊN BẠCH ANH", d:"2015-11-14", g:"Nữ", c:"g n h h"}, {n:"TÔ KIM HUỆ", d:"1960-08-09", g:"Nữ", c:"ô m ệ"},
+        {n:"NGUYỄN TUẤN ANH", d:"1983-10-23", g:"Nam", c:"n n h"}, {n:"NGUYỄN THẾ ANH", d:"2001-03-24", g:"Nam", c:"n ế h"},
+        {n:"NGÔ THỊ MAI", d:"1948-12-12", g:"Nữ", c:"ô ị i"}, {n:"TÔ VIỆT HƯNG", d:"1996-06-17", g:"Nam", c:"ô t g"},
+        {n:"TÔ THỊ HỒNG", d:"1964-10-10", g:"Nữ", c:"ô ị g"}, {n:"VŨ VĂN HIỆP", d:"1974-04-24", g:"Nam", c:"ũ n p"},
+        {n:"NGUYỄN THỊ CHI", d:"1946-02-08", g:"Nữ", c:"n ị i"}, {n:"NGUYỄN TÂN BẮC", d:"1957-11-30", g:"Nam", c:"n n c"},
+        {n:"NGUYỄN THỊ TÂM", d:"1954-08-08", g:"Nữ", c:"n ị m"}, {n:"THÂN VĂN GIỮ", d:"1955-04-18", g:"Nam", c:"n n ữ"},
+        {n:"NGUYỄN THỊ BÌNH", d:"1958-05-21", g:"Nữ", c:"n ị h"}, {n:"THÂN THỊ BÍCH NGUYỆT", d:"1980-05-21", g:"Nữ", c:"n ị h t"},
+        {n:"THÂN VĂN TUẤN", d:"1983-05-21", g:"Nam", c:"n n n"}, {n:"THÂN YẾN NHI", d:"2010-03-26", g:"Nữ", c:"n n i"},
+        {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ", ê:"ê ị g"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam", c:"n i m"}
+    ];
 
-    // --- QUẢN LÝ BẠN BÈ ---
-    function addFriend() {
-        const name = document.getElementById('fName').value.trim();
-        const age = document.getElementById('fAge').value;
-        const gen = document.getElementById('fGender').value;
-        if(!name) return;
-        const lastChar = name.split(' ').pop().charAt(0).toUpperCase();
-        friends.push({ name, age, gen, lastChar });
-        localStorage.setItem('myFriends', JSON.stringify(friends));
-        renderFriends();
+    let warehouse = JSON.parse(localStorage.getItem('familyWarehouse_2026') || '[]');
+    let currentP = null;
+
+    // Tính tuổi tự động
+    function getAge(birthDate) {
+        return Math.floor((new Date() - new Date(birthDate)) / 31557600000);
     }
 
-    function renderFriends() {
-        document.getElementById('friendTags').innerHTML = friends.map(f => 
-            `<span style="background:#eee; padding:5px 10px; border-radius:15px; margin-right:5px; font-size:12px">
-                ${f.name} (${f.age}t - ${f.gen}) - Chữ cuối: ${f.lastChar}
-            </span>`).join('');
+    // Hiển thị 32 người
+    function renderMembers() {
+        const grid = document.getElementById('memberList');
+        grid.innerHTML = familyMembers.map(m => `
+            <button class="m-btn" onclick="selectMember('${m.n}', '${m.g}', '${m.d}')">
+                <strong>${m.n}</strong><br>
+                <small>${m.g} - ${getAge(m.d)} tuổi</small>
+            </button>
+        `).join('');
     }
 
-    // --- QUẢN LÝ CSV NHIỀU TỆP ---
+    function selectMember(name, gen, birth) {
+        currentP = { name, gen, age: getAge(birth) };
+        document.getElementById('selectedShow').innerText = `🎁 Đang chọn: ${name} (${gen} - ${currentP.age} tuổi)`;
+        document.querySelectorAll('.m-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(name)));
+    }
+
+    // Xử lý CSV Shopee
     document.getElementById('csvFiles').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -107,66 +126,53 @@
                     const id = c[0].trim();
                     if(!warehouse.some(p => p.id === id)) {
                         warehouse.push({
-                            id: id, 
-                            raw: c[1]?.replace(/"/g, ''),
-                            name: c[1]?.replace(/\[.*?\]|\(.*?\)/g, '').split(' ').slice(0, 5).join(' '),
-                            l: c[8]?.trim() || c[7]?.trim(),
-                            img: '', 
-                            dateIn: new Date().getTime(),
-                            done: false
+                            id: id, raw: c[1]?.replace(/"/g, ''),
+                            name: c[1]?.replace(/\[.*?\]|\(.*?\)|"/g, '').split(' ').slice(0, 5).join(' ').trim(),
+                            l: c[8]?.trim() || c[7]?.trim(), img: '', done: false
                         });
                     }
                 }
             });
         }
-        saveWarehouse();
+        save();
     };
 
-    // --- KỂ CHUYỆN & AI ---
-    function askAI(aiType, id) {
-        const p = warehouse.find(x => x.id === id);
-        const f = friends[Math.floor(Math.random() * friends.length)] || {name: "Bạn bé"};
-        const prompt = `Hãy kể một câu chuyện ngụ ngôn hài hước về "${f.name}" (${f.gen}) và món đồ "${p.name}". Kết thúc bằng lời khuyên mua hàng dí dỏm tại: ${p.l}`;
-        
-        navigator.clipboard.writeText(prompt);
-        
-        let url = "";
-        if(aiType === 'Gemini') url = "https://gemini.google.com/";
-        if(aiType === 'DeepSeek') url = "https://chat.deepseek.com/";
-        if(aiType === 'Grok') url = "https://x.com/i/grok";
-        if(aiType === 'GPT') url = "https://chatgpt.com/";
-        
-        alert(`Đã copy lệnh cho ${aiType}. Bé hãy dán vào nhé!`);
-        window.open(url, '_blank');
-    }
-
-    // --- QUẢN LÝ KHO & GITHUB ---
-    function saveWarehouse() {
-        localStorage.setItem('myWarehouse', JSON.stringify(warehouse));
+    function save() {
+        localStorage.setItem('familyWarehouse_2026', JSON.stringify(warehouse));
         renderWarehouse();
     }
 
-    function cleanOldProducts() {
-        const thirtyDays = 30 * 24 * 60 * 60 * 1000;
-        const now = new Date().getTime();
-        warehouse = warehouse.filter(p => (now - p.dateIn) < thirtyDays);
-        saveWarehouse();
-        alert("Đã dọn dẹp sản phẩm quá cũ!");
+    function renderWarehouse() {
+        document.getElementById('storageNote').innerText = `Kho: ${warehouse.length} món.`;
+        const tbody = document.getElementById('productArea');
+        tbody.innerHTML = warehouse.slice(-20).reverse().map(p => `
+            <tr style="${p.done ? 'opacity:0.5' : ''}">
+                <td><div class="img-slot" onclick="uploadImg('${p.id}')">${p.img ? `<img src="${p.img}">` : '+'}</div></td>
+                <td><input type="text" class="edit-name" value="${p.name}" onchange="updateItem('${p.id}', 'name', this.value)"></td>
+                <td>
+                    <button class="btn" style="background:#636e72; font-size:9px; margin-bottom:4px" onclick="window.open('${p.l}', '_blank')">1. Lấy Link Gốc</button>
+                    <input type="text" class="aff-link" value="${p.l.includes('product') ? '' : p.l}" onchange="updateItem('${p.id}', 'l', this.value)" placeholder="2. Dán link rút gọn...">
+                </td>
+                <td>
+                    <button class="btn" style="background:var(--v); margin-bottom:2px" onclick="askAI('DeepSeek', '${p.id}')">DeepSeek</button>
+                    <button class="btn" style="background:var(--s)" onclick="askAI('Gemini', '${p.id}')">Gemini</button>
+                </td>
+                <td><input type="checkbox" ${p.done ? 'checked' : ''} onclick="updateItem('${p.id}', 'done', this.checked)"></td>
+            </tr>
+        `).join('');
     }
 
-    function exportToGithub() {
-        const data = "const myProducts = " + JSON.stringify(warehouse, null, 2);
-        const blob = new Blob([data], {type: 'text/javascript'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'products.js';
-        a.click();
-        alert("Bé lấy file này đẩy lên GitHub để bày hàng nhé!");
+    function askAI(ai, id) {
+        if(!currentP) return alert("Bé phải chọn một người thân ở Bước 1 trước nhé!");
+        const p = warehouse.find(x => x.id === id);
+        const prompt = `Viết truyện ngụ ngôn hài hước về "${currentP.name}" (${currentP.gen}, ${currentP.age} tuổi) và món đồ "${p.name}". Câu chuyện ngắn gọn, lồng ghép công dụng sản phẩm dí dỏm. Kết bài kêu gọi mua tại: ${p.l}`;
+        navigator.clipboard.writeText(prompt);
+        alert(`Đã copy lệnh cho ${ai}!\nSản phẩm: ${p.name}\nNgười nhận: ${currentP.name}`);
+        window.open(ai === 'Gemini' ? "https://gemini.google.com/" : "https://chat.deepseek.com/", "_blank");
     }
 
     function uploadImg(id) {
-        const inp = document.createElement('input');
-        inp.type = 'file'; inp.accept = 'image/*';
+        const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
         inp.onchange = (e) => {
             const file = e.target.files[0];
             const reader = new FileReader();
@@ -178,7 +184,7 @@
                     cvs.getContext('2d').drawImage(img, 0, 0, 150, 150);
                     const idx = warehouse.findIndex(p => p.id === id);
                     warehouse[idx].img = cvs.toDataURL('image/jpeg', 0.6);
-                    saveWarehouse();
+                    save();
                 };
                 img.src = ev.target.result;
             };
@@ -187,33 +193,23 @@
         inp.click();
     }
 
-    function renderWarehouse() {
-        document.getElementById('storageInfo').innerText = `Trong kho đang có: ${warehouse.length} sản phẩm.`;
-        const tbody = document.getElementById('productArea');
-        tbody.innerHTML = warehouse.slice(-20).reverse().map(p => `
-            <tr class="${p.done ? 'done-row' : ''}">
-                <td><div class="img-slot" onclick="uploadImg('${p.id}')">${p.img ? `<img src="${p.img}">` : '+'}</div></td>
-                <td><input class="edit-name" style="width:100%" value="${p.name}" onchange="updateItem('${p.id}', 'name', this.value)"></td>
-                <td><input style="width:100%; border:1px solid red" value="${p.l}" onchange="updateItem('${p.id}', 'l', this.value)"></td>
-                <td>
-                    <button class="btn btn-ai" onclick="askAI('Gemini', '${p.id}')">Gemini</button>
-                    <button class="btn btn-ai" onclick="askAI('DeepSeek', '${p.id}')">DeepSeek</button>
-                    <button class="btn btn-ai" onclick="askAI('GPT', '${p.id}')">GPT</button>
-                </td>
-                <td><input type="checkbox" ${p.done ? 'checked' : ''} onclick="updateItem('${p.id}', 'done', this.checked)"></td>
-            </tr>
-        `).join('');
-    }
-
     function updateItem(id, key, val) {
         const idx = warehouse.findIndex(p => p.id === id);
         warehouse[idx][key] = val;
-        localStorage.setItem('myWarehouse', JSON.stringify(warehouse));
-        if(key === 'done') renderWarehouse();
+        save();
     }
 
-    renderFriends();
+    function exportJS() {
+        const blob = new Blob(["const myProducts = " + JSON.stringify(warehouse)], {type: 'application/javascript'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'products.js';
+        a.click();
+    }
+
+    renderMembers();
     renderWarehouse();
 </script>
+
 </body>
 </html>
