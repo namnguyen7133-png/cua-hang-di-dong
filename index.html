@@ -2,79 +2,93 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Marketing Gia Đình - Full 32 Người</title>
+    <title>Hệ Thống Marketing Gia Đình - Bản Chuẩn 2026</title>
     <style>
-        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
+        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --gpt: #10a37f; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; margin: 0; }
         .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
         
-        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin: 15px 0; max-height: 350px; overflow-y: auto; padding: 10px; border: 1px inset #eee; background: #fafafa; }
-        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; position: relative; }
+        /* Member Selection */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 10px; margin: 15px 0; max-height: 250px; overflow-y: auto; padding: 10px; border: 1px inset #eee; background: #fafafa; }
+        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; position: relative; transition: 0.2s; }
         .m-btn.active { background: var(--v); color: white; border-color: var(--v); font-weight: bold; }
-        .del-btn { position: absolute; top: 2px; right: 2px; background: #ff4757; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; cursor: pointer; display: none; }
+        .del-btn { position: absolute; top: 2px; right: 2px; background: #ff4757; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; cursor: pointer; display: none; z-index: 10; }
         .m-btn:hover .del-btn { display: block; }
 
+        /* Form nhập mới */
+        .form-row { display: flex; gap: 10px; flex-wrap: wrap; background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 15px; align-items: center; }
         input, select { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: var(--dark); color: white; padding: 12px; font-size: 13px; position: sticky; top: 0; }
+        
+        /* Table */
+        .table-container { max-height: 400px; overflow-y: auto; border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: var(--dark); color: white; padding: 12px; font-size: 12px; position: sticky; top: 0; }
         td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; font-size: 12px; }
         
         .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; }
-        .btn-ai { font-size: 10px; margin: 2px; width: 80px; padding: 5px; border-radius: 5px; border: none; color: white; cursor: pointer; }
+        .btn-ai { font-size: 10px; margin: 2px; width: 85px; cursor: pointer; border-radius: 5px; border: none; color: white; padding: 6px; }
         .status-bar { background: var(--v); color: white; padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 10px; }
+        textarea { width: 100%; height: 100px; margin-top: 10px; border-radius: 10px; border: 1px solid #ddd; padding: 10px; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1200px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🏠 HỆ THỐNG ĐIỀU HÀNH 32 NGƯỜI THÂN & KHO HÀNG</h1>
+    <h1 style="text-align: center; color: var(--p);">🏠 HỆ THỐNG MARKETING GIA ĐÌNH TOÀN DIỆN</h1>
 
     <div class="box" style="background: #fff3bf; border: 2px solid #fab005;">
-        <strong>🌐 WEB GITHUB:</strong> 
-        <input type="text" id="ghBase" style="width: 65%;" value="https://namnguyen7133.github.io/kho-hang/" onchange="saveConfig()">
-        <button class="btn" style="background:var(--g)" onclick="exportJson()">💾 Xuất files.json</button>
+        <strong>🌐 ĐỊA CHỈ WEB GIA ĐÌNH (Dùng để đăng bài):</strong><br>
+        <input type="text" id="ghBase" style="width: 80%; margin-top: 5px;" 
+               value="https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html" onchange="saveConfig()">
+        <p style="font-size: 11px; color: #666; margin: 5px 0;">(Hệ thống sẽ tự thêm đuôi ?id=... để khách bấm vào là thấy đúng món hàng)</p>
     </div>
 
     <div class="box">
-        <h2>1. DANH SÁCH NGƯỜI THÂN (${membersCount})</h2>
-        <div style="background:#e3f2fd; padding:15px; border-radius:10px; margin-bottom:15px; display: flex; gap: 10px; align-items: center;">
-            <strong>Thêm khách:</strong>
+        <h2>1. CHỌN NGƯỜI NHẬN</h2>
+        <div class="form-row">
+            <strong>Thêm Bạn:</strong>
             <input type="text" id="inName" placeholder="Tên...">
             <input type="date" id="inBirth">
             <select id="inGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
-            <button class="btn" style="background:var(--s)" onclick="addExtraM()">+ Thêm</button>
-            <button class="btn" style="background:#ff4757" onclick="clearExtra()">🗑️ Xóa hết khách mới</button>
+            <button class="btn" style="background:var(--g)" onclick="addMember()">+ Thêm</button>
+            <button class="btn" style="background:#ff4757" onclick="clearExtra()">🗑️ Xóa khách mới</button>
         </div>
+        
         <div class="member-grid" id="memberList"></div>
-        <div id="statusBar" class="status-bar">👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!</div>
+        <div id="statusBar" class="status-bar">👉 BƯỚC 1: HÃY CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!</div>
     </div>
 
     <div class="box">
-        <h2>2. KHO HÀNG & GỌI AI</h2>
+        <h2>2. CHỌN SẢN PHẨM & GOI AI KỂ CHUYỆN</h2>
         <div style="display: flex; gap: 10px; margin-bottom: 10px;">
             <input type="file" id="csvFile" multiple accept=".csv" style="flex:1">
-            <button class="btn" style="background:#ff4757" onclick="clearWare()">🗑️ Xóa sạch kho</button>
+            <input type="text" id="searchP" style="flex:1" placeholder="🔍 Tìm tên sản phẩm..." oninput="renderWarehouse()">
+            <button class="btn" style="background:var(--gpt)" onclick="exportJson()">💾 Xuất files.json</button>
         </div>
-        <input type="text" id="searchP" style="width:100%; box-sizing: border-box; margin-bottom: 10px; padding: 10px;" placeholder="🔍 Tìm tên sản phẩm trong kho..." oninput="renderWarehouse()">
-
-        <div style="max-height: 400px; overflow-y: auto; border: 1px solid #eee;">
+        
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th width="50">Xóa</th>
                         <th>Tên Sản Phẩm</th>
-                        <th width="200">Gọi AI Kể Chuyện</th>
+                        <th width="350">Chọn AI (Tự động copy câu lệnh)</th>
+                        <th width="50">Xóa</th>
                     </tr>
                 </thead>
                 <tbody id="productArea"></tbody>
             </table>
         </div>
     </div>
+
+    <div class="box">
+        <h2>3. KẾT QUẢ AI</h2>
+        <textarea id="finalPrompt" placeholder="Lệnh AI sẽ hiện ở đây sau khi bạn bấm nút phía trên..."></textarea>
+    </div>
 </div>
 
 <script>
-    // --- DANH SÁCH 32 NGƯỜI THÂN CỐ ĐỊNH ---
+    // DANH SÁCH 32 NGƯỜI GỐC
     const fixedMembers = [
         {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
         {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
@@ -94,8 +108,8 @@
         {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
     ];
 
-    let extraMembers = JSON.parse(localStorage.getItem('ext_mems_v7')) || [];
-    let warehouse = JSON.parse(localStorage.getItem('ware_v7')) || [];
+    let extraMembers = JSON.parse(localStorage.getItem('extra_2026')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('ware_2026')) || [];
     let selectedM = null;
 
     function saveConfig() { localStorage.setItem('ghBase', document.getElementById('ghBase').value); renderWarehouse(); }
@@ -105,12 +119,13 @@
         const grid = document.getElementById('memberList');
         grid.innerHTML = all.map((m, i) => {
             const age = Math.floor((new Date() - new Date(m.d))/31557600000);
-            const isExtra = i < extraMembers.length;
             return `
-                <button class="m-btn ${selectedM && selectedM.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m).replace(/"/g, '&quot;')})'>
-                    <strong>${m.n}</strong><br><small>${m.g} - ${age}t</small>
-                    ${isExtra ? `<span class="del-btn" onclick="delExtra(event, ${i})">×</span>` : ''}
-                </button>
+                <div style="position:relative">
+                    <button class="m-btn ${selectedM && selectedM.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>
+                        <strong>${m.n}</strong><br><small>${m.g} - ${age}t</small>
+                    </button>
+                    ${i < extraMembers.length ? `<button class="del-btn" onclick="deleteExtra(${i})">×</button>` : ''}
+                </div>
             `;
         }).join('');
     }
@@ -118,21 +133,20 @@
     function selectM(m) {
         selectedM = m;
         selectedM.age = Math.floor((new Date() - new Date(m.d))/31557600000);
-        document.getElementById('statusBar').innerText = `✅ ĐANG CHỌN: ${m.n} (${selectedM.age} tuổi)`;
+        document.getElementById('statusBar').innerText = `✅ ĐÃ CHỌN: ${m.n} (${selectedM.age} tuổi)`;
         renderMembers();
     }
 
-    function addExtraM() {
+    function addMember() {
         const n = document.getElementById('inName').value;
         const d = document.getElementById('inBirth').value;
         const g = document.getElementById('inGen').value;
         if(n && d) { extraMembers.unshift({n, d, g}); saveM(); }
     }
-    function delExtra(e, i) { e.stopPropagation(); extraMembers.splice(i,1); saveM(); }
+    function deleteExtra(i) { extraMembers.splice(i,1); saveM(); }
     function clearExtra() { if(confirm("Xóa hết khách mới?")) { extraMembers=[]; saveM(); } }
-    function saveM() { localStorage.setItem('ext_mems_v7', JSON.stringify(extraMembers)); renderMembers(); }
+    function saveM() { localStorage.setItem('extra_2026', JSON.stringify(extraMembers)); renderMembers(); }
 
-    // --- XỬ LÝ KHO ---
     document.getElementById('csvFile').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -140,58 +154,67 @@
             const lines = text.split('\n').slice(1);
             lines.forEach(l => {
                 const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if(c.length >= 2) {
+                if(c.length >= 8) {
                     const id = c[0].trim();
                     if(!warehouse.some(p => p.id === id)) {
-                        warehouse.push({ id, n: c[1]?.replace(/"/g, '').split(' ').slice(0, 6).join(' ').trim() });
+                        warehouse.push({ id, name: c[1]?.replace(/"/g, '').split(' ').slice(0, 6).join(' ').trim() });
                     }
                 }
             });
         }
-        saveWarehouse();
+        saveW();
     };
 
     function renderWarehouse() {
-        const area = document.getElementById('productArea');
+        const tbody = document.getElementById('productArea');
         const search = document.getElementById('searchP').value.toLowerCase();
         const ghBase = document.getElementById('ghBase').value;
-        const filtered = warehouse.filter(p => p.n.toLowerCase().includes(search));
+        const filtered = warehouse.filter(p => p.name.toLowerCase().includes(search));
 
-        area.innerHTML = filtered.slice().reverse().map(p => {
-            const finalLink = `${ghBase}${p.id}.html`;
+        tbody.innerHTML = filtered.slice().reverse().map(p => {
+            const finalLink = `${ghBase}?id=${p.id}`;
             return `
                 <tr>
-                    <td><button onclick="delP('${p.id}')" style="cursor:pointer">❌</button></td>
-                    <td style="text-align:left">${p.n}</td>
+                    <td style="text-align:left">${p.name}</td>
                     <td>
                         <button class="btn-ai" style="background:var(--v)" onclick="goAI('DeepSeek','${p.id}','${finalLink}')">DeepSeek</button>
                         <button class="btn-ai" style="background:var(--s)" onclick="goAI('Gemini','${p.id}','${finalLink}')">Gemini</button>
+                        <button class="btn-ai" style="background:var(--gpt)" onclick="goAI('ChatGPT','${p.id}','${finalLink}')">ChatGPT</button>
                     </td>
+                    <td><button onclick="delP('${p.id}')">❌</button></td>
                 </tr>
             `;
         }).join('');
     }
 
     function goAI(ai, id, link) {
-        if(!selectedM) return alert("Bé chọn người thân trước!");
+        if(!selectedM) return alert("Bé chọn người nhận trước!");
         const p = warehouse.find(x => x.id === id);
-        let prompt = "";
+        let kieuTruyen = selectedM.age < 13 ? 
+            "một câu chuyện ngụ ngôn hài hước và ý nghĩa cho trẻ em" : 
+            "một bài đăng Facebook hài hước, mặn mà hoặc lời chúc sâu sắc";
+        
+        const prompt = `Viết một nội dung đăng Facebook ${kieuTruyen}. 
+Nhân vật chính: ${selectedM.n} (${selectedM.age} tuổi, giới tính ${selectedM.g}). 
+Món đồ xuất hiện trong truyện: ${p.name}. 
+Phong cách: Thân mật gia đình. 
+Cuối bài chèn link xem chi tiết này: ${link}`;
 
-        if(selectedM.age < 13) {
-            prompt = `Hãy viết một câu chuyện ngụ ngôn hài hước có bài học đạo đức cho bé. Nhân vật chính là ${selectedM.n} (${selectedM.age} tuổi). Trong truyện xuất hiện món đồ: ${p.n}. Cuối bài ghi link: ${link}`;
-        } else {
-            prompt = `Viết một bài đăng Facebook cực kỳ hài hước hoặc một lời chúc ý nghĩa về ${selectedM.n} (${selectedM.age} tuổi, ${selectedM.g}). Lồng ghép khéo léo món đồ ${p.n} vào câu chuyện. Giọng văn hấp dẫn người xem. Link xem ảnh và giá: ${link}`;
-        }
-
+        document.getElementById('finalPrompt').value = prompt;
         navigator.clipboard.writeText(prompt).then(() => {
-            alert("Đã copy lệnh AI! Bé sang dán vào AI nhé.");
-            window.open(ai === 'DeepSeek' ? "https://chat.deepseek.com" : "https://gemini.google.com/app", "_blank");
+            alert(`✅ Đã copy lệnh cho ${ai}!\nBé sang dán (Ctrl+V) vào AI là xong.`);
+            const urls = {
+                'DeepSeek': "https://chat.deepseek.com",
+                'Gemini': "https://gemini.google.com/app",
+                'ChatGPT': "https://chatgpt.com"
+            };
+            window.open(urls[ai], '_blank');
         });
     }
 
-    function delP(id) { warehouse = warehouse.filter(x => x.id !== id); saveWarehouse(); }
-    function clearWare() { if(confirm("Xóa sạch kho?")) { warehouse = []; saveWarehouse(); } }
-    function saveWarehouse() { localStorage.setItem('ware_v7', JSON.stringify(warehouse)); renderWarehouse(); }
+    function delP(id) { warehouse = warehouse.filter(x => x.id !== id); saveW(); }
+    function clearWare() { if(confirm("Xóa sạch kho?")) { warehouse = []; saveW(); } }
+    function saveW() { localStorage.setItem('ware_2026', JSON.stringify(warehouse)); renderWarehouse(); }
     function exportJson() {
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
