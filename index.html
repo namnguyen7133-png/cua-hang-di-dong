@@ -2,51 +2,65 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Điều Hành Affiliate Gia Đình</title>
+    <title>Hệ Thống Marketing Affiliate Gia Đình 2026</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; margin: 0; }
         .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin: 15px 0; }
-        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; }
-        .m-btn.active { background: var(--v); color: white; }
+        h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
+        
+        /* Member Management */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin: 15px 0; max-height: 250px; overflow-y: auto; padding: 10px; border: 1px inset #eee; background: #fafafa; }
+        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; position: relative; }
+        .m-btn.active { background: var(--v); color: white; border-color: var(--v); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .del-btn { position: absolute; top: 2px; right: 2px; background: red; color: white; border: none; border-radius: 50%; width: 15px; height: 15px; font-size: 10px; cursor: pointer; }
+
+        /* Form */
+        .form-row { display: flex; gap: 10px; flex-wrap: wrap; background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 15px; align-items: center; }
+        input, select { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        
+        /* Table */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: var(--dark); color: white; padding: 10px; font-size: 12px; }
+        th { background: var(--dark); color: white; padding: 12px; font-size: 13px; }
         td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; }
+        
         .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; }
-        .age-tag { padding: 2px 8px; border-radius: 10px; font-size: 10px; color: white; }
+        .btn-ai { font-size: 10px; margin: 2px; width: 85px; }
+        .status-bar { background: var(--v); color: white; padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 16px; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1200px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🚀 TRẠM ĐIỀU HÀNH TỔNG (DÀNH CHO BỐ)</h1>
+    <h1 style="text-align: center; color: var(--p);">🚀 TRẠM ĐIỀU HÀNH MARKETING TỔNG LỰC</h1>
 
     <div class="box">
-        <h2>1. CHỌN NGƯỜI NHẬN (32 Thành viên)</h2>
-        <div class="member-grid" id="memberList"></div>
-        <p id="selName" style="font-weight:bold; color:var(--v); text-align:center">Đang chọn: Chưa chọn ai</p>
-    </div>
-
-    <div class="box">
-        <h2>2. NẠP CSV & PHÂN CHIA CHO TRẺ</h2>
-        <input type="file" id="csvFiles" multiple accept=".csv" class="btn" style="background:#eee; color:#333">
-        <div style="margin-top: 15px;">
-            <button class="btn" style="background:var(--g)" onclick="exportFilesJson()">📤 XUẤT FILES.JSON (Để bày lên GitHub)</button>
-            <button class="btn" style="background:var(--s)" onclick="showReport()">📊 Tổng Kết Hôm Nay</button>
+        <h2>1. QUẢN LÝ DANH SÁCH (32 Người nhà + Bạn mới)</h2>
+        <div class="form-row">
+            <strong>Thêm mới:</strong>
+            <input type="text" id="inName" placeholder="Họ tên...">
+            <input type="date" id="inBirth">
+            <select id="inGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
+            <input type="text" id="inHobby" placeholder="Sở thích (ví dụ: nấu ăn, đá bóng)">
+            <button class="btn" style="background:var(--g)" onclick="addMem()">+ Lưu Người Này</button>
+            <button class="btn" style="background:var(--dark)" onclick="resetSel()">🔄 Chọn lại từ đầu</button>
         </div>
+        
+        <div class="member-grid" id="memberList"></div>
+        <div id="statusBar" class="status-bar">👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!</div>
     </div>
 
     <div class="box">
-        <h2>3. BIÊN TẬP & GÁN CHO BÉ (6, 10, 12)</h2>
+        <h2>2. NHẬP KHO CSV & KỂ CHUYỆN AI</h2>
+        <input type="file" id="csvFile" multiple accept=".csv" style="margin-bottom:10px">
+        <button class="btn" style="background:var(--s)" onclick="exportJson()">💾 Xuất files.json cho GitHub</button>
+        
         <table>
             <thead>
                 <tr>
-                    <th>Ảnh</th>
-                    <th>Tên SP / Phân loại trẻ</th>
-                    <th>Link Affiliate (Bố dán)</th>
-                    <th>AI Kể Truyện</th>
-                    <th>Xong</th>
+                    <th width="250">Tên Sản Phẩm</th>
+                    <th>Link GitHub / Aff</th>
+                    <th width="400">Gọi AI (Tự động copy Prompt)</th>
                 </tr>
             </thead>
             <tbody id="productArea"></tbody>
@@ -55,41 +69,67 @@
 </div>
 
 <script>
-    // Danh sách 32 người thân đã nạp sẵn
-    const family = [
-        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
-        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
-        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ"},
-        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH HẰNG", d:"1974-01-07", g:"Nữ"},
-        {n:"NGÔ QUÝ CƯỜNG", d:"1973-05-23", g:"Nam"}, {n:"NGÔ GIA BÁCH", d:"2000-10-12", g:"Nam"},
-        {n:"NGÔ GIA LINH", d:"2005-04-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH PHƯƠNG", d:"1978-11-06", g:"Nữ"},
-        {n:"HOÀNG ANH DŨNG", d:"1978-09-21", g:"Nam"}, {n:"HOÀNG HẢI VINH", d:"2010-06-03", g:"Nam"},
-        {n:"HOÀNG THIÊN BẠCH ANH", d:"2015-11-14", g:"Nữ"}, {n:"TÔ KIM HUỆ", d:"1960-08-09", g:"Nữ"},
-        {n:"NGUYỄN TUẤN ANH", d:"1983-10-23", g:"Nam"}, {n:"NGUYỄN THẾ ANH", d:"2001-03-24", g:"Nam"},
-        {n:"NGÔ THỊ MAI", d:"1948-12-12", g:"Nữ"}, {n:"TÔ VIỆT HƯNG", d:"1996-06-17", g:"Nam"},
-        {n:"TÔ THỊ HỒNG", d:"1964-10-10", g:"Nữ"}, {n:"VŨ VĂN HIỆP", d:"1974-04-24", g:"Nam"},
-        {n:"NGUYỄN THỊ CHI", d:"1946-02-08", g:"Nữ"}, {n:"NGUYỄN TÂN BẮC", d:"1957-11-30", g:"Nam"},
-        {n:"NGUYỄN THỊ TÂM", d:"1954-08-08", g:"Nữ"}, {n:"THÂN VĂN GIỮ", d:"1955-04-18", g:"Nam"},
-        {n:"NGUYỄN THỊ BÌNH", d:"1958-05-21", g:"Nữ"}, {n:"THÂN THỊ BÍCH NGUYỆT", d:"1980-05-21", g:"Nữ"},
-        {n:"THÂN VĂN TUẤN", d:"1983-05-21", g:"Nam"}, {n:"THÂN YẾN NHI", d:"2010-03-26", g:"Nữ"},
-        {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
+    // Khởi tạo danh sách 32 người thân gốc của bạn
+    const rawMembers = [
+        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam", s:"đọc sách"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ", s:"nội trợ"},
+        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam", s:"kinh doanh"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ", s:"mua sắm"},
+        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ", s:"vẽ tranh"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ", s:"múa"},
+        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ", s:"chơi búp bê"}, {n:"NGUYỄN THỊ MINH HẰNG", d:"1974-01-07", g:"Nữ", s:"làm đẹp"},
+        {n:"NGÔ QUÝ CƯỜNG", d:"1973-05-23", g:"Nam", s:"thể thao"}, {n:"NGÔ GIA BÁCH", d:"2000-10-12", g:"Nam", s:"công nghệ"},
+        {n:"NGÔ GIA LINH", d:"2005-04-05", g:"Nữ", s:"du lịch"}, {n:"NGUYỄN THỊ MINH PHƯƠNG", d:"1978-11-06", g:"Nữ", s:"nấu ăn"},
+        {n:"HOÀNG ANH DŨNG", d:"1978-09-21", g:"Nam", s:"ô tô"}, {n:"HOÀNG HẢI VINH", d:"2010-06-03", g:"Nam", s:"game"},
+        {n:"HOÀNG THIÊN BẠCH ANH", d:"2015-11-14", g:"Nữ", s:"ca hát"}, {n:"TÔ KIM HUỆ", d:"1960-08-09", g:"Nữ", s:"làm vườn"},
+        {n:"NGUYỄN TUẤN ANH", d:"1983-10-23", g:"Nam", s:"gym"}, {n:"NGUYỄN THẾ ANH", d:"2001-03-24", g:"Nam", s:"học tập"},
+        {n:"NGÔ THỊ MAI", d:"1948-12-12", g:"Nữ", s:"nghỉ ngơi"}, {n:"TÔ VIỆT HƯNG", d:"1996-06-17", g:"Nam", s:"phượt"},
+        {n:"TÔ THỊ HỒNG", d:"1964-10-10", g:"Nữ", s:"may vá"}, {n:"VŨ VĂN HIỆP", d:"1974-04-24", g:"Nam", s:"kỹ thuật"},
+        {n:"NGUYỄN THỊ CHI", d:"1946-02-08", g:"Nữ", s:"đi chùa"}, {n:"NGUYỄN TÂN BẮC", d:"1957-11-30", g:"Nam", s:"cờ tướng"},
+        {n:"NGUYỄN THỊ TÂM", d:"1954-08-08", g:"Nữ", s:"chăm cháu"}, {n:"THÂN VĂN GIỮ", d:"1955-04-18", g:"Nam", s:"thơ ca"},
+        {n:"NGUYỄN THỊ BÌNH", d:"1958-05-21", g:"Nữ", s:"yoga"}, {n:"THÂN THỊ BÍCH NGUYỆT", d:"1980-05-21", g:"Nữ", s:"thời trang"},
+        {n:"THÂN VĂN TUẤN", d:"1983-05-21", g:"Nam", s:"đá bóng"}, {n:"THÂN YẾN NHI", d:"2010-03-26", g:"Nữ", s:"tiktok"},
+        {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ", s:"cà phê"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam", s:"âm nhạc"}
     ];
 
-    let warehouse = JSON.parse(localStorage.getItem('full_warehouse_2026') || '[]');
-    let currentM = null;
+    let members = JSON.parse(localStorage.getItem('myMems')) || rawMembers;
+    let warehouse = JSON.parse(localStorage.getItem('myWare')) || [];
+    let activeM = null;
 
-    function renderMembers() {
-        document.getElementById('memberList').innerHTML = family.map(m => `
-            <button class="m-btn" onclick="selectM('${m.n}', '${m.g}', '${m.d}')">${m.n}</button>
-        `).join('');
+    function renderMems() {
+        const grid = document.getElementById('memberList');
+        grid.innerHTML = members.map((m, i) => {
+            const age = Math.floor((new Date() - new Date(m.d))/31557600000);
+            const lastChar = m.n.trim().split(' ').pop().slice(-1).toUpperCase();
+            return `<button class="m-btn" onclick="selM(${i})">
+                <strong>${m.n}</strong><br>
+                <small>${m.g} - ${age}t - Chữ: ${lastChar}</small>
+                <span class="del-btn" onclick="delM(event, ${i})">x</span>
+            </button>`;
+        }).join('');
     }
 
-    function selectM(n, g, d) {
-        currentM = { name: n, gen: g, age: Math.floor((new Date() - new Date(d))/31557600000) };
-        document.getElementById('selName').innerText = `👉 Đang chọn: ${n} (${currentM.age} tuổi)`;
+    function selM(i) {
+        activeM = members[i];
+        activeM.age = Math.floor((new Date() - new Date(activeM.d))/31557600000);
+        activeM.last = activeM.n.trim().split(' ').pop().slice(-1).toUpperCase();
+        document.getElementById('statusBar').innerText = `✅ ĐANG CHỌN: ${activeM.n} (${activeM.age} tuổi)`;
+        document.querySelectorAll('.m-btn').forEach((b, idx) => b.classList.toggle('active', idx === i));
     }
 
-    document.getElementById('csvFiles').onchange = async (e) => {
+    function addMem() {
+        const n = document.getElementById('inName').value;
+        const d = document.getElementById('inBirth').value;
+        const g = document.getElementById('inGen').value;
+        const s = document.getElementById('inHobby').value;
+        if(!n || !d) return alert("Bố nhập đủ Tên và Ngày sinh nhé!");
+        members.unshift({n, d, g, s});
+        localStorage.setItem('myMems', JSON.stringify(members));
+        renderMems();
+    }
+
+    function delM(e, i) { e.stopPropagation(); members.splice(i, 1); localStorage.setItem('myMems', JSON.stringify(members)); renderMems(); }
+    function resetSel() { activeM = null; document.getElementById('statusBar').innerText = "👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI!"; renderMems(); }
+
+    // Xử lý Hàng hóa
+    document.getElementById('csvFile').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
             const text = await file.text();
@@ -99,99 +139,53 @@
                 if(c.length >= 8) {
                     const id = c[0].trim();
                     if(!warehouse.some(p => p.id === id)) {
-                        warehouse.push({
-                            id: id, raw: c[1]?.replace(/"/g, ''),
-                            name: c[1]?.replace(/\[.*?\]|\(.*?\)|"/g, '').split(' ').slice(0, 5).join(' ').trim(),
-                            l: c[8]?.trim() || c[7]?.trim(), img: '', targetAge: '10', done: false
-                        });
+                        warehouse.push({ id, name: c[1]?.replace(/\[.*?\]|\(.*?\)|"/g, '').split(' ').slice(0, 5).join(' ').trim(), l: c[8]?.trim() || c[7]?.trim() });
                     }
                 }
             });
         }
-        save();
+        renderWare();
     };
 
-    function renderWarehouse() {
+    function renderWare() {
         const tbody = document.getElementById('productArea');
         tbody.innerHTML = warehouse.slice(-15).reverse().map(p => `
-            <tr class="${p.done ? 'done' : ''}">
-                <td><div style="width:50px;height:50px;border:1px dashed #ccc;cursor:pointer" onclick="uploadImg('${p.id}')">${p.img ? `<img src="${p.img}" style="width:100%">` : '+'}</div></td>
+            <tr>
+                <td><input value="${p.name}" onchange="upP('${p.id}', 'name', this.value)" style="width:90%"></td>
+                <td><input value="${p.l.includes('product') ? '' : p.l}" onchange="upP('${p.id}', 'l', this.value)" placeholder="Link GitHub/Aff" style="width:90%"></td>
                 <td>
-                    <input value="${p.name}" class="edit-name" onchange="updateItem('${p.id}', 'name', this.value)">
-                    <select onchange="updateItem('${p.id}', 'targetAge', this.value)" style="margin-top:5px">
-                        <option value="6" ${p.targetAge=='6'?'selected':''}>Bé 6 tuổi</option>
-                        <option value="10" ${p.targetAge=='10'?'selected':''}>Bé 10 tuổi</option>
-                        <option value="12" ${p.targetAge=='12'?'selected':''}>Bé 12 tuổi</option>
-                    </select>
+                    <button class="btn btn-ai" style="background:var(--v)" onclick="callAI('DeepSeek', '${p.id}')">DeepSeek</button>
+                    <button class="btn btn-ai" style="background:var(--s)" onclick="callAI('Gemini', '${p.id}')">Gemini</button>
+                    <button class="btn btn-ai" style="background:#10a37f" onclick="callAI('ChatGPT', '${p.id}')">ChatGPT</button>
+                    <button class="btn btn-ai" style="background:#000" onclick="callAI('Grok', '${p.id}')">Grok</button>
                 </td>
-                <td>
-                    <button class="btn" style="background:#636e72;font-size:9px" onclick="window.open('${p.l}','_blank')">Mở Gốc</button>
-                    <input value="${p.l.includes('product') ? '' : p.l}" onchange="updateItem('${p.id}', 'l', this.value)" style="width:90%;border:1px solid red">
-                </td>
-                <td><button class="btn" style="background:var(--v)" onclick="askAI('${p.id}')">Kể Truyện</button></td>
-                <td><input type="checkbox" ${p.done ? 'checked' : ''} onclick="updateItem('${p.id}', 'done', this.checked)"></td>
             </tr>
         `).join('');
     }
 
-    function updateItem(id, k, v) {
-        const idx = warehouse.findIndex(x => x.id === id);
-        warehouse[idx][k] = v;
-        save();
-    }
+    function upP(id, k, v) { warehouse.find(x => x.id === id)[k] = v; localStorage.setItem('myWare', JSON.stringify(warehouse)); }
 
-    function save() {
-        localStorage.setItem('full_warehouse_2026', JSON.stringify(warehouse));
-        renderWarehouse();
-    }
-
-    function askAI(id) {
-        if(!currentM) return alert("Chọn người thân trước bố ơi!");
+    function callAI(ai, id) {
+        if(!activeM) return alert("Bố chọn người nhận ở Bước 1 đã!");
         const p = warehouse.find(x => x.id === id);
-        const prompt = `Viết truyện ngụ ngôn hài hước về "${currentM.name}" (${currentM.age} tuổi) và "${p.name}". Link mua: ${p.l}`;
-        navigator.clipboard.writeText(prompt);
-        window.open("https://chat.deepseek.com", "_blank");
+        
+        const prompt = `Viết một câu chuyện ngụ ngôn hài hước về ${activeM.n} (${activeM.gen}, ${activeM.age} tuổi, sở thích: ${activeM.s}). 
+        Trong truyện ${activeM.n} tình cờ sở hữu món đồ: ${p.name}. 
+        Hãy kể chuyện thật dí dỏm, kết bài kêu gọi mọi người xem ảnh và giá sản phẩm tại link GitHub nhà em: ${p.l}`;
+
+        navigator.clipboard.writeText(prompt).then(() => {
+            alert(`✅ Đã copy xong câu chuyện về ${activeM.n} và ${p.name}!\nBố sang dán vào ${ai} nhé.`);
+            const urls = { 'DeepSeek': "https://chat.deepseek.com", 'Gemini': "https://gemini.google.com/app", 'ChatGPT': "https://chatgpt.com", 'Grok': "https://x.com/i/grok" };
+            window.open(urls[ai], '_blank');
+        });
     }
 
-    function uploadImg(id) {
-        const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
-        inp.onchange = (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (ev) => {
-                const img = new Image();
-                img.onload = () => {
-                    const cvs = document.createElement('canvas'); cvs.width = 120; cvs.height = 120;
-                    cvs.getContext('2d').drawImage(img, 0, 0, 120, 120);
-                    updateItem(id, 'img', cvs.toDataURL('image/jpeg', 0.6));
-                };
-                img.src = ev.target.result;
-            };
-            reader.readAsDataURL(file);
-        };
-        inp.click();
+    function exportJson() {
+        const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
 
-    // XUẤT FILE JSON ĐỂ GitHub ĐỒNG BỘ
-    function exportFilesJson() {
-        const data = JSON.stringify(warehouse, null, 2);
-        const blob = new Blob([data], {type: 'application/json'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'files.json';
-        a.click();
-        alert("Bố hãy upload file 'files.json' này lên GitHub để các trang tre6.html, tre10.html thấy hàng nhé!");
-    }
-
-    function showReport() {
-        const t6 = warehouse.filter(x => x.targetAge == '6').length;
-        const t10 = warehouse.filter(x => x.targetAge == '10').length;
-        const t12 = warehouse.filter(x => x.targetAge == '12').length;
-        alert(`📊 TỔNG KẾT KHO HÀNG:\n- Bé 6 tuổi: ${t6} món\n- Bé 10 tuổi: ${t10} món\n- Bé 12 tuổi: ${t12} món\n🚀 Chúc cả nhà bán được nhiều hàng!`);
-    }
-
-    renderMembers();
-    renderWarehouse();
+    renderMems(); renderWare();
 </script>
 </body>
 </html>
