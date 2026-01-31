@@ -2,67 +2,49 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Affiliate Gia Đình 2026</title>
+    <title>Hệ Thống Marketing Gia Đình - 4 AI Tổng Lực</title>
     <style>
-        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
+        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --gpt: #10a37f; --x: #000000; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; margin: 0; }
         .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
-        
-        /* Member Selection */
         .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 200px; overflow-y: auto; padding: 10px; border: 1px inset #eee; }
-        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; }
+        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; }
         .m-btn.active { background: var(--v); color: white; border-color: var(--v); font-weight: bold; }
-
-        /* Table & Inputs */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: var(--dark); color: white; padding: 12px; font-size: 13px; }
-        td { border-bottom: 1px solid #eee; padding: 12px; text-align: center; }
-        input, select, textarea { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
-        .aff-link { width: 90%; border: 1.5px solid #ff7675; background: #fff5f5; font-size: 11px; }
-
-        .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; transition: 0.3s; }
-        .btn-ai { margin: 2px; font-size: 10px; }
-        
-        /* Result Area */
-        #finalResult { width: 100%; height: 150px; background: #f9f9f9; border: 2px dashed var(--g); padding: 10px; margin-top: 10px; font-family: 'Courier New', monospace; }
-        .img-slot { width: 60px; height: 60px; border: 2px dashed #ccc; border-radius: 8px; margin: auto; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .img-slot img { width: 100%; height: 100%; object-fit: cover; }
+        th { background: var(--dark); color: white; padding: 12px; font-size: 12px; }
+        td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; width: 90%; }
+        .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; }
+        .btn-ai { font-size: 10px; margin: 2px; width: 85px; }
+        #finalResult { width: 100%; height: 150px; background: #fffcf0; border: 2px solid var(--g); padding: 10px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1200px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🚀 HỆ THỐNG ĐIỀU HÀNH TỔNG LỰC</h1>
+    <h1 style="text-align: center; color: var(--p);">🚀 HỆ THỐNG ĐIỀU HÀNH TỔNG LỰC (4 AI)</h1>
 
     <div class="box">
-        <h2>1. CHỌN HOẶC NHẬP NGƯỜI MỚI</h2>
-        <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-            <strong>Thêm nhanh:</strong>
-            <input type="text" id="newName" placeholder="Họ tên mới...">
-            <input type="number" id="newAge" style="width:60px" placeholder="Tuổi">
-            <select id="newGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
-            <button class="btn" style="background:var(--s)" onclick="addNewMember()">+ Thêm vào danh sách</button>
-            <button class="btn" style="background:var(--dark)" onclick="resetSelection()">🔄 Chọn lại từ đầu</button>
-        </div>
+        <h2>1. CHỌN NGƯỜI THÂN (Trong danh sách 32 người)</h2>
         <div class="member-grid" id="memberList"></div>
-        <div id="statusHeader" style="background:var(--v); color:white; padding:10px; border-radius:8px; text-align:center; font-weight:bold; font-size:18px">
-            👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!
+        <div id="statusHeader" style="background:var(--v); color:white; padding:10px; border-radius:8px; text-align:center; font-weight:bold;">
+            👉 BƯỚC 1: HÃY CHỌN MỘT NGƯỜI!
         </div>
     </div>
 
     <div class="box">
-        <h2>2. NHẬP FILE CSV & XỬ LÝ SẢN PHẨM</h2>
-        <input type="file" id="csvInp" multiple accept=".csv" class="btn" style="background:#eee; color:#333">
-        <button class="btn" style="background:var(--g); margin-left:10px" onclick="exportFilesJson()">💾 Xuất files.json (Lên GitHub)</button>
+        <h2>2. NHẬP CSV & GỌI AI KỂ CHUYỆN</h2>
+        <input type="file" id="csvInp" multiple accept=".csv" style="margin-bottom:10px">
+        <button class="btn" style="background:var(--g)" onclick="exportFilesJson()">💾 Xuất files.json cho GitHub</button>
         
         <table>
             <thead>
                 <tr>
-                    <th width="80">Ảnh</th>
                     <th>Tên Sản Phẩm</th>
-                    <th width="250">Link Affiliate (Bố dán)</th>
-                    <th>Gọi AI Kể Chuyện</th>
+                    <th width="200">Link SP (GitHub/Aff)</th>
+                    <th>Chọn AI để lấy Prompt</th>
+                    <th width="50">Xong</th>
                 </tr>
             </thead>
             <tbody id="productArea"></tbody>
@@ -70,19 +52,17 @@
     </div>
 
     <div class="box">
-        <h2>3. KẾT QUẢ KỂ CHUYỆN (Copy để đăng Facebook/Zalo)</h2>
-        <p style="font-size:12px; color:#666">Sau khi AI kể chuyện xong, hãy dán nội dung vào đây để kiểm tra trước khi đăng:</p>
-        <textarea id="finalResult" placeholder="Nội dung truyện sẽ hiện ở đây sau khi AI viết hoặc bé dán vào để chỉnh sửa..."></textarea>
+        <h2>3. NỘI DUNG ĐĂNG FACEBOOK/ZALO (Kèm ảnh gia đình)</h2>
+        <textarea id="finalResult" placeholder="Sau khi AI viết xong, bé dán nội dung vào đây để copy đi đăng kèm ảnh gia đình nhé..."></textarea>
         <div style="margin-top:10px">
-            <button class="btn" style="background:var(--s)" onclick="copyFinal()">📋 Copy toàn bộ để Đăng bài</button>
-            <button class="btn" style="background:var(--p)" onclick="document.getElementById('finalResult').value=''">🗑️ Xóa làm lại</button>
+            <button class="btn" style="background:var(--s)" onclick="copyFinal()">📋 Copy nội dung đăng bài</button>
+            <p style="color:red; font-size:12px"><b>Lưu ý:</b> Khi đăng bài, hãy chọn <b>Ảnh Gia Đình/Bạn Bè</b>, không chọn ảnh sản phẩm!</p>
         </div>
     </div>
 </div>
 
 <script>
-    // 1. Danh sách 32 người chuẩn
-    let members = JSON.parse(localStorage.getItem('saved_members')) || [
+    const members = [
         {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
         {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
         {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ"},
@@ -102,42 +82,20 @@
     ];
 
     let warehouse = JSON.parse(localStorage.getItem('full_warehouse_2026')) || [];
-    let selectedMem = null;
+    let selM = null;
 
-    // --- QUẢN LÝ THÀNH VIÊN ---
     function renderMembers() {
-        const grid = document.getElementById('memberList');
-        grid.innerHTML = members.map(m => {
-            let age = m.age ? m.age : Math.floor((new Date() - new Date(m.d))/31557600000);
-            return `<button class="m-btn" onclick="selectM('${m.n}', '${m.g}', ${age})">
-                <strong>${m.n}</strong><br><small>${m.g} - ${age}t</small>
-            </button>`;
-        }).join('');
+        document.getElementById('memberList').innerHTML = members.map(m => `
+            <button class="m-btn" onclick="selectM('${m.n}', '${m.g}', '${m.d}')">${m.n}</button>
+        `).join('');
     }
 
-    function selectM(name, gen, age) {
-        selectedMem = { name, gen, age };
-        document.getElementById('statusHeader').innerText = `✅ ĐÃ CHỌN: ${name} (${gen} - ${age}t). MỜI BÉ CHỌN SẢN PHẨM!`;
-        document.querySelectorAll('.m-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(name)));
+    function selectM(n, g, d) {
+        selM = { n, g, a: Math.floor((new Date() - new Date(d))/31557600000) };
+        document.getElementById('statusHeader').innerText = `✅ ĐÃ CHỌN: ${n}`;
+        document.querySelectorAll('.m-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(n)));
     }
 
-    function addNewMember() {
-        const n = document.getElementById('newName').value.trim();
-        const age = document.getElementById('newAge').value;
-        const g = document.getElementById('newGen').value;
-        if(!n || !age) return alert("Nhập đủ tên và tuổi nhé!");
-        members.push({ n, age: parseInt(age), g });
-        localStorage.setItem('saved_members', JSON.stringify(members));
-        renderMembers();
-    }
-
-    function resetSelection() {
-        selectedMem = null;
-        document.getElementById('statusHeader').innerText = "👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!";
-        document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
-    }
-
-    // --- QUẢN LÝ HÀNG HÓA ---
     document.getElementById('csvInp').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -162,53 +120,39 @@
     function renderWarehouse() {
         const tbody = document.getElementById('productArea');
         tbody.innerHTML = warehouse.slice(-15).reverse().map(p => `
-            <tr style="${p.done ? 'opacity:0.5' : ''}">
-                <td><div class="img-slot" onclick="uploadImg('${p.id}')">${p.img ? `<img src="${p.img}">` : '+'}</div></td>
-                <td><input class="edit-name" style="width:100%" value="${p.name}" onchange="updateItem('${p.id}', 'name', this.value)"></td>
-                <td><input class="aff-link" value="${p.l.includes('product') ? '' : p.l}" onchange="updateItem('${p.id}', 'l', this.value)" placeholder="Dán link rút gọn..."></td>
+            <tr>
+                <td><input value="${p.name}" onchange="updateItem('${p.id}', 'name', this.value)"></td>
+                <td><input value="${p.l.includes('product') ? '' : p.l}" onchange="updateItem('${p.id}', 'l', this.value)" placeholder="Dán link GitHub/Aff..."></td>
                 <td>
-                    <button class="btn btn-ai" style="background:var(--v)" onclick="callAI('DeepSeek', '${p.id}')">DeepSeek</button>
-                    <button class="btn btn-ai" style="background:var(--s)" onclick="callAI('Gemini', '${p.id}')">Gemini</button>
+                    <button class="btn btn-ai" style="background:var(--v)" onclick="goAI('DeepSeek', '${p.id}')">DeepSeek</button>
+                    <button class="btn btn-ai" style="background:var(--s)" onclick="goAI('Gemini', '${p.id}')">Gemini</button>
+                    <button class="btn btn-ai" style="background:var(--gpt)" onclick="goAI('GPT', '${p.id}')">ChatGPT</button>
+                    <button class="btn btn-ai" style="background:var(--x)" onclick="goAI('Grok', '${p.id}')">Grok (X)</button>
                 </td>
+                <td><input type="checkbox" ${p.done ? 'checked' : ''} onclick="updateItem('${p.id}', 'done', this.checked)"></td>
             </tr>
         `).join('');
     }
 
-    function callAI(ai, id) {
-        if(!selectedMem) return alert("Bé ơi! Phải chọn người nhận ở Bước 1 trước đã!");
+    function goAI(ai, id) {
+        if(!selM) return alert("Bé chọn người thân ở Bước 1 trước nhé!");
         const p = warehouse.find(x => x.id === id);
-        if(!p.l || p.l.includes('product')) return alert("Bố chưa dán link rút gọn cho món này!");
-
-        // TẠO PROMPT CHUẨN
-        const prompt = `Viết một câu chuyện ngụ ngôn hoặc cổ tích cực kỳ hài hước và ngắn gọn cho Facebook. 
-            Nhân vật chính: ${selectedMem.name} (${selectedMem.gen}, ${selectedMem.age} tuổi). 
-            Vật phẩm quan trọng: ${p.name}. 
-            Yêu cầu: Lồng ghép công dụng sản phẩm dí dỏm, kết bài có lời kêu gọi mua hàng tại link: ${p.l}`;
         
-        // COPY PROMPT VÀO CLIPBOARD
+        const prompt = `Viết một bài đăng Facebook hài hước kể về kỷ niệm giữa tôi và ${selM.n} (${selM.g}, ${selM.a} tuổi). 
+        Trong câu chuyện có xuất hiện món đồ: ${p.name}. 
+        Giọng văn: Vui vẻ, thân thiện như người trong nhà. 
+        Cuối bài hãy viết: "Mọi người muốn xem chi tiết món này thì vào cửa hàng của nhà em ở đây nhé (trong này có đủ ảnh và giá ạ): ${p.l}"`;
+        
         navigator.clipboard.writeText(prompt).then(() => {
-            alert(`✅ Đã copy xong Prompt cho ${ai}!\n\nBé chỉ cần dán (Ctrl+V) vào ô chat của AI là xong.`);
-            window.open(ai === 'DeepSeek' ? "https://chat.deepseek.com" : "https://gemini.google.com/app", "_blank");
-        });
-    }
-
-    function uploadImg(id) {
-        const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
-        inp.onchange = (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (ev) => {
-                const img = new Image();
-                img.onload = () => {
-                    const cvs = document.createElement('canvas'); cvs.width = 150; cvs.height = 150;
-                    cvs.getContext('2d').drawImage(img, 0, 0, 150, 150);
-                    updateItem(id, 'img', cvs.toDataURL('image/jpeg', 0.6));
-                };
-                img.src = ev.target.result;
+            alert(`✅ Đã copy Prompt cho ${ai}!\nBé sang dán vào AI nhé.`);
+            const urls = {
+                'DeepSeek': "https://chat.deepseek.com",
+                'Gemini': "https://gemini.google.com/app",
+                'GPT': "https://chatgpt.com",
+                'Grok': "https://x.com/i/grok"
             };
-            reader.readAsDataURL(file);
-        };
-        inp.click();
+            window.open(urls[ai], '_blank');
+        });
     }
 
     function updateItem(id, k, v) {
@@ -228,10 +172,10 @@
     }
 
     function copyFinal() {
-        const txt = document.getElementById('finalResult');
-        txt.select();
+        const res = document.getElementById('finalResult');
+        res.select();
         document.execCommand('copy');
-        alert("Đã copy xong! Bé mở Facebook hoặc Zalo ra dán vào đăng bài nhé!");
+        alert("Đã copy xong! Bé mở Facebook, chọn 1 cái Ảnh Gia Đình thật đẹp rồi dán bài này vào nhé!");
     }
 
     renderMembers();
