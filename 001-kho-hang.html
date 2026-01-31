@@ -2,184 +2,77 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Marketing Gia Đình - 4 AI Tổng Lực</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Gia Đình - Chi Tiết Sản Phẩm</title>
     <style>
-        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --gpt: #10a37f; --x: #000000; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; margin: 0; }
-        .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
-        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 200px; overflow-y: auto; padding: 10px; border: 1px inset #eee; }
-        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; }
-        .m-btn.active { background: var(--v); color: white; border-color: var(--v); font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: var(--dark); color: white; padding: 12px; font-size: 12px; }
-        td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; }
-        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; width: 90%; }
-        .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; }
-        .btn-ai { font-size: 10px; margin: 2px; width: 85px; }
-        #finalResult { width: 100%; height: 150px; background: #fffcf0; border: 2px solid var(--g); padding: 10px; margin-top: 10px; }
+        :root { --p: #ee4d2d; --s: #1877F2; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; max-width: 500px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; text-align: center; padding-bottom: 30px; }
+        .img-box { width: 100%; height: 350px; background: #eee; display: flex; align-items: center; justify-content: center; }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .info { padding: 20px; }
+        h1 { color: #333; font-size: 22px; margin: 10px 0; }
+        .price { color: var(--p); font-size: 28px; font-weight: bold; margin: 10px 0; }
+        .btn-buy { background: var(--p); color: white; text-decoration: none; padding: 15px 40px; border-radius: 30px; display: inline-block; font-weight: bold; font-size: 18px; margin-top: 20px; transition: 0.3s; }
+        .btn-buy:hover { transform: scale(1.05); background: #d73211; }
+        .loading { padding: 50px; color: #666; }
+        .error-box { padding: 50px; color: red; }
     </style>
 </head>
 <body>
 
-<div style="max-width: 1200px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🚀 HỆ THỐNG ĐIỀU HÀNH TỔNG LỰC (4 AI)</h1>
-
-    <div class="box">
-        <h2>1. CHỌN NGƯỜI THÂN (Trong danh sách 32 người)</h2>
-        <div class="member-grid" id="memberList"></div>
-        <div id="statusHeader" style="background:var(--v); color:white; padding:10px; border-radius:8px; text-align:center; font-weight:bold;">
-            👉 BƯỚC 1: HÃY CHỌN MỘT NGƯỜI!
-        </div>
-    </div>
-
-    <div class="box">
-        <h2>2. NHẬP CSV & GỌI AI KỂ CHUYỆN</h2>
-        <input type="file" id="csvInp" multiple accept=".csv" style="margin-bottom:10px">
-        <button class="btn" style="background:var(--g)" onclick="exportFilesJson()">💾 Xuất files.json cho GitHub</button>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên Sản Phẩm</th>
-                    <th width="200">Link SP (GitHub/Aff)</th>
-                    <th>Chọn AI để lấy Prompt</th>
-                    <th width="50">Xong</th>
-                </tr>
-            </thead>
-            <tbody id="productArea"></tbody>
-        </table>
-    </div>
-
-    <div class="box">
-        <h2>3. NỘI DUNG ĐĂNG FACEBOOK/ZALO (Kèm ảnh gia đình)</h2>
-        <textarea id="finalResult" placeholder="Sau khi AI viết xong, bé dán nội dung vào đây để copy đi đăng kèm ảnh gia đình nhé..."></textarea>
-        <div style="margin-top:10px">
-            <button class="btn" style="background:var(--s)" onclick="copyFinal()">📋 Copy nội dung đăng bài</button>
-            <p style="color:red; font-size:12px"><b>Lưu ý:</b> Khi đăng bài, hãy chọn <b>Ảnh Gia Đình/Bạn Bè</b>, không chọn ảnh sản phẩm!</p>
-        </div>
-    </div>
+<div class="card" id="app">
+    <div class="loading">⏳ Đang tìm sản phẩm...</div>
 </div>
 
 <script>
-    const members = [
-        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
-        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
-        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ"},
-        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH HẰNG", d:"1974-01-07", g:"Nữ"},
-        {n:"NGÔ QUÝ CƯỜNG", d:"1973-05-23", g:"Nam"}, {n:"NGÔ GIA BÁCH", d:"2000-10-12", g:"Nam"},
-        {n:"NGÔ GIA LINH", d:"2005-04-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH PHƯƠNG", d:"1978-11-06", g:"Nữ"},
-        {n:"HOÀNG ANH DŨNG", d:"1978-09-21", g:"Nam"}, {n:"HOÀNG HẢI VINH", d:"2010-06-03", g:"Nam"},
-        {n:"HOÀNG THIÊN BẠCH ANH", d:"2015-11-14", g:"Nữ"}, {n:"TÔ KIM HUỆ", d:"1960-08-09", g:"Nữ"},
-        {n:"NGUYỄN TUẤN ANH", d:"1983-10-23", g:"Nam"}, {n:"NGUYỄN THẾ ANH", d:"2001-03-24", g:"Nam"},
-        {n:"NGÔ THỊ MAI", d:"1948-12-12", g:"Nữ"}, {n:"TÔ VIỆT HƯNG", d:"1996-06-17", g:"Nam"},
-        {n:"TÔ THỊ HỒNG", d:"1964-10-10", g:"Nữ"}, {n:"VŨ VĂN HIỆP", d:"1974-04-24", g:"Nam"},
-        {n:"NGUYỄN THỊ CHI", d:"1946-02-08", g:"Nữ"}, {n:"NGUYỄN TÂN BẮC", d:"1957-11-30", g:"Nam"},
-        {n:"NGUYỄN THỊ TÂM", d:"1954-08-08", g:"Nữ"}, {n:"THÂN VĂN GIỮ", d:"1955-04-18", g:"Nam"},
-        {n:"NGUYỄN THỊ BÌNH", d:"1958-05-21", g:"Nữ"}, {n:"THÂN THỊ BÍCH NGUYỆT", d:"1980-05-21", g:"Nữ"},
-        {n:"THÂN VĂN TUẤN", d:"1983-05-21", g:"Nam"}, {n:"THÂN YẾN NHI", d:"2010-03-26", g:"Nữ"},
-        {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
-    ];
+    // 1. Lấy mã ID sản phẩm từ địa chỉ Web (Ví dụ: ?id=22183344512)
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const app = document.getElementById('app');
 
-    let warehouse = JSON.parse(localStorage.getItem('full_warehouse_2026')) || [];
-    let selM = null;
-
-    function renderMembers() {
-        document.getElementById('memberList').innerHTML = members.map(m => `
-            <button class="m-btn" onclick="selectM('${m.n}', '${m.g}', '${m.d}')">${m.n}</button>
-        `).join('');
-    }
-
-    function selectM(n, g, d) {
-        selM = { n, g, a: Math.floor((new Date() - new Date(d))/31557600000) };
-        document.getElementById('statusHeader').innerText = `✅ ĐÃ CHỌN: ${n}`;
-        document.querySelectorAll('.m-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(n)));
-    }
-
-    document.getElementById('csvInp').onchange = async (e) => {
-        const files = Array.from(e.target.files);
-        for (const file of files) {
-            const text = await file.text();
-            const lines = text.split('\n').slice(1);
-            lines.forEach(l => {
-                const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if(c.length >= 8) {
-                    const id = c[0].trim();
-                    if(!warehouse.some(p => p.id === id)) {
-                        warehouse.push({
-                            id: id, name: c[1]?.replace(/\[.*?\]|\(.*?\)|"/g, '').split(' ').slice(0, 5).join(' ').trim(),
-                            l: c[8]?.trim() || c[7]?.trim(), img: '', done: false
-                        });
-                    }
-                }
-            });
+    // 2. Hàm tải dữ liệu từ file files.json bố đã xuất lên GitHub
+    async function loadProduct() {
+        if (!productId) {
+            app.innerHTML = `<div class="error-box">❌ Không tìm thấy mã sản phẩm!<br>Vui lòng quay lại sau.</div>`;
+            return;
         }
-        save();
-    };
 
-    function renderWarehouse() {
-        const tbody = document.getElementById('productArea');
-        tbody.innerHTML = warehouse.slice(-15).reverse().map(p => `
-            <tr>
-                <td><input value="${p.name}" onchange="updateItem('${p.id}', 'name', this.value)"></td>
-                <td><input value="${p.l.includes('product') ? '' : p.l}" onchange="updateItem('${p.id}', 'l', this.value)" placeholder="Dán link GitHub/Aff..."></td>
-                <td>
-                    <button class="btn btn-ai" style="background:var(--v)" onclick="goAI('DeepSeek', '${p.id}')">DeepSeek</button>
-                    <button class="btn btn-ai" style="background:var(--s)" onclick="goAI('Gemini', '${p.id}')">Gemini</button>
-                    <button class="btn btn-ai" style="background:var(--gpt)" onclick="goAI('GPT', '${p.id}')">ChatGPT</button>
-                    <button class="btn btn-ai" style="background:var(--x)" onclick="goAI('Grok', '${p.id}')">Grok (X)</button>
-                </td>
-                <td><input type="checkbox" ${p.done ? 'checked' : ''} onclick="updateItem('${p.id}', 'done', this.checked)"></td>
-            </tr>
-        `).join('');
+        try {
+            // Tải file dữ liệu (Đảm bảo file files.json nằm cùng thư mục với file này)
+            const response = await fetch('files.json');
+            const data = await response.json();
+            
+            // Tìm sản phẩm có ID trùng với ID trên link
+            const p = data.find(x => x.id === productId);
+
+            if (p) {
+                // Nếu tìm thấy, hiển thị ra màn hình
+                app.innerHTML = `
+                    <div class="img-box">
+                        <img src="https://down-vn.img.susercontent.com/file/${p.id}" onerror="this.src='https://via.placeholder.com/400x400?text=Sản+Phẩm+Gia+Đình'">
+                    </div>
+                    <div class="info">
+                        <h1>${p.name}</h1>
+                        <div class="price">Giá Ưu Đãi</div>
+                        <p style="color:#777">Sản phẩm được lựa chọn bởi Hệ Thống Marketing Gia Đình</p>
+                        <a href="https://shopee.vn/product/0/${p.id}" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
+                    </div>
+                    <div style="margin-top:20px">
+                        <a href="index.html" style="color:var(--s); text-decoration:none; font-size:14px;">← Quay lại cửa hàng</a>
+                    </div>
+                `;
+                document.title = p.name + " - Cửa Hàng Gia Đình";
+            } else {
+                app.innerHTML = `<div class="error-box">❌ Sản phẩm (ID: ${productId}) không tồn tại trong kho!</div>`;
+            }
+        } catch (error) {
+            app.innerHTML = `<div class="error-box">❌ Lỗi tải dữ liệu!<br>Bố hãy kiểm tra xem đã nhấn nút "Xuất files.json" chưa nhé.</div>`;
+        }
     }
 
-    function goAI(ai, id) {
-        if(!selM) return alert("Bé chọn người thân ở Bước 1 trước nhé!");
-        const p = warehouse.find(x => x.id === id);
-        
-        const prompt = `Viết một bài đăng Facebook hài hước kể về kỷ niệm giữa tôi và ${selM.n} (${selM.g}, ${selM.a} tuổi). 
-        Trong câu chuyện có xuất hiện món đồ: ${p.name}. 
-        Giọng văn: Vui vẻ, thân thiện như người trong nhà. 
-        Cuối bài hãy viết: "Mọi người muốn xem chi tiết món này thì vào cửa hàng của nhà em ở đây nhé (trong này có đủ ảnh và giá ạ): ${p.l}"`;
-        
-        navigator.clipboard.writeText(prompt).then(() => {
-            alert(`✅ Đã copy Prompt cho ${ai}!\nBé sang dán vào AI nhé.`);
-            const urls = {
-                'DeepSeek': "https://chat.deepseek.com",
-                'Gemini': "https://gemini.google.com/app",
-                'GPT': "https://chatgpt.com",
-                'Grok': "https://x.com/i/grok"
-            };
-            window.open(urls[ai], '_blank');
-        });
-    }
-
-    function updateItem(id, k, v) {
-        const idx = warehouse.findIndex(x => x.id === id);
-        warehouse[idx][k] = v;
-        save();
-    }
-
-    function save() {
-        localStorage.setItem('full_warehouse_2026', JSON.stringify(warehouse));
-        renderWarehouse();
-    }
-
-    function exportFilesJson() {
-        const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
-        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
-    }
-
-    function copyFinal() {
-        const res = document.getElementById('finalResult');
-        res.select();
-        document.execCommand('copy');
-        alert("Đã copy xong! Bé mở Facebook, chọn 1 cái Ảnh Gia Đình thật đẹp rồi dán bài này vào nhé!");
-    }
-
-    renderMembers();
-    renderWarehouse();
+    loadProduct();
 </script>
+
 </body>
 </html>
