@@ -2,150 +2,240 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kho Hàng Tổng & Lịch Đăng Bài - Nam Nguyễn</title>
+    <title>Hệ Thống Affiliate Gia Đình 2026</title>
     <style>
-        :root { --primary: #ee4d2d; --dark: #2c3e50; --success: #28a745; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: auto; }
+        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; margin: 0; }
+        .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: var(--p); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
         
-        .header { background: var(--dark); color: white; padding: 20px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .btn-action { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-export { background: var(--success); color: white; }
-        .btn-clear { background: #dc3545; color: white; }
+        /* Member Selection */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 200px; overflow-y: auto; padding: 10px; border: 1px inset #eee; }
+        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; }
+        .m-btn.active { background: var(--v); color: white; border-color: var(--v); font-weight: bold; }
 
-        .dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
-        .stat-card { background: white; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
-        .stat-card h3 { margin: 0; font-size: 14px; color: #666; }
-        .stat-card div { font-size: 24px; font-weight: bold; color: var(--dark); }
+        /* Table & Inputs */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background: var(--dark); color: white; padding: 12px; font-size: 13px; }
+        td { border-bottom: 1px solid #eee; padding: 12px; text-align: center; }
+        input, select, textarea { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        .aff-link { width: 90%; border: 1.5px solid #ff7675; background: #fff5f5; font-size: 11px; }
 
-        .schedule-table { width: 100%; background: white; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        th { background: #eee; padding: 15px; text-align: left; font-size: 14px; }
-        td { padding: 15px; border-bottom: 1px solid #f0f0f0; }
+        .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; transition: 0.3s; }
+        .btn-ai { margin: 2px; font-size: 10px; }
         
-        .tier-tag { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; color: white; }
-        .tier-L { background: #dc3545; } .tier-T { background: #007bff; }
-        .tier-C { background: #6f42c1; } .tier-D { background: #ffc107; color: black; }
-        
-        .bio-clock { background: #e8f5e9; color: #2e7d32; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-        .copy-box { cursor: pointer; color: var(--primary); font-weight: bold; }
-        .copy-box:hover { text-decoration: underline; }
+        /* Result Area */
+        #finalResult { width: 100%; height: 150px; background: #f9f9f9; border: 2px dashed var(--g); padding: 10px; margin-top: 10px; font-family: 'Courier New', monospace; }
+        .img-slot { width: 60px; height: 60px; border: 2px dashed #ccc; border-radius: 8px; margin: auto; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .img-slot img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <div>
-            <h1 style="margin:0;">📦 KHO HÀNG TỔNG</h1>
-            <p style="margin:5px 0 0 0; opacity: 0.8;">Hệ thống tự động lập lịch nhịp sinh học</p>
+<div style="max-width: 1200px; margin: auto;">
+    <h1 style="text-align: center; color: var(--p);">🚀 HỆ THỐNG ĐIỀU HÀNH TỔNG LỰC</h1>
+
+    <div class="box">
+        <h2>1. CHỌN HOẶC NHẬP NGƯỜI MỚI</h2>
+        <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+            <strong>Thêm nhanh:</strong>
+            <input type="text" id="newName" placeholder="Họ tên mới...">
+            <input type="number" id="newAge" style="width:60px" placeholder="Tuổi">
+            <select id="newGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
+            <button class="btn" style="background:var(--s)" onclick="addNewMember()">+ Thêm vào danh sách</button>
+            <button class="btn" style="background:var(--dark)" onclick="resetSelection()">🔄 Chọn lại từ đầu</button>
         </div>
-        <div style="display: flex; gap: 10px;">
-            <button class="btn-action btn-export" onclick="exportExcel()">📁 XUẤT LỊCH ĐĂNG (CSV)</button>
-            <button class="btn-action btn-clear" onclick="clearAll()">🗑️ XÓA KHO</button>
+        <div class="member-grid" id="memberList"></div>
+        <div id="statusHeader" style="background:var(--v); color:white; padding:10px; border-radius:8px; text-align:center; font-weight:bold; font-size:18px">
+            👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!
         </div>
     </div>
 
-    <div class="dashboard" id="statDashboard">
-        </div>
+    <div class="box">
+        <h2>2. NHẬP FILE CSV & XỬ LÝ SẢN PHẨM</h2>
+        <input type="file" id="csvInp" multiple accept=".csv" class="btn" style="background:#eee; color:#333">
+        <button class="btn" style="background:var(--g); margin-left:10px" onclick="exportFilesJson()">💾 Xuất files.json (Lên GitHub)</button>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="80">Ảnh</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th width="250">Link Affiliate (Bố dán)</th>
+                    <th>Gọi AI Kể Chuyện</th>
+                </tr>
+            </thead>
+            <tbody id="productArea"></tbody>
+        </table>
+    </div>
 
-    <table class="schedule-table">
-        <thead>
-            <tr>
-                <th>Tầng</th>
-                <th>Sản phẩm</th>
-                <th>Giá</th>
-                <th>Giờ Đăng Bài (Gợi ý)</th>
-                <th>Link Affiliate</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
-        <tbody id="scheduleBody"></tbody>
-    </table>
+    <div class="box">
+        <h2>3. KẾT QUẢ KỂ CHUYỆN (Copy để đăng Facebook/Zalo)</h2>
+        <p style="font-size:12px; color:#666">Sau khi AI kể chuyện xong, hãy dán nội dung vào đây để kiểm tra trước khi đăng:</p>
+        <textarea id="finalResult" placeholder="Nội dung truyện sẽ hiện ở đây sau khi AI viết hoặc bé dán vào để chỉnh sửa..."></textarea>
+        <div style="margin-top:10px">
+            <button class="btn" style="background:var(--s)" onclick="copyFinal()">📋 Copy toàn bộ để Đăng bài</button>
+            <button class="btn" style="background:var(--p)" onclick="document.getElementById('finalResult').value=''">🗑️ Xóa làm lại</button>
+        </div>
+    </div>
 </div>
 
 <script>
-    let warehouse = JSON.parse(localStorage.getItem('shopee_warehouse')) || [];
+    // 1. Danh sách 32 người chuẩn
+    let members = JSON.parse(localStorage.getItem('saved_members')) || [
+        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
+        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
+        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ"},
+        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH HẰNG", d:"1974-01-07", g:"Nữ"},
+        {n:"NGÔ QUÝ CƯỜNG", d:"1973-05-23", g:"Nam"}, {n:"NGÔ GIA BÁCH", d:"2000-10-12", g:"Nam"},
+        {n:"NGÔ GIA LINH", d:"2005-04-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH PHƯƠNG", d:"1978-11-06", g:"Nữ"},
+        {n:"HOÀNG ANH DŨNG", d:"1978-09-21", g:"Nam"}, {n:"HOÀNG HẢI VINH", d:"2010-06-03", g:"Nam"},
+        {n:"HOÀNG THIÊN BẠCH ANH", d:"2015-11-14", g:"Nữ"}, {n:"TÔ KIM HUỆ", d:"1960-08-09", g:"Nữ"},
+        {n:"NGUYỄN TUẤN ANH", d:"1983-10-23", g:"Nam"}, {n:"NGUYỄN THẾ ANH", d:"2001-03-24", g:"Nam"},
+        {n:"NGÔ THỊ MAI", d:"1948-12-12", g:"Nữ"}, {n:"TÔ VIỆT HƯNG", d:"1996-06-17", g:"Nam"},
+        {n:"TÔ THỊ HỒNG", d:"1964-10-10", g:"Nữ"}, {n:"VŨ VĂN HIỆP", d:"1974-04-24", g:"Nam"},
+        {n:"NGUYỄN THỊ CHI", d:"1946-02-08", g:"Nữ"}, {n:"NGUYỄN TÂN BẮC", d:"1957-11-30", g:"Nam"},
+        {n:"NGUYỄN THỊ TÂM", d:"1954-08-08", g:"Nữ"}, {n:"THÂN VĂN GIỮ", d:"1955-04-18", g:"Nam"},
+        {n:"NGUYỄN THỊ BÌNH", d:"1958-05-21", g:"Nữ"}, {n:"THÂN THỊ BÍCH NGUYỆT", d:"1980-05-21", g:"Nữ"},
+        {n:"THÂN VĂN TUẤN", d:"1983-05-21", g:"Nam"}, {n:"THÂN YẾN NHI", d:"2010-03-26", g:"Nữ"},
+        {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
+    ];
 
-    // Công thức nhịp sinh học
-    function getBioTime(tier, index) {
-        const times = {
-            'L': ['08:30', '11:45', '12:30', '20:00', '21:30'], // Đồ rẻ: Đăng giờ nghỉ, giải trí
-            'T': ['09:00', '15:00', '19:30', '20:30'],         // Đồ vừa: Đăng giờ hành chính rảnh
-            'C': ['10:30', '14:30', '20:00'],                 // Đồ cao: Đăng giờ tâm lý thoải mái
-            'D': ['07:30', '21:00']                           // Đồ đắt: Đăng sáng sớm hoặc tối muộn
-        };
-        let slot = times[tier] || ['09:00'];
-        return slot[index % slot.length];
+    let warehouse = JSON.parse(localStorage.getItem('full_warehouse_2026')) || [];
+    let selectedMem = null;
+
+    // --- QUẢN LÝ THÀNH VIÊN ---
+    function renderMembers() {
+        const grid = document.getElementById('memberList');
+        grid.innerHTML = members.map(m => {
+            let age = m.age ? m.age : Math.floor((new Date() - new Date(m.d))/31557600000);
+            return `<button class="m-btn" onclick="selectM('${m.n}', '${m.g}', ${age})">
+                <strong>${m.n}</strong><br><small>${m.g} - ${age}t</small>
+            </button>`;
+        }).join('');
     }
 
-    function renderAll() {
-        const body = document.getElementById('scheduleBody');
-        const dash = document.getElementById('statDashboard');
-        body.innerHTML = '';
+    function selectM(name, gen, age) {
+        selectedMem = { name, gen, age };
+        document.getElementById('statusHeader').innerText = `✅ ĐÃ CHỌN: ${name} (${gen} - ${age}t). MỜI BÉ CHỌN SẢN PHẨM!`;
+        document.querySelectorAll('.m-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(name)));
+    }
+
+    function addNewMember() {
+        const n = document.getElementById('newName').value.trim();
+        const age = document.getElementById('newAge').value;
+        const g = document.getElementById('newGen').value;
+        if(!n || !age) return alert("Nhập đủ tên và tuổi nhé!");
+        members.push({ n, age: parseInt(age), g });
+        localStorage.setItem('saved_members', JSON.stringify(members));
+        renderMembers();
+    }
+
+    function resetSelection() {
+        selectedMem = null;
+        document.getElementById('statusHeader').innerText = "👉 BƯỚC 1: HÃY BẤM CHỌN MỘT NGƯỜI TRÊN DANH SÁCH!";
+        document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    // --- QUẢN LÝ HÀNG HÓA ---
+    document.getElementById('csvInp').onchange = async (e) => {
+        const files = Array.from(e.target.files);
+        for (const file of files) {
+            const text = await file.text();
+            const lines = text.split('\n').slice(1);
+            lines.forEach(l => {
+                const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if(c.length >= 8) {
+                    const id = c[0].trim();
+                    if(!warehouse.some(p => p.id === id)) {
+                        warehouse.push({
+                            id: id, name: c[1]?.replace(/\[.*?\]|\(.*?\)|"/g, '').split(' ').slice(0, 5).join(' ').trim(),
+                            l: c[8]?.trim() || c[7]?.trim(), img: '', done: false
+                        });
+                    }
+                }
+            });
+        }
+        save();
+    };
+
+    function renderWarehouse() {
+        const tbody = document.getElementById('productArea');
+        tbody.innerHTML = warehouse.slice(-15).reverse().map(p => `
+            <tr style="${p.done ? 'opacity:0.5' : ''}">
+                <td><div class="img-slot" onclick="uploadImg('${p.id}')">${p.img ? `<img src="${p.img}">` : '+'}</div></td>
+                <td><input class="edit-name" style="width:100%" value="${p.name}" onchange="updateItem('${p.id}', 'name', this.value)"></td>
+                <td><input class="aff-link" value="${p.l.includes('product') ? '' : p.l}" onchange="updateItem('${p.id}', 'l', this.value)" placeholder="Dán link rút gọn..."></td>
+                <td>
+                    <button class="btn btn-ai" style="background:var(--v)" onclick="callAI('DeepSeek', '${p.id}')">DeepSeek</button>
+                    <button class="btn btn-ai" style="background:var(--s)" onclick="callAI('Gemini', '${p.id}')">Gemini</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function callAI(ai, id) {
+        if(!selectedMem) return alert("Bé ơi! Phải chọn người nhận ở Bước 1 trước đã!");
+        const p = warehouse.find(x => x.id === id);
+        if(!p.l || p.l.includes('product')) return alert("Bố chưa dán link rút gọn cho món này!");
+
+        // TẠO PROMPT CHUẨN
+        const prompt = `Viết một câu chuyện ngụ ngôn hoặc cổ tích cực kỳ hài hước và ngắn gọn cho Facebook. 
+            Nhân vật chính: ${selectedMem.name} (${selectedMem.gen}, ${selectedMem.age} tuổi). 
+            Vật phẩm quan trọng: ${p.name}. 
+            Yêu cầu: Lồng ghép công dụng sản phẩm dí dỏm, kết bài có lời kêu gọi mua hàng tại link: ${p.l}`;
         
-        let stats = { L:0, T:0, C:0, D:0, total: warehouse.length };
-
-        warehouse.forEach((item, i) => {
-            stats[item.tier]++;
-            let time = getBioTime(item.tier, i);
-            
-            body.innerHTML += `
-                <tr>
-                    <td><span class="tier-tag tier-${item.tier}">TẦNG ${item.tier}</span></td>
-                    <td style="font-weight:500;">${item.name.substring(0,40)}...</td>
-                    <td style="color:#ee4d2d; font-weight:bold;">${Number(item.price).toLocaleString()}đ</td>
-                    <td><span class="bio-clock">⏰ ${time}</span></td>
-                    <td class="copy-box" onclick="copyLink('${item.link}')">Copy Link</td>
-                    <td><button onclick="removeItem(${i})" style="border:none; background:none; cursor:pointer;">❌</button></td>
-                </tr>
-            `;
+        // COPY PROMPT VÀO CLIPBOARD
+        navigator.clipboard.writeText(prompt).then(() => {
+            alert(`✅ Đã copy xong Prompt cho ${ai}!\n\nBé chỉ cần dán (Ctrl+V) vào ô chat của AI là xong.`);
+            window.open(ai === 'DeepSeek' ? "https://chat.deepseek.com" : "https://gemini.google.com/app", "_blank");
         });
-
-        dash.innerHTML = `
-            <div class="stat-card"><h3>TỔNG MÃ</h3><div>${stats.total}</div></div>
-            <div class="stat-card"><h3>TẦNG L (RẺ)</h3><div>${stats.L}</div></div>
-            <div class="stat-card"><h3>TẦNG T (VỪA)</h3><div>${stats.T}</div></div>
-            <div class="stat-card"><h3>TẦNG C-D (CAO)</h3><div>${stats.C + stats.D}</div></div>
-        `;
     }
 
-    function copyLink(link) {
-        navigator.clipboard.writeText(link);
-        alert("Đã copy link thành công!");
+    function uploadImg(id) {
+        const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+        inp.onchange = (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => {
+                    const cvs = document.createElement('canvas'); cvs.width = 150; cvs.height = 150;
+                    cvs.getContext('2d').drawImage(img, 0, 0, 150, 150);
+                    updateItem(id, 'img', cvs.toDataURL('image/jpeg', 0.6));
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+        inp.click();
     }
 
-    function removeItem(index) {
-        if(confirm("Xóa món này khỏi kho?")) {
-            warehouse.splice(index, 1);
-            localStorage.setItem('shopee_warehouse', JSON.stringify(warehouse));
-            renderAll();
-        }
+    function updateItem(id, k, v) {
+        const idx = warehouse.findIndex(x => x.id === id);
+        warehouse[idx][k] = v;
+        save();
     }
 
-    function clearAll() {
-        if(confirm("Bạn muốn xóa sạch kho hàng để làm tệp mới?")) {
-            localStorage.removeItem('shopee_warehouse');
-            warehouse = [];
-            renderAll();
-        }
+    function save() {
+        localStorage.setItem('full_warehouse_2026', JSON.stringify(warehouse));
+        renderWarehouse();
     }
 
-    function exportExcel() {
-        if(warehouse.length === 0) return alert("Kho đang trống!");
-        let csv = "Giờ Đăng,Sản Phẩm,Giá,Link Affiliate\n";
-        warehouse.forEach((item, i) => {
-            csv += `${getBioTime(item.tier, i)},"${item.name}",${item.price},${item.link}\n`;
-        });
-        const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Lich_Dang_Bai_Nam_Nguyen_${new Date().toLocaleDateString()}.csv`;
-        a.click();
+    function exportFilesJson() {
+        const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
 
-    window.onload = renderAll;
+    function copyFinal() {
+        const txt = document.getElementById('finalResult');
+        txt.select();
+        document.execCommand('copy');
+        alert("Đã copy xong! Bé mở Facebook hoặc Zalo ra dán vào đăng bài nhé!");
+    }
+
+    renderMembers();
+    renderWarehouse();
 </script>
 </body>
 </html>
