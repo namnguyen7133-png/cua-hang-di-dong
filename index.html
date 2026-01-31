@@ -2,60 +2,53 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Marketing Gia Đình - Quản Lý Kho</title>
+    <title>Hệ Thống Marketing Thông Minh 2026</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
         .box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        
-        /* Member Grid */
-        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 200px; overflow-y: auto; }
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 15px 0; max-height: 250px; overflow-y: auto; }
         .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; font-size: 11px; position: relative; }
-        .m-btn.active { background: var(--v); color: white; }
+        .m-btn.active { background: var(--v); color: white; font-weight: bold; border-color: var(--v); }
         .del-x { position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; }
-
-        /* Warehouse Table */
         .scroll-table { max-height: 400px; overflow-y: auto; border: 1px solid #eee; margin-top: 10px; }
         table { width: 100%; border-collapse: collapse; background: white; }
-        th { background: var(--dark); color: white; padding: 10px; position: sticky; top: 0; }
-        td { border-bottom: 1px solid #eee; padding: 8px; text-align: center; font-size: 12px; }
-        
-        /* Controls */
-        input, select { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        th { background: var(--dark); color: white; padding: 10px; position: sticky; top: 0; font-size: 13px; }
+        td { border-bottom: 1px solid #eee; padding: 10px; text-align: center; font-size: 12px; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
         .btn { border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; }
-        .btn-sm { padding: 5px 10px; font-size: 10px; }
-        .search-box { width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid var(--s); border-radius: 10px; }
+        .btn-ai { padding: 5px 10px; font-size: 10px; border: none; color: white; border-radius: 4px; cursor: pointer; margin: 2px; }
     </style>
 </head>
 <body>
 
 <div style="max-width: 1100px; margin: auto;">
-    <h1 style="text-align: center; color: var(--p);">🚀 ĐIỀU HÀNH KHO & AI MARKETING</h1>
+    <h1 style="text-align: center; color: var(--p);">🚀 ĐIỀU HÀNH MARKETING THEO ĐỘ TUỔI</h1>
 
-    <div class="box" style="background: #fff3bf;">
+    <div class="box" style="background: #e7f5ff;">
         <strong>🌐 WEB GITHUB:</strong> 
         <input type="text" id="ghBase" style="width: 60%;" value="https://namnguyen7133.github.io/kho-hang/" onchange="saveConfig()">
         <button class="btn" style="background:var(--g)" onclick="exportJson()">💾 Xuất files.json</button>
     </div>
 
     <div class="box">
-        <h2>1. NGƯỜI NHẬN (${members.length})</h2>
-        <div style="margin-bottom: 10px;">
-            <input type="text" id="inN" placeholder="Tên khách...">
+        <h2>1. DANH SÁCH NGƯỜI NHẬN</h2>
+        <div style="margin-bottom: 15px; display: flex; gap: 10px;">
+            <input type="text" id="inN" placeholder="Tên mới...">
             <input type="date" id="inD">
+            <select id="inG"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
             <button class="btn" style="background:var(--s)" onclick="addM()">+ Thêm</button>
         </div>
         <div class="member-grid" id="mList"></div>
     </div>
 
     <div class="box">
-        <h2>2. QUẢN LÝ KHO HÀNG (<span id="countP">0</span> món)</h2>
+        <h2>2. KHO HÀNG & KỂ CHUYỆN AI</h2>
         <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-            <input type="file" id="csv" multiple accept=".csv" class="btn" style="background:#eee; color:#333; flex:1">
+            <input type="file" id="csv" multiple accept=".csv" style="flex:1">
             <button class="btn" style="background:#ff4757" onclick="clearWare()">🗑️ Xóa sạch kho</button>
         </div>
-        
-        <input type="text" id="searchP" class="search-box" placeholder="🔍 Tìm tên sản phẩm trong kho..." oninput="renderW()">
+        <input type="text" id="searchP" style="width:100%; box-sizing: border-box; margin-bottom: 10px;" placeholder="🔍 Tìm tên sản phẩm..." oninput="renderW()">
 
         <div class="scroll-table">
             <table>
@@ -63,8 +56,7 @@
                     <tr>
                         <th width="50">Xóa</th>
                         <th>Tên Sản Phẩm</th>
-                        <th width="180">Link GitHub</th>
-                        <th width="180">Gọi AI</th>
+                        <th width="200">Gọi AI (Tự copy lệnh)</th>
                     </tr>
                 </thead>
                 <tbody id="pArea"></tbody>
@@ -74,17 +66,16 @@
 </div>
 
 <script>
-    // Dữ liệu mẫu (Bố hãy dán danh sách 32 người vào đây)
-    let members = JSON.parse(localStorage.getItem('mems_v5')) || [
+    // Danh sách mẫu (Bố có thể dán 32 người vào đây)
+    let members = JSON.parse(localStorage.getItem('mems_v6')) || [
         {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"},
-        {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"}
+        {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ"}
     ];
-    let warehouse = JSON.parse(localStorage.getItem('ware_v5')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('ware_v6')) || [];
     let activeM = null;
 
     function saveConfig() { localStorage.setItem('ghBase', document.getElementById('ghBase').value); renderW(); }
 
-    // --- QUẢN LÝ NGƯỜI ---
     function renderM() {
         const list = document.getElementById('mList');
         list.innerHTML = members.map((m, i) => `
@@ -99,13 +90,13 @@
     function addM() {
         const n = document.getElementById('inN').value;
         const d = document.getElementById('inD').value;
-        if(n && d) { members.unshift({n, d, g:"Nam"}); saveM(); }
+        const g = document.getElementById('inG').value;
+        if(n && d) { members.unshift({n, d, g}); saveM(); }
     }
     function delM(i) { members.splice(i,1); saveM(); }
-    function saveM() { localStorage.setItem('mems_v5', JSON.stringify(members)); renderM(); }
+    function saveM() { localStorage.setItem('mems_v6', JSON.stringify(members)); renderM(); }
     function calcAge(d) { return Math.floor((new Date() - new Date(d))/31557600000); }
 
-    // --- QUẢN LÝ KHO ---
     document.getElementById('csv').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -128,53 +119,50 @@
         const area = document.getElementById('pArea');
         const search = document.getElementById('searchP').value.toLowerCase();
         const ghBase = document.getElementById('ghBase').value;
-        
         const filtered = warehouse.filter(p => p.n.toLowerCase().includes(search));
-        document.getElementById('countP').innerText = warehouse.length;
 
-        area.innerHTML = filtered.slice().reverse().map((p, idx) => {
-            const finalLink = `${ghBase}${p.id}.html`; // Hoặc cấu hình link theo ý bố
+        area.innerHTML = filtered.slice().reverse().map(p => {
+            const finalLink = `${ghBase}${p.id}.html`;
             return `
                 <tr>
-                    <td><button class="btn-sm" style="background:#ff4757;border:none;color:white;border-radius:4px" onclick="delP('${p.id}')">Xóa</button></td>
+                    <td><button onclick="delP('${p.id}')">❌</button></td>
                     <td style="text-align:left">${p.n}</td>
-                    <td><small style="color:blue">${p.id}.html</small></td>
                     <td>
-                        <button class="btn-sm" style="background:var(--v);border:none;color:white" onclick="goAI('DeepSeek','${p.id}','${finalLink}')">DS</button>
-                        <button class="btn-sm" style="background:var(--s);border:none;color:white" onclick="goAI('Gemini','${p.id}','${finalLink}')">GM</button>
+                        <button class="btn-ai" style="background:var(--v)" onclick="goAI('DeepSeek','${p.id}','${finalLink}')">DeepSeek</button>
+                        <button class="btn-ai" style="background:var(--s)" onclick="goAI('Gemini','${p.id}','${finalLink}')">Gemini</button>
                     </td>
                 </tr>
             `;
         }).join('');
     }
 
-    function delP(id) {
-        warehouse = warehouse.filter(p => p.id !== id);
-        saveW();
-    }
-
-    function clearWare() {
-        if(confirm("Bạn có chắc muốn xóa sạch toàn bộ kho hàng không?")) {
-            warehouse = [];
-            saveW();
-        }
-    }
-
-    function saveW() {
-        localStorage.setItem('ware_v5', JSON.stringify(warehouse));
-        renderW();
-    }
-
     function goAI(ai, id, link) {
         if(!activeM) return alert("Bé chọn người nhận trước!");
         const p = warehouse.find(x => x.id === id);
-        const prompt = `Viết truyện hài Facebook về ${activeM.n} (${calcAge(activeM.d)}t) gắn với món ${p.n}. Link xem: ${link}`;
+        const age = calcAge(activeM.d);
+        let prompt = "";
+
+        // THIẾT LẬP PROMPT THEO ĐỘ TUỔI
+        if(age < 13) {
+            // TRẺ EM: Chuyện ngụ ngôn, cổ tích
+            prompt = `Hãy viết một câu chuyện ngụ ngôn hoặc cổ tích ngắn cho bé. Nhân vật chính là ${activeM.n} (${age} tuổi). Trong truyện, ${activeM.n} học được một bài học quý giá nhờ có đồ vật: ${p.n}. Giọng văn nhẹ nhàng, giáo dục. Cuối bài chèn link: ${link}`;
+        } else if(age >= 13 && age <= 18) {
+            // TUỔI TEEN: Hài hước, năng động
+            prompt = `Viết một bài đăng Facebook cực "chill" và hài hước kể về ${activeM.n} (${age} tuổi) đang dùng ${p.n}. Sử dụng ngôn ngữ trẻ trung của Gen Z, pha chút dí dỏm. Kết bài kêu gọi xem tại: ${link}`;
+        } else {
+            // NGƯỜI LỚN: Hài hước hoặc Chúc mừng
+            prompt = `Hãy viết một bài đăng Facebook dành cho người lớn. Nội dung kể về kỷ niệm hài hước hoặc một lời chúc mừng ý nghĩa dành cho ${activeM.n} (${age} tuổi). Lồng ghép khéo léo sự xuất hiện của ${p.n} như một món quà tuyệt vời. Giọng văn mặn mà, thu hút. Link chi tiết: ${link}`;
+        }
+
         navigator.clipboard.writeText(prompt).then(() => {
-            alert("Đã copy lệnh AI!");
+            alert(`✅ ĐÃ COPY LỆNH CHO ${activeM.n} (${age}t)!\nBé sang dán vào AI nhé.`);
             window.open(ai === 'DeepSeek' ? "https://chat.deepseek.com" : "https://gemini.google.com/app", "_blank");
         });
     }
 
+    function delP(id) { warehouse = warehouse.filter(p => p.id !== id); saveW(); }
+    function clearWare() { if(confirm("Xóa sạch kho?")) { warehouse = []; saveW(); } }
+    function saveW() { localStorage.setItem('ware_v6', JSON.stringify(warehouse)); renderW(); }
     function exportJson() {
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
