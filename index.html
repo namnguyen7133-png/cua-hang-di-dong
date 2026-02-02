@@ -2,77 +2,82 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Bày Hàng GitHub V19.0 - Cập Nhật Lọc Theo Tuổi</title>
+    <title>Hệ Thống Bày Hàng GitHub V19.5 - Bộ Lọc Nâng Cao</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877f2; --g: #00b894; --dark: #2d3436; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 15px; }
         .card-step { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 6px solid var(--s); }
-        .num-circle { background: var(--dark); color: white; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; font-weight: bold; }
-        .lucky-char { color: red; font-size: 20px; font-weight: 900; text-decoration: underline; }
-        .btn { padding: 15px 20px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; color: white; width: 100%; margin: 8px 0; transition: 0.2s; font-size: 16px; }
-        .btn-shopee { background: #ee4d2d; }
-        .btn-edit { background: #00d2d3; }
-        .btn-upload { background: #5f27cd; }
-        .btn-ai { background: var(--g); width: 48%; display: inline-block; }
-        .market { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-        .item { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .item:hover { border-color: var(--p); transform: translateY(-5px); }
+        .num-circle { background: var(--dark); color: white; width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 5px; font-size: 14px; }
+        
+        /* Bảng điều khiển lọc */
+        .filter-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; background: #f8f9fa; padding: 15px; border-radius: 10px; }
+        .filter-btn { flex: 1; min-width: 120px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: white; transition: 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--s); color: white; border-color: var(--s); }
+
+        .market { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+        .item { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 10px; text-align: center; position: relative; }
         .item img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; }
-        .price-tag { color: #ee4d2d; font-weight: bold; display: block; margin-top: 5px; }
-        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; overflow-y:auto; }
-        .modal-content { background: white; width: 95%; max-width: 550px; margin: 10px auto; padding: 20px; border-radius: 20px; }
-        .sub-step { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid var(--s); }
-        input { width: 100%; padding: 12px; margin-top: 8px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .add-friend-box { background: #e3f2fd; padding: 10px; border-radius: 10px; margin-top: 15px; border: 1px dashed var(--s); }
+        .price-tag { color: var(--p); font-weight: bold; }
+        
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; overflow-y:auto; }
+        .modal-content { background: white; width: 95%; max-width: 500px; margin: 20px auto; padding: 20px; border-radius: 20px; }
+        input { width: 100%; padding: 12px; margin: 5px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn { padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; color: white; }
     </style>
 </head>
 <body>
 
-<h1 style="text-align:center; color: var(--s);">🏪 SIÊU THỊ GITHUB V19.0</h1>
+<h1 style="text-align:center; color: var(--s);">🏪 SIÊU THỊ GITHUB V19.5</h1>
 
-<div class="card-step" style="border-color: #ff9f43;">
-    <h3><span class="num-circle">1</span> NẠP KHO & <span class="num-circle">2</span> NGƯỜI MAY MẮN</h3>
-    <input type="file" id="csv" accept=".csv" style="margin-bottom:15px">
-    <div id="luckyBox" style="font-size: 18px; text-align: center; background: #eee; padding: 15px; border-radius: 10px;">
-        Hôm nay: <b id="luckyName">---</b> (<span id="luckyAge">--</span> tuổi)
-    </div>
-    <div class="add-friend-box">
-        <input type="text" id="newFriendName" placeholder="Họ và Tên...">
-        <div style="display: flex; gap: 5px;">
-            <input type="number" id="newFriendYear" placeholder="Năm sinh">
-            <input type="text" id="newFriendGender" placeholder="Nam/Nữ">
-        </div>
-        <button class="btn" style="background:var(--s); font-size:14px" onclick="addNewFriend()">+ THÊM BẠN MỚI</button>
+<div class="card-step">
+    <h3><span class="num-circle">1</span> QUẢN LÝ DỮ LIỆU</h3>
+    <input type="file" id="csv" accept=".csv">
+    <div id="luckyBox" style="margin-top:10px; padding:10px; background:#e3f2fd; border-radius:8px;">
+        Người may mắn: <b id="luckyName">---</b> | Tuổi: <span id="luckyAge">--</span>
     </div>
 </div>
 
-<div class="card-step" style="border-color: #00d2d3;">
-    <h3><span class="num-circle">3</span> CHỌN QUÀ THEO ĐIỀU KIỆN (Tuổi > Giá > Chữ Cuối)</h3>
+<div class="card-step">
+    <h3><span class="num-circle">2</span> BỘ LỌC THÔNG MINH</h3>
+    <div class="filter-group">
+        <button class="filter-btn" onclick="filterBy('age')">Lọc theo Tuổi</button>
+        <button class="filter-btn" onclick="filterBy('price')">Lọc theo Giá</button>
+        <button class="filter-btn" onclick="filterBy('gender')">Lọc theo Giới tính</button>
+        <button class="filter-btn" onclick="filterBy('char')">Lọc theo Chữ cái</button>
+    </div>
     <div id="market" class="market"></div>
 </div>
 
 <div id="modal" class="modal">
     <div class="modal-content">
-        <h2 id="mTitle" style="text-align: center; color: var(--p);"></h2>
-        <div class="sub-step"><b>👉 BƯỚC 4: LẤY ẢNH GỐC</b><br><button class="btn btn-shopee" onclick="goShopee()">MỞ SHOPEE</button></div>
-        <div class="sub-step"><b>👉 BƯỚC 5: TẢI ẢNH LÊN</b><br><input type="text" id="imgLink" placeholder="Dán Direct Link..."><input type="text" id="affLink" placeholder="Dán Link rút gọn..."></div>
-        <div class="sub-step"><b>👉 BƯỚC 6: NHỜ AI</b><br><button class="btn btn-ai" onclick="askAI('Gemini')">Gemini</button></div>
-        <button class="btn" style="background:#636e72" onclick="closeModal()">QUAY LẠI</button>
+        <h3 id="mTitle"></h3>
+        <p>Gốc: <span id="originalLink" style="font-size: 10px; color: blue; word-break: break-all;"></span></p>
+        <hr>
+        <label>1. Link Ảnh (đã cắt/convert):</label>
+        <input type="text" id="imgLink" placeholder="Dán link ảnh GitHub/PostImage...">
+        
+        <label>2. Link Shopee Rút Gọn:</label>
+        <input type="text" id="affLink" placeholder="Dán link short.com...">
+        
+        <div style="display: flex; gap: 10px;">
+            <button class="btn" style="background:var(--p)" onclick="goShopee()">MỞ GỐC</button>
+            <button class="btn" style="background:var(--g)" onclick="copyPrompt()">COPY PROMPT AI</button>
+        </div>
+        <button class="btn" style="background:#636e72" onclick="closeModal()">ĐÓNG</button>
     </div>
 </div>
 
 <script>
     let fixedMems = JSON.parse(localStorage.getItem('my_friends_list')) || [
-        {n:"NGUYỄN KHẮC NĂNG", d:"1944", g:"Nam"}, 
-        {n:"TÔ THỊ HÀ", d:"1948", g:"Nữ"},
-        {n:"NGUYỄN MINH NAM", d:"1971", g:"Nam"},
-        {n:"THÂN THỊ KIM ANH", d:"1981", g:"Nữ"}
+        {n:"NGUYỄN KHẮC NĂNG", d:"1944", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948", g:"Nữ"},
+        {n:"NGUYỄN MINH NAM", d:"1971", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981", g:"Nữ"}
     ];
-
     let warehouse = [];
     let lucky = null;
-    const currentYear = new Date().getFullYear();
+    let selectedItem = null;
+    const currentYear = 2026;
 
+    // Khởi tạo người may mắn
     function init() {
         const offset = Math.floor((new Date() - new Date("2026-01-01")) / (1000*60*60*24));
         lucky = fixedMems[offset % fixedMems.length];
@@ -80,89 +85,71 @@
         document.getElementById('luckyAge').innerText = currentYear - parseInt(lucky.d);
     }
 
-    function addNewFriend() {
-        const name = document.getElementById('newFriendName').value.toUpperCase().trim();
-        const year = document.getElementById('newFriendYear').value.trim();
-        const gender = document.getElementById('newFriendGender').value.trim();
-        if(!name || !year) return alert("Nhập thiếu tên hoặc năm sinh!");
-        fixedMems.push({n: name, d: year, g: gender});
-        localStorage.setItem('my_friends_list', JSON.stringify(fixedMems));
-        location.reload();
-    }
-
+    // Đọc file CSV
     document.getElementById('csv').onchange = async (e) => {
         const text = await e.target.files[0].text();
         const lines = text.split('\n').slice(1);
         warehouse = lines.map(l => {
             const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if(c.length >= 4) return { 
-                id: c[0].trim(), 
-                name: c[1].replace(/"/g, ''), 
-                price: parseFloat(c[2].replace(/[^0-9.-]+/g,"")) || 0, 
-                img: c[3]?.trim().replace(/"/g, ''), 
-                link: c[c.length-1].trim().replace(/"/g, ''), 
-                aff: "", imgNew: "" 
+            if(c.length >= 4) return {
+                name: c[1]?.replace(/"/g, ''),
+                price: parseFloat(c[2]?.replace(/[^0-9.-]+/g,"")) || 0,
+                img: c[3]?.trim().replace(/"/g, ''),
+                link: c[c.length-1]?.trim().replace(/"/g, '')
             };
         }).filter(x => x);
-        renderMarket();
+        renderMarket(warehouse);
     };
 
-    function renderMarket() {
+    // Render sản phẩm ra màn hình
+    function renderMarket(data) {
         const area = document.getElementById('market');
-        area.innerHTML = "";
-        
-        // 1. Lấy tất cả các chữ cái cuối từ Họ, Tên Đệm, Tên của người may mắn
-        // VD: "NGUYỄN KHẮC NĂNG" -> ["N", "C", "G"]
-        const luckyParts = lucky.n.split(" ");
-        const luckyChars = luckyParts.map(p => p.slice(-1).toUpperCase());
-        
-        const age = currentYear - parseInt(lucky.d);
-
-        // 2. Lọc sản phẩm
-        let filtered = warehouse.filter(p => {
-            const pChar = p.name.trim().slice(-1).toUpperCase();
-            // Điều kiện: Chữ cuối sản phẩm phải nằm trong danh sách chữ cuối của Tên người
-            return luckyChars.includes(pChar);
-        });
-
-        // 3. Sắp xếp theo Giá (Vì người lớn tuổi thường ưu tiên giá trị phù hợp)
-        // Bạn có thể đổi lại p.price - b.price tùy theo muốn giá cao hay thấp lên trước
-        filtered.sort((a, b) => a.price - b.price);
-
-        // 4. Lấy 3 mặt hàng đầu tiên sau khi đã lọc và xếp giá
-        const finalItems = filtered.slice(0, 3);
-
-        finalItems.forEach(p => {
-            const item = document.createElement('div');
-            item.className = 'item';
-            item.onclick = () => {
-                selected = p;
-                document.getElementById('mTitle').innerText = p.name;
-                document.getElementById('modal').style.display = 'block';
-            };
-            item.innerHTML = `
+        area.innerHTML = data.slice(0, 12).map(p => `
+            <div class="item" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
                 <img src="${p.img}">
-                <div style="font-size:14px; margin-top:5px">
-                    ${p.name.slice(0,-1)}<span class="lucky-char">${p.name.slice(-1)}</span>
-                </div>
-                <span class="price-tag">${p.price.toLocaleString()}đ</span>
-            `;
-            area.appendChild(item);
-        });
-
-        if(finalItems.length === 0) area.innerHTML = "<p>Không tìm thấy món quà nào khớp với chữ cái cuối n, h, m của bạn.</p>";
+                <div style="font-size:13px; margin:5px 0;">${p.name.substring(0, 30)}...</div>
+                <div class="price-tag">${p.price.toLocaleString()}đ</div>
+            </div>
+        `).join('');
     }
 
-    // Các hàm goShopee, askAI, closeModal giữ nguyên logic cũ của bạn...
-    function goShopee() { navigator.clipboard.writeText(selected.link); window.open(selected.link, '_blank'); }
+    // CÁC HÀM LỌC SẢN PHẨM
+    function filterBy(type) {
+        let result = [...warehouse];
+        const age = currentYear - parseInt(lucky.d);
+
+        if (type === 'age') {
+            // Ví dụ: Nhỏ tuổi lấy đồ rẻ/trẻ trung, lớn tuổi lấy đồ sức khỏe
+            result = age > 50 ? result.filter(p => p.price > 200000) : result.filter(p => p.price < 500000);
+        } else if (type === 'price') {
+            result.sort((a, b) => b.price - a.price); // Ưu tiên giá cao nhất
+        } else if (type === 'gender') {
+            const keyword = lucky.g === "Nữ" ? "Nữ" : "Nam";
+            result = result.filter(p => p.name.includes(keyword));
+        } else if (type === 'char') {
+            const lastChar = lucky.n.slice(-1).toUpperCase();
+            result = result.filter(p => p.name.toUpperCase().includes(lastChar));
+        }
+        renderMarket(result);
+    }
+
+    function openModal(name) {
+        selectedItem = warehouse.find(p => p.name === name);
+        document.getElementById('mTitle').innerText = selectedItem.name;
+        document.getElementById('originalLink').innerText = selectedItem.link;
+        document.getElementById('modal').style.display = 'block';
+    }
+
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    function askAI(type) {
-        selected.aff = document.getElementById('affLink').value;
-        selected.imgNew = document.getElementById('imgLink').value;
-        const prompt = `Viết truyện về ${lucky.n} (${currentYear - lucky.d} tuổi). Do tên có chữ cuối khớp với món quà ${selected.name} nên được tặng. Ảnh: ${selected.imgNew}`;
+
+    function goShopee() { window.open(selectedItem.link, '_blank'); }
+
+    function copyPrompt() {
+        const img = document.getElementById('imgLink').value;
+        const aff = document.getElementById('affLink').value;
+        const prompt = `Viết bài quảng cáo cho ${lucky.n}, món quà: ${selectedItem.name}. Ảnh mới: ${img}. Mua tại: ${aff}`;
         navigator.clipboard.writeText(prompt);
-        alert("Đã copy prompt!");
-        window.open("https://gemini.google.com", '_blank');
+        alert("Đã copy Prompt cho Gemini!");
     }
 
     init();
