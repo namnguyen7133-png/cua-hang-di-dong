@@ -2,200 +2,190 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Bản Đồ Marketing 6 Bước - V18.7</title>
+    <title>Marketing Gia Đình V18.8 - CHUẨN LOGIC</title>
     <style>
-        :root { --step-bg: #ffffff; --text: #2d3436; --accent: #ff4757; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f1f2f6; padding: 20px; color: var(--text); }
+        :root { --p: #ee4d2d; --s: #1877F2; --v: #6c5ce7; --g: #00b894; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; }
         
-        /* BẢNG CHỈ DẪN SỐ */
-        .step-box { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; border-left: 10px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .s1 { border-color: #ff9f43; } .s2 { border-color: #00d2d3; } .s3 { border-color: #54a0ff; }
-        .s4 { border-color: #5f27cd; } .s5 { border-color: #ff4757; } .s6 { border-color: #1dd1a1; }
+        .step { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-left: 8px solid #ccc; }
+        .s1 { border-color: #ff9f43; } .s2 { border-color: #a29bfe; } .s3 { border-color: #54a0ff; }
+        .s4 { border-color: #ee4d2d; } .s5 { border-color: #00b894; } .s6 { border-color: #2d3436; }
 
-        .step-num { background: var(--text); color: white; padding: 5px 15px; border-radius: 50px; font-weight: bold; margin-right: 10px; }
+        .num { background: #333; color: white; padding: 5px 12px; border-radius: 50%; font-weight: bold; margin-right: 10px; }
+        .red-bold { color: red; font-size: 24px; font-weight: 900; text-decoration: underline; }
         
-        /* SIÊU THỊ ẢNH */
-        .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .product-card { background: white; border-radius: 12px; overflow: hidden; border: 2px solid #eee; cursor: pointer; transition: 0.3s; }
-        .product-card:hover { border-color: var(--accent); transform: scale(1.02); }
-        .product-img { width: 100%; height: 180px; object-fit: cover; background: #fafafa; }
-        .product-name { padding: 10px; font-size: 14px; font-weight: bold; height: 40px; overflow: hidden; }
-        .highlight { color: red; font-size: 20px; text-decoration: underline; font-weight: 900; }
-
-        /* MODAL ĐIỀU KHIỂN */
-        #controlModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; }
-        .modal-content { background: white; width: 90%; max-width: 500px; margin: 50px auto; padding: 25px; border-radius: 20px; text-align: center; }
+        /* Lưới sản phẩm */
+        .market { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .card { background: white; border: 2px solid #eee; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; }
+        .card:hover { border-color: var(--p); transform: translateY(-5px); }
+        .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
+        .card-info { padding: 12px; }
         
-        .btn { padding: 12px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; margin: 5px; color: white; }
-        .btn-shopee { background: #ee4d2d; width: 100%; font-size: 18px; }
-        .btn-ai { font-size: 12px; width: 45%; }
-        .btn-git { background: #2f3542; width: 100%; margin-top: 20px; font-size: 18px; }
+        /* Modal điều khiển */
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; }
+        .modal-content { background: white; width: 90%; max-width: 500px; margin: 30px auto; padding: 20px; border-radius: 20px; text-align: center; }
         
-        .big-input { width: 100%; padding: 15px; border: 2px solid #54a0ff; border-radius: 10px; margin: 10px 0; box-sizing: border-box; font-size: 16px; }
+        .btn { padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; color: white; width: 100%; margin: 5px 0; }
+        .btn-shopee { background: var(--p); font-size: 18px; }
+        .btn-ai { font-size: 14px; width: 48%; display: inline-block; }
     </style>
 </head>
 <body>
 
-<h1 style="text-align:center">🗺️ BẢN ĐỒ MARKETING CỦA 3 ANH EM</h1>
+<h1 style="text-align:center; color: var(--v);">🚀 HỆ THỐNG MARKETING 3 ANH EM (V18.8)</h1>
 
-<div class="step-box s1">
-    <h2><span class="step-num">1</span> NẠP FILE HÀNG (CSV)</h2>
-    <input type="file" id="csv" multiple accept=".csv" style="width:100%">
+<div class="step s1">
+    <h2><span class="num">1</span> NẠP KHO HÀNG (CSV)</h2>
+    <input type="file" id="csv" accept=".csv" style="width:100%">
+    <p style="font-size:12px; color: #666;">Bố hãy chọn file CSV có chứa: ID, Tên, Giá, Link Ảnh, Link Gốc.</p>
 </div>
 
-<div class="step-box s2">
-    <h2><span class="step-num">2</span> NGƯỜI MAY MẮN HÔM NAY</h2>
-    <div id="luckyName" style="font-size: 30px; font-weight: bold; color: #5f27cd;">Đang chờ nạp file...</div>
+<div class="step s2">
+    <h2><span class="num">2</span> NGƯỜI MAY MẮN HÔM NAY</h2>
+    <div id="luckyName" style="font-size: 28px; font-weight: bold;">---</div>
+    <div id="luckyDetail" style="color: #666;"></div>
 </div>
 
-<div class="step-box s3">
-    <h2><span class="step-num">3</span> CHỌN QUÀ CÓ CHỮ CUỐI GIỐNG TÊN</h2>
-    <div style="margin-bottom:10px">
-        Tầng giá: 
-        <button onclick="renderMarket(0,50000)">L</button>
-        <button onclick="renderMarket(50000,200000)">T</button>
-        <button onclick="renderMarket(200000,1000000)">D</button>
-        <button onclick="renderMarket(1000000,99999999)">C</button>
+<div class="step s3">
+    <h2><span class="num">3</span> CHỌN QUÀ PHÙ HỢP (ẢNH THẬT)</h2>
+    <div style="margin-bottom:15px; display: flex; gap: 10px;">
+        <button onclick="renderMarket(0,50000)">Tầng L</button>
+        <button onclick="renderMarket(50000,200000)">Tầng T</button>
+        <button onclick="renderMarket(200000,1000000)">Tầng D</button>
+        <button onclick="renderMarket(1000000,99999999)">Tầng C</button>
     </div>
-    <div id="market" class="market-grid"></div>
+    <div id="market" class="market"></div>
 </div>
 
-<div id="controlModal">
+<div id="modal" class="modal">
     <div class="modal-content">
-        <img id="modalImg" style="width:150px; border-radius:10px; margin-bottom:10px">
-        <h3 id="modalName"></h3>
+        <img id="mImg" style="width:200px; height:200px; border-radius:15px; object-fit: cover;">
+        <h3 id="mTitle"></h3>
         
-        <div style="background: #fff4f4; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
-            <p><b><span class="step-num">4</span> LẤY LINK GỐC</b></p>
-            <button class="btn btn-shopee" onclick="openShopee()">MỞ SHOPEE ĐỂ RÚT GỌN LINK</button>
-            <p style="font-size:11px">Khi bấm nút trên, máy đã tự copy link gốc cho bé rồi!</p>
+        <div style="background: #fff0f0; padding: 15px; border-radius: 15px;">
+            <h3><span class="num">4</span> LẤY LINK GỐC</h3>
+            <button class="btn btn-shopee" onclick="window.open('https://affiliate.shopee.vn/offer/custom_link', '_blank')">MỞ SHOPEE RÚT GỌN</button>
+            <p style="font-size:12px;">(Máy đã tự copy link gốc, bé chỉ cần sang dán thôi!)</p>
         </div>
 
-        <div style="background: #f0f7ff; padding: 10px; border-radius: 10px;">
-            <p><b><span class="step-num">5</span> DÁN LINK RÚT GỌN</b></p>
-            <input type="text" id="affInput" class="big-input" placeholder="Dán link màu xanh vào đây...">
-            <p style="font-size:11px">Dán xong thì chọn 1 phù thủy AI dưới đây để viết bài:</p>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                <button class="btn btn-ai" style="background:#10a37f" onclick="goAI('chatgpt')">ChatGPT</button>
-                <button class="btn btn-ai" style="background:#4285f4" onclick="goAI('gemini')">Gemini</button>
-                <button class="btn btn-ai" style="background:#000" onclick="goAI('grok')">Grok</button>
-                <button class="btn btn-ai" style="background:#6a1b9a" onclick="goAI('deepseek')">DeepSeek</button>
+        <div style="background: #f0f7ff; padding: 15px; border-radius: 15px; margin-top:10px;">
+            <h3><span class="num">5</span> VIẾT BÀI VỚI AI</h3>
+            <input type="text" id="affInput" style="width:100%; padding:12px; border-radius:8px; border:2px solid #54a0ff;" placeholder="Dán link rút gọn màu xanh vào đây...">
+            <div style="margin-top:10px;">
+                <button class="btn btn-ai" style="background:#10a37f" onclick="askAI('ChatGPT')">ChatGPT</button>
+                <button class="btn btn-ai" style="background:#4285f4" onclick="askAI('Gemini')">Gemini</button>
+                <button class="btn btn-ai" style="background:#000" onclick="askAI('Grok')">Grok</button>
+                <button class="btn btn-ai" style="background:#6a1b9a" onclick="askAI('DeepSeek')">DeepSeek</button>
             </div>
         </div>
-        
-        <button onclick="closeModal()" style="margin-top:20px; background:none; border:none; text-decoration:underline; cursor:pointer">Quay lại chọn món khác</button>
+        <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:15px; cursor:pointer;">❌ ĐÓNG</button>
     </div>
 </div>
 
-<div class="step-box s6">
-    <h2><span class="step-num">6</span> XUẤT BẢN & ĐĂNG BÀI</h2>
-    <button class="btn btn-git" onclick="exportJson()">💾 XUẤT FILE CHO GITHUB</button>
-    <p style="text-align:center; font-size:12px; margin-top:10px">Link GitHub để dán vào Facebook:<br><b id="finalLink" style="color:blue">---</b></p>
+<div class="step s6">
+    <h2><span class="num">6</span> XUẤT FILE GITHUB</h2>
+    <button class="btn" style="background: #2d3436;" onclick="exportJson()">💾 XUẤT FILE FILES.JSON</button>
 </div>
 
 <script>
     const fixedMems = [
-        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
-        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
-        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ"}, {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ"},
-        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH HẰNG", d:"1974-01-07", g:"Nữ"},
-        {n:"NGÔ QUÝ CƯỜNG", d:"1973-05-23", g:"Nam"}, {n:"NGÔ GIA BÁCH", d:"2000-10-12", g:"Nam"},
-        {n:"NGÔ GIA LINH", d:"2005-04-05", g:"Nữ"}, {n:"NGUYỄN THỊ MINH PHƯƠNG", d:"1978-11-06", g:"Nữ"},
-        {n:"HOÀNG ANH DŨNG", d:"1978-09-21", g:"Nam"}, {n:"HOÀNG HẢI VINH", d:"2010-06-03", g:"Nam"},
-        {n:"HOÀNG THIÊN BẠCH ANH", d:"2015-11-14", g:"Nữ"}, {n:"TÔ KIM HUỆ", d:"1960-08-09", g:"Nữ"}
+        {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam", cat:"Người già"}, 
+        {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ", cat:"Người già"},
+        {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam", cat:"Trung niên"},
+        {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ", cat:"Trung niên"},
+        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ", cat:"Trẻ em"},
+        {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ", cat:"Trẻ em"},
+        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ", cat:"Trẻ em"}
     ];
 
-    let warehouse = JSON.parse(localStorage.getItem('war_v18_7')) || [];
+    let warehouse = [];
     let lucky = null;
     let selected = null;
 
-    // Tự động chọn người theo ngày
-    function getLucky() {
+    // 1. Tự động chọn người theo ngày (Vòng lặp công bằng)
+    function pickLucky() {
         const offset = Math.floor((new Date() - new Date("2026-01-01")) / (1000*60*60*24));
         lucky = fixedMems[offset % fixedMems.length];
         const lastChar = lucky.n.trim().slice(-1);
-        document.getElementById('luckyName').innerHTML = lucky.n.slice(0,-1) + `<span style="background:yellow; padding:2px 10px; border-radius:5px">${lastChar}</span>`;
+        document.getElementById('luckyName').innerHTML = lucky.n.slice(0,-1) + `<span class="red-bold">${lastChar}</span>`;
+        document.getElementById('luckyDetail').innerText = `Giới tính: ${lucky.g} | Nhóm: ${lucky.cat} | Năm sinh: ${lucky.d.split('-')[0]}`;
     }
 
-    // Đọc CSV và tìm ảnh
+    // 2. Đọc CSV và xử lý Ảnh
     document.getElementById('csv').onchange = async (e) => {
-        const files = Array.from(e.target.files);
-        for (const file of files) {
-            const text = await file.text();
-            const lines = text.split('\n').slice(1);
-            lines.forEach(l => {
-                const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if(c.length >= 4) {
-                    const id = c[0].trim();
-                    if(!warehouse.some(x => x.id === id)) {
-                        warehouse.push({
-                            id: id,
-                            name: c[1].replace(/"/g, ''),
-                            price: parseInt(c[2].replace(/[^0-9]/g, '')),
-                            img: c[3]?.replace(/"/g, '') || 'https://via.placeholder.com/200', // Cột 4 là ảnh
-                            link: c[c.length-1].replace(/"/g, '').trim()
-                        });
-                    }
-                }
-            });
-        }
-        localStorage.setItem('war_v18_7', JSON.stringify(warehouse));
+        const file = e.target.files[0];
+        const text = await file.text();
+        const lines = text.split('\n').slice(1);
+        warehouse = lines.map(l => {
+            const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if(c.length >= 5) {
+                return {
+                    id: c[0].trim(),
+                    name: c[1].replace(/"/g, ''),
+                    price: parseInt(c[2].replace(/[^0-9]/g, '')),
+                    img: c[3]?.trim().replace(/"/g, '') || 'https://via.placeholder.com/200',
+                    link: c[c.length-1].trim().replace(/"/g, ''),
+                    aff: ""
+                };
+            }
+        }).filter(x => x);
         renderMarket(0, 99999999);
     };
 
-    // Hiện siêu thị ảnh
+    // 3. Hiện siêu thị quà - Tô đậm chữ cuối
     function renderMarket(min, max) {
         const area = document.getElementById('market');
         area.innerHTML = "";
         const char = lucky.n.trim().slice(-1).toUpperCase();
-        
+
         warehouse.filter(p => p.price >= min && p.price <= max).forEach(p => {
             const pChar = p.name.trim().slice(-1).toUpperCase();
             const isMatch = pChar === char;
+            
             const card = document.createElement('div');
-            card.className = 'product-card';
-            card.onclick = () => openControl(p);
+            card.className = 'card';
+            card.onclick = () => {
+                selected = p;
+                document.getElementById('mImg').src = p.img;
+                document.getElementById('mTitle').innerHTML = p.name.slice(0,-1) + `<span class="red-bold">${p.name.slice(-1)}</span>`;
+                document.getElementById('modal').style.display = 'block';
+                navigator.clipboard.writeText(p.link);
+            };
             card.innerHTML = `
-                <img src="${p.img}" class="product-img">
-                <div class="product-name">${p.name.slice(0,-1)}<span class="${isMatch?'highlight':''}">${p.name.slice(-1)}</span></div>
-                <div style="padding:10px; color:red; font-weight:bold">${p.price.toLocaleString()}đ</div>
+                <img src="${p.img}">
+                <div class="card-info">
+                    <div style="font-size:14px; height:40px; overflow:hidden;">
+                        ${p.name.slice(0,-1)}<span class="${isMatch ? 'red-bold' : ''}">${p.name.slice(-1)}</span>
+                    </div>
+                    <div style="color:red; font-weight:bold; margin-top:5px;">${p.price.toLocaleString()}đ</div>
+                </div>
             `;
             area.appendChild(card);
         });
     }
 
-    function openControl(p) {
-        selected = p;
-        document.getElementById('modalImg').src = p.img;
-        document.getElementById('modalName').innerText = p.name;
-        document.getElementById('controlModal').style.display = 'block';
-        navigator.clipboard.writeText(p.link); // Tự copy link gốc
-    }
-
-    function openShopee() {
-        window.open('https://affiliate.shopee.vn/offer/custom_link', '_blank');
-    }
-
-    function closeModal() {
-        document.getElementById('controlModal').style.display = 'none';
-    }
-
-    function goAI(type) {
+    // 4. Viết bài AI - Sửa lỗi sai tên và giới tính
+    function askAI(type) {
         const aff = document.getElementById('affInput').value;
         if(!aff) return alert("Dán link rút gọn vào đã!");
         
-        // Lưu link aff vào sản phẩm
-        const item = warehouse.find(x => x.id === selected.id);
-        item.aff = aff;
-        localStorage.setItem('war_v18_7', JSON.stringify(warehouse));
-
+        selected.aff = aff;
         const ghUrl = `https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html?id=${selected.id}`;
-        document.getElementById('finalLink').innerText = ghUrl;
-
-        const prompt = `Viết một câu chuyện ngụ ngôn hài hước về ${lucky.n} (${lucky.g}). Vì duyên nợ chữ cái cuối "${selected.name.slice(-1)}" mà được tặng "${selected.name}". Link xem sự tích: ${ghUrl}`;
-        navigator.clipboard.writeText(prompt);
         
-        const urls = { chatgpt: "https://chatgpt.com", gemini: "https://gemini.google.com", grok: "https://x.com/i/grok", deepseek: "https://chat.deepseek.com" };
+        // PROMPT CHUẨN: Lấy đúng tên Lucky
+        const prompt = `Hãy đóng vai một bé thiếu nhi, viết một truyện ngụ ngôn hài hước về nhân vật chính là ${lucky.n} (Giới tính: ${lucky.g}, thuộc nhóm ${lucky.cat}). 
+        Vì duyên nợ chữ cái cuối của tên là "${lucky.n.slice(-1)}" trùng với chữ cái cuối của món quà "${selected.name}", nên định mệnh đã chọn món quà này tặng ${lucky.n}.
+        Kết bài: Mời mọi người bấm vào link GitHub này để xem sự tích và mua ủng hộ: ${ghUrl} (Dặn mọi người dùng 4G để hệ thống ghi nhận chính xác ạ).`;
+
+        navigator.clipboard.writeText(prompt);
+        alert(`Đã copy bài viết cho ${lucky.n}! Đang mở ${type}...`);
+        
+        const urls = { 
+            ChatGPT: "https://chatgpt.com", 
+            Gemini: "https://gemini.google.com", 
+            Grok: "https://x.com/i/grok", 
+            DeepSeek: "https://chat.deepseek.com" 
+        };
         window.open(urls[type], "_blank");
     }
 
@@ -204,7 +194,7 @@
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
 
-    getLucky();
+    pickLucky();
 </script>
 </body>
 </html>
