@@ -2,77 +2,85 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ Thống Marketing 3 Anh Em - V18.3</title>
+    <title>Đường Đua Marketing Nhí V18.4</title>
     <style>
-        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); padding: 20px; font-size: 14px; }
-        .step-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 6px solid #ccc; }
+        :root { --step1: #ff4757; --step2: #ffa502; --step3: #2ed573; --step4: #1e90ff; --step5: #3742fa; --step6: #ed4c67; }
+        body { font-family: 'Segoe UI', cursive; background: #f1f2f6; padding: 20px; color: #2f3542; }
         
-        /* Màu sắc theo bước */
-        .s1 { border-color: #3498db; } .s2 { border-color: #9b59b6; } .s3 { border-color: #e67e22; }
-        .s4 { border-color: #2ecc71; } .s5 { border-color: #f1c40f; } .s6 { border-color: #e74c3c; }
+        /* Hiệu ứng trạm dừng chân */
+        .station { background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 0 #dfe4ea; border: 4px solid transparent; position: relative; }
+        .station h2 { margin-top: 0; font-size: 22px; color: white; padding: 10px 20px; border-radius: 15px; display: inline-block; transform: rotate(-2deg); margin-bottom: 20px; }
+        
+        .s1 { border-color: var(--step1); } .s1 h2 { background: var(--step1); }
+        .s2 { border-color: var(--step2); } .s2 h2 { background: var(--step2); }
+        .s3 { border-color: var(--step3); } .s3 h2 { background: var(--step3); }
+        .s4 { border-color: var(--step4); } .s4 h2 { background: var(--step4); }
+        .s5 { border-color: var(--step5); } .s5 h2 { background: var(--step5); }
+        .s6 { border-color: var(--step6); } .s6 h2 { background: var(--step6); }
 
-        h2 { margin-top: 0; font-size: 18px; display: flex; align-items: center; gap: 10px; }
-        .badge { background: #333; color: white; padding: 2px 10px; border-radius: 20px; font-size: 14px; }
-        
-        .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 10px; }
-        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: white; text-align: left; transition: 0.2s; }
-        .m-btn.active { background: var(--v); color: white; border-color: var(--v); }
-        
-        .price-filters { display: flex; gap: 10px; margin: 10px 0; }
-        .p-btn { flex: 1; padding: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; background: #eee; }
-        .p-btn.active { background: var(--p); color: white; }
+        /* Danh sách người */
+        .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+        .m-btn { padding: 15px; border: 2px solid #f1f2f6; border-radius: 15px; cursor: pointer; background: #fff; font-weight: bold; transition: 0.3s; }
+        .m-btn.active { background: #ffa502; color: white; border-color: #ff7f50; transform: scale(1.05); }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
-        th { background: #f1f1f1; padding: 12px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; }
+        /* Tầng giá */
+        .price-wheel { display: flex; gap: 15px; margin-bottom: 20px; }
+        .p-btn { flex: 1; padding: 15px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; color: white; opacity: 0.6; }
+        .p-btn.active { opacity: 1; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* Khu vực hiển thị quà */
+        .gift-box { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 3px dashed #ccc; text-align: center; }
+        .btn-big { padding: 15px 30px; font-size: 18px; border-radius: 50px; border: none; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; width: 100%; margin: 10px 0; }
         
-        .inp { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box; }
-        .btn-action { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: white; }
+        input.big-input { width: 100%; padding: 15px; border: 3px solid var(--step5); border-radius: 15px; font-size: 16px; text-align: center; }
+        
+        .lucky-label { position: absolute; top: -15px; right: 20px; background: #ff4757; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     </style>
 </head>
 <body>
 
-<h1 style="text-align: center; color: var(--s);">🚀 QUY TRÌNH MARKETING 6 BƯỚC</h1>
+<h1 style="text-align: center; font-size: 35px; color: #2f3542; text-shadow: 2px 2px #fff;">🚩 ĐƯỜNG ĐUA MARKETING NHÍ V18.4</h1>
 
-<div class="step-card s1">
-    <h2><span class="badge">1</span> NHẬP KHO HÀNG (CSV)</h2>
-    <input type="file" id="csv" multiple accept=".csv" style="padding: 10px; background: #e3f2fd; border-radius: 8px; width: 100%;">
+<div class="station s1">
+    <h2>🏁 TRẠM 1: NẠP KHO HÀNG CỦA BỐ</h2>
+    <input type="file" id="csv" multiple accept=".csv" style="width: 100%; padding: 20px; border: 3px dashed var(--step1); border-radius: 15px;">
 </div>
 
-<div class="step-card s2">
-    <h2><span class="badge">2</span> CHỌN NGƯỜI MAY MẮN</h2>
+<div class="station s2">
+    <h2>🎯 TRẠM 2: AI LÀ NGƯỜI MAY MẮN?</h2>
     <div id="mList" class="m-grid"></div>
 </div>
 
-<div class="step-card s3">
-    <h2><span class="badge">3</span> LỌC QUÀ THEO ĐỊNH MỆNH (Họ Tên & Giá)</h2>
-    <div class="price-filters">
-        <button class="p-btn" onclick="setPrice('L', 0, 50000, this)">L (Dưới 50k)</button>
-        <button class="p-btn" onclick="setPrice('T', 50000, 200000, this)">T (50k - 200k)</button>
-        <button class="p-btn" onclick="setPrice('D', 200000, 1000000, this)">D (200k - 1tr)</button>
-        <button class="p-btn active" onclick="setPrice('C', 1000000, 99999999, this)">C (Trên 1tr)</button>
+<div class="station s3">
+    <h2>💰 TRẠM 3: CHỌN TẦNG GIÁ ĐỊNH MỆNH</h2>
+    <div class="price-wheel">
+        <button class="p-btn active" style="background:#2ecc71" onclick="setPrice('L', 0, 50000, this)">L (Dưới 50k)</button>
+        <button class="p-btn" style="background:#3498db" onclick="setPrice('T', 50000, 200000, this)">T (50k - 200k)</button>
+        <button class="p-btn" style="background:#9b59b6" onclick="setPrice('D', 200000, 1000000, this)">D (200k - 1tr)</button>
+        <button class="p-btn" style="background:#e67e22" onclick="setPrice('C', 1000000, 99999999, this)">C (Trên 1tr)</button>
     </div>
-    <div id="productGallery">
-        <table id="pTable">
-            <thead>
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
-                    <th>4. Lấy link gốc</th>
-                    <th>5. Dán Link Affiliate</th>
-                    <th>6. Viết truyện & Đăng</th>
-                </tr>
-            </thead>
-            <tbody id="pArea"></tbody>
-        </table>
+    <div id="autoSuggest" class="gift-box">
+        <p><i>Đang chờ chọn Người may mắn ở Trạm 2...</i></p>
     </div>
 </div>
 
-<div class="step-card s4">
-    <h2><span class="badge">LƯU Ý</span> ĐẨY HÀNG LÊN QUẦY (GITHUB)</h2>
-    <p>Bấm nút này sau khi đã dán xong các link Affiliate ở Bước 5:</p>
-    <button class="btn-action" style="background: var(--g); padding: 15px 30px; font-size: 16px;" onclick="exportJson()">💾 XUẤT FILE "FILES.JSON" CHO GITHUB</button>
+<div class="station s4" id="station4" style="display:none">
+    <h2>🔗 TRẠM 4: LẤY LINK GỐC ĐỂ RÚT GỌN</h2>
+    <p id="prodNameDisplay" style="font-size: 20px; font-weight: bold;"></p>
+    <button class="btn-big" style="background: var(--step4);" onclick="openOriginal()">🚀 BẤM ĐỂ MỞ SHOPEE GỐC</button>
+</div>
+
+<div class="station s5" id="station5" style="display:none">
+    <h2>💎 TRẠM 5: DÁN LINK RÚT GỌN (AFFILIATE)</h2>
+    <input type="text" id="affLink" class="big-input" placeholder="Dán link rút gọn vào đây nè các bé ơi...">
+    <button class="btn-big" style="background: var(--g); background: #27ae60; margin-top: 15px;" onclick="saveAff()">✅ XÁC NHẬN VÀ LƯU VÀO KHO</button>
+</div>
+
+<div class="station s6" id="station6" style="display:none">
+    <h2>📖 TRẠM 6: VIẾT TRUYỆN NGỤ NGÔN & ĐĂNG FB</h2>
+    <button class="btn-big" style="background: var(--step6);" onclick="goAI()">🧙‍♂️ NHỜ PHÙ THỦY AI VIẾT TRUYỆN</button>
+    <button class="btn-big" style="background: #333;" onclick="exportJson()">💾 XUẤT FILE FILES.JSON CHO BỐ</button>
 </div>
 
 <script>
@@ -95,12 +103,12 @@
         {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
     ];
 
-    let warehouse = JSON.parse(localStorage.getItem('war_v18_3')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('war_v18_4')) || [];
     let selM = null;
-    let priceRange = { min: 1000000, max: 99999999 };
-    const ghBase = "https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html";
+    let selP = null;
+    let priceRange = { min: 0, max: 50000 };
 
-    // 1. Xử lý CSV
+    // 1. CSV
     document.getElementById('csv').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -110,39 +118,44 @@
                 const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 if(c.length >= 5) {
                     const id = c[0].trim();
-                    const url = c[c.length-1].trim().replace(/"/g, ''); // Giả định link shopee gốc ở cột cuối
+                    const url = c[c.length-1].trim().replace(/"/g, '');
                     if(!warehouse.some(x => x.id === id)) {
                         warehouse.push({ id, name: c[1].replace(/"/g, ''), price: parseInt(c[2].replace(/[^0-9]/g, '')), originalLink: url, linkAffiliate: "" });
                     }
                 }
             });
         }
-        localStorage.setItem('war_v18_3', JSON.stringify(warehouse));
-        renderW();
+        localStorage.setItem('war_v18_4', JSON.stringify(warehouse));
+        alert("Đã nhập kho thành công!");
     };
 
-    // 2. Render danh sách người
+    // 2. Render Người
     function renderM() {
         const lucky = fixedMems[Math.floor((new Date() - new Date("2024-01-01"))/(1000*60*60*24)) % fixedMems.length];
         document.getElementById('mList').innerHTML = fixedMems.map(m => `
-            <button class="m-btn ${selM?.n === m.n ? 'active' : ''} ${lucky.n === m.n ? 'lucky-border' : ''}" onclick='selectM(${JSON.stringify(m)})'>
-                <b>${m.n}</b><br><small>${m.g} - ${m.d.split('-')[0]}</small>
+            <button class="m-btn ${selM?.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>
+                ${lucky.n === m.n ? '<span class="lucky-label">MAY MẮN HÔM NAY</span>' : ''}
+                ${m.n}<br><small>${m.g} - ${m.d.split('-')[0]}</small>
             </button>
         `).join('');
     }
 
-    function selectM(m) { selM = m; renderM(); renderW(); }
+    function selectM(m) { 
+        selM = m; 
+        selP = null; // Reset quà khi chọn người mới
+        renderM(); 
+        autoSuggest(); 
+    }
 
-    // 3. Lọc theo giá
-    function setPrice(type, min, max, btn) {
+    // 3. Tầng giá & Gợi ý tự động
+    function setPrice(t, min, max, btn) {
         priceRange = { min, max };
         document.querySelectorAll('.p-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        renderW();
+        autoSuggest();
     }
 
-    // 4 & 5 & 6. Hiển thị bảng hàng
-    function renderW() {
+    function autoSuggest() {
         if(!selM) return;
         const lastChar = selM.n.trim().slice(-1).toUpperCase();
         let pool = warehouse.filter(p => 
@@ -150,36 +163,48 @@
             p.price >= priceRange.min && p.price <= priceRange.max
         );
 
-        document.getElementById('pArea').innerHTML = pool.map(p => `
-            <tr>
-                <td><b>${p.name}</b></td>
-                <td style="color:var(--p)">${p.price.toLocaleString()}đ</td>
-                <td><button onclick="window.open('${p.originalLink}', '_blank')">🔗 Mở Shopee Gốc</button></td>
-                <td><input type="text" class="inp" placeholder="Dán link rút gọn..." onchange="updateAff('${p.id}', this.value)" value="${p.linkAffiliate}"></td>
-                <td>
-                    <button class="btn-action" style="background:var(--gpt)" onclick="goAI('${p.id}')">✍️ Viết Truyện</button>
-                </td>
-            </tr>
-        `).join('');
+        const area = document.getElementById('autoSuggest');
+        if(pool.length > 0) {
+            selP = pool[Math.floor(Math.random() * pool.length)];
+            area.innerHTML = `
+                <div style="font-size:24px; color:var(--step3); margin-bottom:10px;">🌟 QUÀ ĐỊNH MỆNH ĐÃ CHỌN:</div>
+                <div style="font-size:20px; font-weight:bold;">${selP.name}</div>
+                <div style="color:#ff4757; font-size:22px;">Giá: ${selP.price.toLocaleString()}đ</div>
+                <button class="btn-big" style="background:var(--step3)" onclick="confirmGift()">ĐỒNG Ý - SANG TRẠM 4 THÔI!</button>
+            `;
+        } else {
+            area.innerHTML = `<p>Không tìm thấy quà kết thúc bằng chữ "<b>${lastChar}</b>" ở tầng giá này. Thử tầng giá khác xem bé!</p>`;
+        }
     }
 
-    function updateAff(id, val) {
-        const p = warehouse.find(x => x.id === id);
-        if(p) p.linkAffiliate = val;
-        localStorage.setItem('war_v18_3', JSON.stringify(warehouse));
+    // Các trạm tiếp theo
+    function confirmGift() {
+        document.getElementById('station4').style.display = 'block';
+        document.getElementById('prodNameDisplay').innerText = "Món quà: " + selP.name;
+        document.getElementById('station4').scrollIntoView({behavior: "smooth"});
     }
 
-    function goAI(id) {
-        const p = warehouse.find(x => x.id === id);
-        const ghUrl = `${ghBase}?id=${p.id}`;
-        let prompt = `Viết một câu chuyện ngụ ngôn hoặc hài hước ngắn kể về việc: 
-        Nhân vật chính là ${selM.n} (${selM.g === 'Nam' ? 'ông/anh' : 'bà/chị'}). 
-        Vì có cái tên kết thúc bằng chữ "${selM.n.slice(-1)}" nên định mệnh đã đưa họ đến với món quà "${p.name}".
-        Kết bài kêu gọi mọi người vào link GitHub này để xem sự tích và ủng hộ con mua sữa: ${ghUrl}.
-        (Dặn thêm mọi người dùng mạng 4G để hệ thống ghi nhận chính xác ạ)`;
-        
+    function openOriginal() {
+        window.open(selP.originalLink, '_blank');
+        document.getElementById('station5').style.display = 'block';
+    }
+
+    function saveAff() {
+        const link = document.getElementById('affLink').value;
+        if(!link) { alert("Dán link vào đã bé ơi!"); return; }
+        selP.linkAffiliate = link;
+        const idx = warehouse.findIndex(x => x.id === selP.id);
+        warehouse[idx] = selP;
+        localStorage.setItem('war_v18_4', JSON.stringify(warehouse));
+        alert("Đã lưu link thành công!");
+        document.getElementById('station6').style.display = 'block';
+    }
+
+    function goAI() {
+        const ghUrl = `https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html?id=${selP.id}`;
+        let prompt = `Viết một câu chuyện ngụ ngôn hài hước về ${selM.n}. Vì cái duyên chữ cái cuối "${selM.n.slice(-1)}" mà định mệnh tặng món quà "${selP.name}". Kết bài nhờ mọi người click link GitHub này xem sự tích và mua ủng hộ: ${ghUrl}`;
         navigator.clipboard.writeText(prompt);
-        alert("Đã copy truyện! Bố sang AI dán vào và lấy bài đăng Facebook kèm ảnh người thân nhé.");
+        alert("Đã copy truyện! Sang AI dán vào là xong nhé.");
         window.open("https://chatgpt.com", "_blank");
     }
 
