@@ -2,89 +2,76 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Marketing Gia Đình V18.8 - CHUẨN LOGIC</title>
+    <title>Hệ Thống Marketing Chuyên Nghiệp V18.9</title>
     <style>
-        :root { --p: #ee4d2d; --s: #1877F2; --v: #6c5ce7; --g: #00b894; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; }
+        :root { --step-bg: #f8f9fa; --accent: #ff4757; --blue: #54a0ff; --green: #1dd1a1; }
+        body { font-family: 'Segoe UI', sans-serif; background: #dfe4ea; padding: 20px; }
         
-        .step { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-left: 8px solid #ccc; }
-        .s1 { border-color: #ff9f43; } .s2 { border-color: #a29bfe; } .s3 { border-color: #54a0ff; }
-        .s4 { border-color: #ee4d2d; } .s5 { border-color: #00b894; } .s6 { border-color: #2d3436; }
+        .station { background: white; border-radius: 20px; padding: 25px; margin-bottom: 25px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-top: 8px solid #ccc; }
+        .s1 { border-color: #ff9f43; } .s2 { border-color: #5f27cd; } .s3 { border-color: #ff4757; } .s6 { border-color: #2f3542; }
 
-        .num { background: #333; color: white; padding: 5px 12px; border-radius: 50%; font-weight: bold; margin-right: 10px; }
-        .red-bold { color: red; font-size: 24px; font-weight: 900; text-decoration: underline; }
+        .btn { padding: 12px 20px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; margin: 5px; }
+        .btn-orange { background: #ee4d2d; } .btn-blue { background: var(--blue); } .btn-green { background: var(--green); }
         
-        /* Lưới sản phẩm */
-        .market { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
-        .card { background: white; border: 2px solid #eee; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; }
-        .card:hover { border-color: var(--p); transform: translateY(-5px); }
-        .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
-        .card-info { padding: 12px; }
-        
-        /* Modal điều khiển */
-        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; }
-        .modal-content { background: white; width: 90%; max-width: 500px; margin: 30px auto; padding: 20px; border-radius: 20px; text-align: center; }
-        
-        .btn { padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; color: white; width: 100%; margin: 5px 0; }
-        .btn-shopee { background: var(--p); font-size: 18px; }
-        .btn-ai { font-size: 14px; width: 48%; display: inline-block; }
+        .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .card { background: white; border-radius: 12px; border: 2px solid #eee; cursor: pointer; text-align: center; padding: 10px; }
+        .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+        .red-bold { color: red; font-size: 24px; font-weight: 900; }
+
+        /* MODAL CÔNG VIỆC BƯỚC 4-5 */
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; overflow-y: auto; }
+        .modal-content { background: white; width: 95%; max-width: 600px; margin: 20px auto; padding: 25px; border-radius: 20px; }
+        .work-step { background: #f1f2f6; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid var(--blue); }
     </style>
 </head>
 <body>
 
-<h1 style="text-align:center; color: var(--v);">🚀 HỆ THỐNG MARKETING 3 ANH EM (V18.8)</h1>
+<h1 style="text-align:center">🛡️ QUY TRÌNH BÀY HÀNG GITHUB V18.9</h1>
 
-<div class="step s1">
-    <h2><span class="num">1</span> NẠP KHO HÀNG (CSV)</h2>
-    <input type="file" id="csv" accept=".csv" style="width:100%">
-    <p style="font-size:12px; color: #666;">Bố hãy chọn file CSV có chứa: ID, Tên, Giá, Link Ảnh, Link Gốc.</p>
+<div class="station s1">
+    <h3><span style="background:#333; color:white; padding:5px 10px; border-radius:5px">1</span> NẠP KHO & <span style="background:#333; color:white; padding:5px 10px; border-radius:5px">2</span> CHỌN NGƯỜI</h3>
+    <input type="file" id="csv" accept=".csv" style="margin-bottom:10px">
+    <div id="luckyName" style="font-size: 25px; font-weight: bold; color: #5f27cd;">---</div>
 </div>
 
-<div class="step s2">
-    <h2><span class="num">2</span> NGƯỜI MAY MẮN HÔM NAY</h2>
-    <div id="luckyName" style="font-size: 28px; font-weight: bold;">---</div>
-    <div id="luckyDetail" style="color: #666;"></div>
-</div>
-
-<div class="step s3">
-    <h2><span class="num">3</span> CHỌN QUÀ PHÙ HỢP (ẢNH THẬT)</h2>
-    <div style="margin-bottom:15px; display: flex; gap: 10px;">
-        <button onclick="renderMarket(0,50000)">Tầng L</button>
-        <button onclick="renderMarket(50000,200000)">Tầng T</button>
-        <button onclick="renderMarket(200000,1000000)">Tầng D</button>
-        <button onclick="renderMarket(1000000,99999999)">Tầng C</button>
-    </div>
-    <div id="market" class="market"></div>
+<div class="station s2">
+    <h3><span style="background:#333; color:white; padding:5px 10px; border-radius:5px">3</span> CHỌN QUÀ THEO CHỮ CUỐI</h3>
+    <div id="market" class="market-grid"></div>
 </div>
 
 <div id="modal" class="modal">
     <div class="modal-content">
-        <img id="mImg" style="width:200px; height:200px; border-radius:15px; object-fit: cover;">
-        <h3 id="mTitle"></h3>
+        <h2 id="mTitle" style="color:var(--accent)"></h2>
         
-        <div style="background: #fff0f0; padding: 15px; border-radius: 15px;">
-            <h3><span class="num">4</span> LẤY LINK GỐC</h3>
-            <button class="btn btn-shopee" onclick="window.open('https://affiliate.shopee.vn/offer/custom_link', '_blank')">MỞ SHOPEE RÚT GỌN</button>
-            <p style="font-size:12px;">(Máy đã tự copy link gốc, bé chỉ cần sang dán thôi!)</p>
+        <div class="work-step">
+            <b>👉 BƯỚC 4: XỬ LÝ ẢNH & LINK GỐC</b><br>
+            1. <button class="btn btn-orange" onclick="copyAndOpenOriginal()">MỞ SHOPEE GỐC (ĐÃ TỰ COPY LINK)</button><br>
+            2. Chuột phải vào ảnh sản phẩm to nhất -> <b>Sao chép địa chỉ hình ảnh</b>.<br>
+            3. <button class="btn btn-blue" onclick="window.open('https://www.iloveimg.com/vi/chinh-sua-anh/cat-anh', '_blank')">MỞ WEB CHỈNH SỬA HÀNG LOẠT</button><br>
+            4. Dán ảnh vào, chỉnh cho vuông/gọn rồi lấy <b>Link ảnh mới</b>.
         </div>
 
-        <div style="background: #f0f7ff; padding: 15px; border-radius: 15px; margin-top:10px;">
-            <h3><span class="num">5</span> VIẾT BÀI VỚI AI</h3>
-            <input type="text" id="affInput" style="width:100%; padding:12px; border-radius:8px; border:2px solid #54a0ff;" placeholder="Dán link rút gọn màu xanh vào đây...">
-            <div style="margin-top:10px;">
-                <button class="btn btn-ai" style="background:#10a37f" onclick="askAI('ChatGPT')">ChatGPT</button>
-                <button class="btn btn-ai" style="background:#4285f4" onclick="askAI('Gemini')">Gemini</button>
-                <button class="btn btn-ai" style="background:#000" onclick="askAI('Grok')">Grok</button>
-                <button class="btn btn-ai" style="background:#6a1b9a" onclick="askAI('DeepSeek')">DeepSeek</button>
+        <div class="work-step">
+            <b>👉 BƯỚC 5: ĐƯA HÀNG VÀO KHO (GITHUB)</b><br>
+            <label>Link ảnh đã chỉnh sửa:</label>
+            <input type="text" id="imgFinal" class="big-input" style="width:100%" placeholder="Dán link ảnh đẹp vào đây...">
+            <label style="margin-top:10px; display:block">Link Shopee rút gọn (Affiliate):</label>
+            <input type="text" id="affFinal" class="big-input" style="width:100%" placeholder="Dán link rút gọn vào đây...">
+            
+            <div style="margin-top:15px; display: flex; justify-content: space-around;">
+                <button class="btn btn-green" onclick="askAI('ChatGPT')">ChatGPT</button>
+                <button class="btn btn-green" onclick="askAI('Gemini')">Gemini</button>
+                <button class="btn btn-green" onclick="askAI('DeepSeek')">DeepSeek</button>
             </div>
         </div>
-        <button onclick="document.getElementById('modal').style.display='none'" style="margin-top:15px; cursor:pointer;">❌ ĐÓNG</button>
+
+        <button class="btn" style="background:#636e72" onclick="closeModal()">QUAY LẠI</button>
     </div>
 </div>
 
-<div class="step s6">
-    <h2><span class="num">6</span> XUẤT FILE GITHUB</h2>
-    <button class="btn" style="background: #2d3436;" onclick="exportJson()">💾 XUẤT FILE FILES.JSON</button>
+<div class="station s6">
+    <h3><span style="background:#333; color:white; padding:5px 10px; border-radius:5px">6</span> XUẤT BẢN</h3>
+    <button class="btn" style="background: #2d3436; width:100%" onclick="exportJson()">💾 XUẤT FILE FILES.JSON ĐỂ ĐƯA LÊN GITHUB</button>
 </div>
 
 <script>
@@ -92,109 +79,87 @@
         {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam", cat:"Người già"}, 
         {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ", cat:"Người già"},
         {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam", cat:"Trung niên"},
-        {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ", cat:"Trung niên"},
-        {n:"NGUYỄN TÔ NGÂN AN", d:"2014-09-28", g:"Nữ", cat:"Trẻ em"},
-        {n:"NGUYỄN TÔ MINH CHÂU", d:"2016-07-25", g:"Nữ", cat:"Trẻ em"},
-        {n:"NGUYỄN TÔ BÍCH NGỌC", d:"2020-02-05", g:"Nữ", cat:"Trẻ em"}
+        {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ", cat:"Trung niên"}
     ];
 
     let warehouse = [];
     let lucky = null;
     let selected = null;
 
-    // 1. Tự động chọn người theo ngày (Vòng lặp công bằng)
-    function pickLucky() {
+    function init() {
         const offset = Math.floor((new Date() - new Date("2026-01-01")) / (1000*60*60*24));
         lucky = fixedMems[offset % fixedMems.length];
         const lastChar = lucky.n.trim().slice(-1);
-        document.getElementById('luckyName').innerHTML = lucky.n.slice(0,-1) + `<span class="red-bold">${lastChar}</span>`;
-        document.getElementById('luckyDetail').innerText = `Giới tính: ${lucky.g} | Nhóm: ${lucky.cat} | Năm sinh: ${lucky.d.split('-')[0]}`;
+        document.getElementById('luckyName').innerHTML = `Hôm nay đến lượt: ${lucky.n.slice(0,-1)}<span class="red-bold">${lastChar}</span>`;
     }
 
-    // 2. Đọc CSV và xử lý Ảnh
     document.getElementById('csv').onchange = async (e) => {
-        const file = e.target.files[0];
-        const text = await file.text();
+        const text = await e.target.files[0].text();
         const lines = text.split('\n').slice(1);
         warehouse = lines.map(l => {
             const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if(c.length >= 5) {
-                return {
-                    id: c[0].trim(),
-                    name: c[1].replace(/"/g, ''),
-                    price: parseInt(c[2].replace(/[^0-9]/g, '')),
-                    img: c[3]?.trim().replace(/"/g, '') || 'https://via.placeholder.com/200',
-                    link: c[c.length-1].trim().replace(/"/g, ''),
-                    aff: ""
-                };
-            }
+            if(c.length >= 4) return { id: c[0].trim(), name: c[1].replace(/"/g, ''), price: c[2], img: c[3]?.trim().replace(/"/g, ''), link: c[c.length-1].trim().replace(/"/g, ''), aff: "", imgNew: "" };
         }).filter(x => x);
-        renderMarket(0, 99999999);
+        renderMarket();
     };
 
-    // 3. Hiện siêu thị quà - Tô đậm chữ cuối
-    function renderMarket(min, max) {
+    function renderMarket() {
         const area = document.getElementById('market');
         area.innerHTML = "";
         const char = lucky.n.trim().slice(-1).toUpperCase();
 
-        warehouse.filter(p => p.price >= min && p.price <= max).forEach(p => {
+        warehouse.forEach(p => {
             const pChar = p.name.trim().slice(-1).toUpperCase();
-            const isMatch = pChar === char;
+            if (pChar !== char) return;
             
             const card = document.createElement('div');
             card.className = 'card';
             card.onclick = () => {
                 selected = p;
-                document.getElementById('mImg').src = p.img;
-                document.getElementById('mTitle').innerHTML = p.name.slice(0,-1) + `<span class="red-bold">${p.name.slice(-1)}</span>`;
+                document.getElementById('mTitle').innerHTML = p.name;
                 document.getElementById('modal').style.display = 'block';
-                navigator.clipboard.writeText(p.link);
+                document.getElementById('imgFinal').value = p.imgNew;
+                document.getElementById('affFinal').value = p.aff;
             };
-            card.innerHTML = `
-                <img src="${p.img}">
-                <div class="card-info">
-                    <div style="font-size:14px; height:40px; overflow:hidden;">
-                        ${p.name.slice(0,-1)}<span class="${isMatch ? 'red-bold' : ''}">${p.name.slice(-1)}</span>
-                    </div>
-                    <div style="color:red; font-weight:bold; margin-top:5px;">${p.price.toLocaleString()}đ</div>
-                </div>
-            `;
+            card.innerHTML = `<img src="${p.img}"><div>${p.name.slice(0,-1)}<span class="red-bold">${p.name.slice(-1)}</span></div>`;
             area.appendChild(card);
         });
     }
 
-    // 4. Viết bài AI - Sửa lỗi sai tên và giới tính
-    function askAI(type) {
-        const aff = document.getElementById('affInput').value;
-        if(!aff) return alert("Dán link rút gọn vào đã!");
-        
-        selected.aff = aff;
-        const ghUrl = `https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html?id=${selected.id}`;
-        
-        // PROMPT CHUẨN: Lấy đúng tên Lucky
-        const prompt = `Hãy đóng vai một bé thiếu nhi, viết một truyện ngụ ngôn hài hước về nhân vật chính là ${lucky.n} (Giới tính: ${lucky.g}, thuộc nhóm ${lucky.cat}). 
-        Vì duyên nợ chữ cái cuối của tên là "${lucky.n.slice(-1)}" trùng với chữ cái cuối của món quà "${selected.name}", nên định mệnh đã chọn món quà này tặng ${lucky.n}.
-        Kết bài: Mời mọi người bấm vào link GitHub này để xem sự tích và mua ủng hộ: ${ghUrl} (Dặn mọi người dùng 4G để hệ thống ghi nhận chính xác ạ).`;
+    function copyAndOpenOriginal() {
+        navigator.clipboard.writeText(selected.link);
+        window.open(selected.link, '_blank');
+    }
 
-        navigator.clipboard.writeText(prompt);
-        alert(`Đã copy bài viết cho ${lucky.n}! Đang mở ${type}...`);
+    function askAI(type) {
+        selected.aff = document.getElementById('affFinal').value;
+        selected.imgNew = document.getElementById('imgFinal').value;
         
-        const urls = { 
-            ChatGPT: "https://chatgpt.com", 
-            Gemini: "https://gemini.google.com", 
-            Grok: "https://x.com/i/grok", 
-            DeepSeek: "https://chat.deepseek.com" 
-        };
-        window.open(urls[type], "_blank");
+        if(!selected.aff || !selected.imgNew) return alert("Bé phải dán đủ Link ảnh mới và Link rút gọn đã!");
+
+        const ghUrl = `https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html?id=${selected.id}`;
+        const prompt = `Viết truyện ngụ ngôn hài hước về ${lucky.n} (${lucky.g}). Nhân duyên chữ cái cuối "${selected.name.slice(-1)}" dẫn đến món quà "${selected.name}". Đăng kèm ảnh này: ${selected.imgNew}. Link sự tích GitHub: ${ghUrl}`;
+        
+        navigator.clipboard.writeText(prompt);
+        alert("Đã copy lời dẫn! Hãy dán vào " + type);
+        window.open(type === 'ChatGPT' ? "https://chatgpt.com" : (type === 'Gemini' ? "https://gemini.google.com" : "https://chat.deepseek.com"), '_blank');
+    }
+
+    function closeModal() {
+        selected.aff = document.getElementById('affFinal').value;
+        selected.imgNew = document.getElementById('imgFinal').value;
+        document.getElementById('modal').style.display = 'none';
     }
 
     function exportJson() {
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
-        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'files.json';
+        a.click();
     }
 
-    pickLucky();
+    init();
 </script>
 </body>
 </html>
