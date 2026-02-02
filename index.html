@@ -117,7 +117,7 @@
     }
 
     function addM() {
-        const n = document.getElementById('newName').value;
+        const n = document.getElementById('newName').value.toUpperCase();
         const d = document.getElementById('newBirth').value;
         const g = document.getElementById('newGen').value;
         if(n && d) { 
@@ -127,11 +127,30 @@
         } else { alert("Bố điền đủ Tên và Ngày sinh nhé!"); }
     }
 
-    function delM(i) { if(confirm("Xóa người này khỏi danh sách?")) { extraMems.splice(i,1); saveAll(); renderM(); } }
+    function delM(i) { if(confirm("Xóa người này?")) { extraMems.splice(i,1); saveAll(); renderM(); } }
+
+    // THUẬT TOÁN TÌM NGƯỜI MAY MẮN HÔM NAY
+    function getLuckyPerson() {
+        const all = [...extraMems, ...fixedMems];
+        const today = new Date();
+        const start = new Date("1900-01-01");
+        const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+        const luckyIndex = diffDays % all.length;
+        return all[luckyIndex];
+    }
 
     function renderM() {
         const all = [...extraMems, ...fixedMems];
-        document.getElementById('mList').innerHTML = all.map((m, i) => `
+        const lucky = getLuckyPerson();
+        
+        document.getElementById('mList').innerHTML = `
+            <div style="grid-column: 1/-1; background: #fff3bf; padding: 10px; border-radius: 8px; border: 2px dashed #f59f00; margin-bottom: 10px;">
+                <strong>🌟 NGƯỜI MAY MẮN HÔM NAY:</strong> 
+                <button class="m-btn ${selM?.n === lucky.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(lucky)})'>
+                    🎉 ${lucky.n} (Click để chọn quà)
+                </button>
+            </div>
+        ` + all.map((m, i) => `
             <div style="position:relative">
                 <button class="m-btn ${selM?.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>
                     <strong>${m.n}</strong>
@@ -147,13 +166,6 @@
         renderM(); renderW();
     }
 
-    function setPriceFilter(min, max, btn) {
-        priceRange = { min, max };
-        document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderW();
-    }
-
     document.getElementById('csv').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -163,9 +175,10 @@
                 const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 if(c.length >= 5) {
                     const id = c[0].trim();
+                    const name = c[1]?.replace(/"/g, '').trim();
                     const pStr = c[2]?.replace(/[^0-9]/g, '') || "0";
                     if(!warehouse.some(x => x.id === id)) {
-                        warehouse.push({ id, name: c[1]?.replace(/"/g, '').split(' ').slice(0, 8).join(' ').trim(), price: parseInt(pStr) });
+                        warehouse.push({ id, name, price: parseInt(pStr) });
                     }
                 }
             });
@@ -176,14 +189,24 @@
     function renderW() {
         if(!selM) return;
         const area = document.getElementById('pArea');
-        const limit = selM.n.split(' ').pop().length;
-        let pool = warehouse.filter(p => p.price >= priceRange.min && p.price <= priceRange.max);
-        let selected = pool.sort(() => 0.5 - Math.random()).slice(0, limit);
+        
+        // THUẬT TOÁN CHỌN QUÀ THEO CHỮ CÁI CUỐI
+        const lastCharName = selM.n.trim().slice(-1).toUpperCase();
+        
+        let pool = warehouse.filter(p => {
+            const lastCharProd = p.name.trim().slice(-1).toUpperCase();
+            const matchPrice = p.price >= priceRange.min && p.price <= priceRange.max;
+            return matchPrice && (lastCharProd === lastCharName);
+        });
 
-        if(selected.length === 0) {
-            area.innerHTML = `<tr><td colspan="5">Không có hàng ở giá này. Bố nạp CSV hoặc chọn mức khác nhé!</td></tr>`;
+        if(pool.length === 0) {
+            area.innerHTML = `<tr><td colspan="5">Không tìm thấy sản phẩm kết thúc bằng chữ "<b>${lastCharName}</b>" ở mức giá này.</td></tr>`;
             return;
         }
+
+        // Giới hạn số lượng hiển thị bằng độ dài tên cuối (như yêu cầu cũ)
+        const limit = selM.n.split(' ').pop().length;
+        let selected = pool.sort(() => 0.5 - Math.random()).slice(0, limit);
 
         area.innerHTML = selected.map(p => {
             const gh = `${document.getElementById('ghLink').value}?id=${p.id}`;
@@ -192,7 +215,7 @@
                 <td style="text-align:left"><b>${p.name}</b></td>
                 <td style="color:var(--p); font-weight:bold;">${p.price.toLocaleString()}đ</td>
                 <td><input type="text" value="${gh}" readonly style="width:110px; font-size:9px; cursor:pointer" onclick="this.select(); document.execCommand('copy'); alert('Đã copy Link Gốc!')"></td>
-                <td><input type="text" id="shopee_${p.id}" style="width:110px; border:1px solid var(--g)" placeholder="Dán link đẹp..."></td>
+                <td><input type="text" id="shopee_${p.id}" style="width:110px; border:1px solid var(--g)" placeholder="Dán link Affiliate..."></td>
                 <td>
                     <button class="btn-ai" style="background:var(--gpt)" onclick="goAI('ChatGPT','${p.id}')">GPT</button>
                     <button class="btn-ai" style="background:var(--x)" onclick="goAI('Grok','${p.id}')">Grok</button>
@@ -201,13 +224,23 @@
         }).join('');
     }
 
+    function setPriceFilter(min, max, btn) {
+        priceRange = { min, max };
+        document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderW();
+    }
+
     function goAI(ai, id) {
         const p = warehouse.find(x => x.id === id);
         const sLink = document.getElementById(`shopee_${id}`).value;
-        if(!sLink) { alert("Bố chưa dán link rút gọn vào ô màu xanh!"); return; }
-        let prompt = `Viết bài Facebook hài hước tặng ${selM.n} (${selM.age}t) món ${p.name}. Link mua: ${sLink}`;
+        if(!sLink) { alert("Dán link Shopee vào ô xanh đã bố ơi!"); return; }
+        
+        // Prompt kể chuyện cho các bé
+        let prompt = `Đóng vai một đứa trẻ, viết bài kể chuyện vui nhộn trên Facebook/Zalo về việc hôm nay hệ thống chọn trúng ${selM.n} là người may mắn. Con muốn tặng món quà "${p.name}" vì chữ cái cuối của tên người này và sản phẩm đều là "${selM.n.slice(-1)}". Link mua hộ con: ${sLink}`;
+        
         navigator.clipboard.writeText(prompt).then(() => {
-            alert("Đã copy lệnh AI!");
+            alert("Đã copy lời dẫn cho bé!");
             const urls = {'ChatGPT':"https://chatgpt.com",'Grok':"https://x.com/i/grok"};
             window.open(urls[ai], "_blank");
         });
@@ -224,3 +257,4 @@
 </script>
 </body>
 </html>
+
