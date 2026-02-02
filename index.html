@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Marketing Gia Đình V18.2 - LƯU DANH SÁCH BẠN BÈ</title>
+    <title>Marketing Gia Đình V18.2 - QUẢN LÝ THÔNG MINH</title>
     <style>
         :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --x: #000000; --gpt: #10a37f; --shopee: #ff4742; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 15px; margin: 0; }
@@ -33,7 +33,7 @@
 
     <div class="box step-1">
         <h2>🔵 BƯỚC 1: CẤU HÌNH KHO HÀNG GITHUB</h2>
-        <span class="guide">Nạp CSV, sau đó Xuất JSON để đưa lên GitHub (giúp Web di động cập nhật hàng).</span>
+        <span class="guide">Nạp CSV -> Tạo link Affiliate -> Bấm "XUẤT FILE" tải lên GitHub để kích hoạt cửa hàng di động.</span>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <input type="text" id="ghLink" style="flex:1" value="https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html" onchange="saveAll()">
             <input type="file" id="csv" multiple accept=".csv">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="box step-2">
-        <h2>🟣 BƯỚC 2: QUẢN LÝ NGƯỜI NHẬN (Gia đình & Bạn bè)</h2>
+        <h2>🟣 BƯỚC 2: QUẢN LÝ NGƯỜI NHẬN & CHỌN QUÀ</h2>
         <div style="background: #e3f2fd; padding: 10px; border-radius: 8px; margin-bottom: 10px; display: flex; gap: 8px; align-items: center;">
             <strong>➕ Thêm bạn mới:</strong>
             <input type="text" id="newName" placeholder="Tên..." style="width:150px">
@@ -67,7 +67,7 @@
 
     <div class="box step-3">
         <h2>🟢 BƯỚC 3 & 4: RÚT GỌN LINK & ĐĂNG BÀI</h2>
-        <span class="guide">Click "Copy Link Gốc" -> Đi rút gọn -> Dán vào "Link Rút Gọn" -> Bấm AI.</span>
+        <span class="guide">1. Lấy link gốc -> 2. Qua Shopee tạo link rút gọn -> 3. Dán vào ô xanh -> 4. Bấm AI để viết bài Facebook.</span>
         <div style="overflow-x: auto;">
             <table>
                 <thead>
@@ -75,7 +75,7 @@
                         <th>Sản phẩm</th>
                         <th>Giá</th>
                         <th>1. Lấy Link Gốc</th>
-                        <th>2. Dán Link Đã Rút Gọn</th>
+                        <th>2. Dán Link Affiliate</th>
                         <th>3. Gửi AI</th>
                     </tr>
                 </thead>
@@ -129,7 +129,6 @@
 
     function delM(i) { if(confirm("Xóa người này?")) { extraMems.splice(i,1); saveAll(); renderM(); } }
 
-    // THUẬT TOÁN TÌM NGƯỜI MAY MẮN HÔM NAY
     function getLuckyPerson() {
         const all = [...extraMems, ...fixedMems];
         const today = new Date();
@@ -142,12 +141,11 @@
     function renderM() {
         const all = [...extraMems, ...fixedMems];
         const lucky = getLuckyPerson();
-        
         document.getElementById('mList').innerHTML = `
             <div style="grid-column: 1/-1; background: #fff3bf; padding: 10px; border-radius: 8px; border: 2px dashed #f59f00; margin-bottom: 10px;">
                 <strong>🌟 NGƯỜI MAY MẮN HÔM NAY:</strong> 
                 <button class="m-btn ${selM?.n === lucky.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(lucky)})'>
-                    🎉 ${lucky.n} (Click để chọn quà)
+                    🎉 ${lucky.n} (Click chọn quà định mệnh)
                 </button>
             </div>
         ` + all.map((m, i) => `
@@ -162,7 +160,6 @@
 
     function selectM(m) {
         selM = m;
-        selM.age = Math.floor((new Date() - new Date(m.d))/31557600000);
         renderM(); renderW();
     }
 
@@ -178,7 +175,7 @@
                     const name = c[1]?.replace(/"/g, '').trim();
                     const pStr = c[2]?.replace(/[^0-9]/g, '') || "0";
                     if(!warehouse.some(x => x.id === id)) {
-                        warehouse.push({ id, name, price: parseInt(pStr) });
+                        warehouse.push({ id, name, price: parseInt(pStr), linkAffiliate: "" });
                     }
                 }
             });
@@ -189,10 +186,7 @@
     function renderW() {
         if(!selM) return;
         const area = document.getElementById('pArea');
-        
-        // THUẬT TOÁN CHỌN QUÀ THEO CHỮ CÁI CUỐI
         const lastCharName = selM.n.trim().slice(-1).toUpperCase();
-        
         let pool = warehouse.filter(p => {
             const lastCharProd = p.name.trim().slice(-1).toUpperCase();
             const matchPrice = p.price >= priceRange.min && p.price <= priceRange.max;
@@ -200,11 +194,10 @@
         });
 
         if(pool.length === 0) {
-            area.innerHTML = `<tr><td colspan="5">Không tìm thấy sản phẩm kết thúc bằng chữ "<b>${lastCharName}</b>" ở mức giá này.</td></tr>`;
+            area.innerHTML = `<tr><td colspan="5">Không tìm thấy sản phẩm kết thúc bằng chữ "<b>${lastCharName}</b>".</td></tr>`;
             return;
         }
 
-        // Giới hạn số lượng hiển thị bằng độ dài tên cuối (như yêu cầu cũ)
         const limit = selM.n.split(' ').pop().length;
         let selected = pool.sort(() => 0.5 - Math.random()).slice(0, limit);
 
@@ -214,14 +207,20 @@
             <tr>
                 <td style="text-align:left"><b>${p.name}</b></td>
                 <td style="color:var(--p); font-weight:bold;">${p.price.toLocaleString()}đ</td>
-                <td><input type="text" value="${gh}" readonly style="width:110px; font-size:9px; cursor:pointer" onclick="this.select(); document.execCommand('copy'); alert('Đã copy Link Gốc!')"></td>
-                <td><input type="text" id="shopee_${p.id}" style="width:110px; border:1px solid var(--g)" placeholder="Dán link Affiliate..."></td>
+                <td><input type="text" value="${gh}" readonly style="width:110px; font-size:9px; cursor:pointer" onclick="this.select(); document.execCommand('copy'); alert('Đã copy Link GitHub!')"></td>
+                <td><input type="text" id="shopee_${p.id}" value="${p.linkAffiliate || ''}" onchange="updateAff('${p.id}', this.value)" style="width:110px; border:1px solid var(--g)" placeholder="Dán link Affiliate..."></td>
                 <td>
                     <button class="btn-ai" style="background:var(--gpt)" onclick="goAI('ChatGPT','${p.id}')">GPT</button>
                     <button class="btn-ai" style="background:var(--x)" onclick="goAI('Grok','${p.id}')">Grok</button>
                 </td>
             </tr>`;
         }).join('');
+    }
+
+    function updateAff(id, val) {
+        const p = warehouse.find(x => x.id === id);
+        if(p) p.linkAffiliate = val;
+        saveAll();
     }
 
     function setPriceFilter(min, max, btn) {
@@ -233,14 +232,17 @@
 
     function goAI(ai, id) {
         const p = warehouse.find(x => x.id === id);
-        const sLink = document.getElementById(`shopee_${id}`).value;
-        if(!sLink) { alert("Dán link Shopee vào ô xanh đã bố ơi!"); return; }
+        const ghUrl = `${document.getElementById('ghLink').value}?id=${p.id}`;
         
-        // Prompt kể chuyện cho các bé
-        let prompt = `Đóng vai một đứa trẻ, viết bài kể chuyện vui nhộn trên Facebook/Zalo về việc hôm nay hệ thống chọn trúng ${selM.n} là người may mắn. Con muốn tặng món quà "${p.name}" vì chữ cái cuối của tên người này và sản phẩm đều là "${selM.n.slice(-1)}". Link mua hộ con: ${sLink}`;
+        let prompt = `Đóng vai 3 anh em nhí, viết bài Facebook hài hước:
+1. Thông báo ${selM.n} là "Người May Mắn Hôm Nay".
+2. Tặng món quà "${p.name}" vì cả tên người và tên quà đều kết thúc bằng chữ "${selM.n.slice(-1)}".
+3. Nhờ mọi người vào link GitHub này xem chi tiết và mua ủng hộ: ${ghUrl}
+4. Dặn mọi người dùng mạng 4G khi mua để ủng hộ con nhé.
+(Lưu ý: Tôi sẽ đăng kèm ảnh của ${selM.n}, hãy viết lời dẫn phù hợp với bức ảnh) `;
         
         navigator.clipboard.writeText(prompt).then(() => {
-            alert("Đã copy lời dẫn cho bé!");
+            alert("Đã copy lệnh AI! Hãy dán vào ChatGPT và chuẩn bị ảnh người thân.");
             const urls = {'ChatGPT':"https://chatgpt.com",'Grok':"https://x.com/i/grok"};
             window.open(urls[ai], "_blank");
         });
@@ -250,11 +252,10 @@
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
-    function clearW() { if(confirm("Xóa kho hàng?")) { warehouse=[]; saveAll(); renderW(); } }
     
+    function clearW() { if(confirm("Xóa kho hàng?")) { warehouse=[]; saveAll(); renderW(); } }
     if(localStorage.getItem('gh_v18_2')) document.getElementById('ghLink').value = localStorage.getItem('gh_v18_2');
     renderM();
 </script>
 </body>
 </html>
-
