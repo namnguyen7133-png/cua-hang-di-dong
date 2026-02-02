@@ -31,6 +31,10 @@
         .modal-content { background: white; width: 95%; max-width: 550px; margin: 10px auto; padding: 20px; border-radius: 20px; }
         .sub-step { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid var(--s); }
         input { width: 100%; padding: 12px; margin-top: 8px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        
+        /* CSS Mới cho ô thêm bạn bè */
+        .add-friend-box { background: #e3f2fd; padding: 10px; border-radius: 10px; margin-top: 15px; border: 1px dashed var(--s); }
+        .btn-add-friend { background: var(--s); padding: 8px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -40,8 +44,19 @@
 <div class="card-step" style="border-color: #ff9f43;">
     <h3><span class="num-circle">1</span> NẠP KHO & <span class="num-circle">2</span> NGƯỜI MAY MẮN</h3>
     <input type="file" id="csv" accept=".csv" style="margin-bottom:15px">
+    
     <div id="luckyBox" style="font-size: 22px; font-weight: bold; text-align: center; background: #eee; padding: 15px; border-radius: 10px;">
         Hôm nay đến lượt: <span id="luckyName">---</span>
+    </div>
+
+    <div class="add-friend-box">
+        <p style="margin:0; font-weight:bold; color:var(--s)">➕ Thêm Bạn Mới Vào Danh Sách:</p>
+        <input type="text" id="newFriendName" placeholder="Nhập Họ và Tên (VD: NGUYỄN VĂN A)...">
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="newFriendYear" placeholder="Năm sinh" style="width: 40%">
+            <input type="text" id="newFriendGender" placeholder="Nam/Nữ" style="width: 40%">
+        </div>
+        <button class="btn btn-add-friend" onclick="addNewFriend()">+ THÊM VÀO DANH SÁCH XOAY VÒNG</button>
     </div>
 </div>
 
@@ -90,7 +105,8 @@
 </div>
 
 <script>
-    const fixedMems = [
+    // BỔ SUNG: Kiểm tra LocalStorage để lấy danh sách bạn bè đã lưu, nếu không có thì dùng mặc định
+    let fixedMems = JSON.parse(localStorage.getItem('my_friends_list')) || [
         {n:"NGUYỄN KHẮC NĂNG", d:"1944", g:"Nam", cat:"Người già"}, 
         {n:"TÔ THỊ HÀ", d:"1948", g:"Nữ", cat:"Người già"},
         {n:"NGUYỄN MINH NAM", d:"1971", g:"Nam", cat:"Trung niên"},
@@ -108,6 +124,20 @@
         lucky = fixedMems[offset % fixedMems.length];
         const lastChar = lucky.n.trim().slice(-1);
         document.getElementById('luckyName').innerHTML = lucky.n.slice(0,-1) + `<span class="lucky-char">${lastChar}</span>`;
+    }
+
+    // BỔ SUNG: Hàm thêm bạn mới
+    function addNewFriend() {
+        const name = document.getElementById('newFriendName').value.toUpperCase().trim();
+        const year = document.getElementById('newFriendYear').value.trim();
+        const gender = document.getElementById('newFriendGender').value.trim();
+
+        if(!name) return alert("Bố chưa nhập tên bạn mới kìa!");
+
+        fixedMems.push({n: name, d: year, g: gender, cat: "Bạn bè"});
+        localStorage.setItem('my_friends_list', JSON.stringify(fixedMems));
+        alert("Đã thêm " + name + " vào bộ nhớ máy!");
+        location.reload(); // Load lại để cập nhật người may mắn theo danh sách mới
     }
 
     document.getElementById('csv').onchange = async (e) => {
