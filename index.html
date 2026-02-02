@@ -2,85 +2,99 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đường Đua Marketing Nhí V18.4</title>
+    <title>Đường Đua Marketing Nhí V18.5 - SIÊU CẤP</title>
     <style>
-        :root { --step1: #ff4757; --step2: #ffa502; --step3: #2ed573; --step4: #1e90ff; --step5: #3742fa; --step6: #ed4c67; }
-        body { font-family: 'Segoe UI', cursive; background: #f1f2f6; padding: 20px; color: #2f3542; }
+        :root { --s1: #ff4757; --s2: #ffa502; --s3: #2ed573; --s4: #1e90ff; --s5: #3742fa; --s6: #ed4c67; --s7: #2f3542; }
+        body { font-family: 'Segoe UI', cursive; background: #f1f2f6; padding: 20px; color: #2f3542; line-height: 1.6; }
         
-        /* Hiệu ứng trạm dừng chân */
-        .station { background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 0 #dfe4ea; border: 4px solid transparent; position: relative; }
-        .station h2 { margin-top: 0; font-size: 22px; color: white; padding: 10px 20px; border-radius: 15px; display: inline-block; transform: rotate(-2deg); margin-bottom: 20px; }
-        
-        .s1 { border-color: var(--step1); } .s1 h2 { background: var(--step1); }
-        .s2 { border-color: var(--step2); } .s2 h2 { background: var(--step2); }
-        .s3 { border-color: var(--step3); } .s3 h2 { background: var(--step3); }
-        .s4 { border-color: var(--step4); } .s4 h2 { background: var(--step4); }
-        .s5 { border-color: var(--step5); } .s5 h2 { background: var(--step5); }
-        .s6 { border-color: var(--step6); } .s6 h2 { background: var(--step6); }
+        .station { background: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 0 #dfe4ea; border: 4px solid transparent; position: relative; display: none; }
+        .station.active { display: block; animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Danh sách người */
+        .station h2 { margin-top: 0; font-size: 22px; color: white; padding: 10px 20px; border-radius: 15px; display: inline-block; transform: rotate(-1deg); margin-bottom: 20px; }
+        
+        .s1 { border-color: var(--s1); display: block; } .s1 h2 { background: var(--s1); }
+        .s2 { border-color: var(--s2); } .s2 h2 { background: var(--s2); }
+        .s3 { border-color: var(--s3); } .s3 h2 { background: var(--s3); }
+        .s4 { border-color: var(--s4); } .s4 h2 { background: var(--s4); }
+        .s5 { border-color: var(--s5); } .s5 h2 { background: var(--s5); }
+        .s6 { border-color: var(--s6); } .s6 h2 { background: var(--s6); }
+        .s7 { border-color: var(--s7); } .s7 h2 { background: var(--s7); }
+
         .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-        .m-btn { padding: 15px; border: 2px solid #f1f2f6; border-radius: 15px; cursor: pointer; background: #fff; font-weight: bold; transition: 0.3s; }
-        .m-btn.active { background: #ffa502; color: white; border-color: #ff7f50; transform: scale(1.05); }
+        .m-btn { padding: 15px; border: 2px solid #eee; border-radius: 15px; cursor: pointer; background: #fff; font-weight: bold; }
+        .m-btn.active { background: var(--s2); color: white; transform: scale(1.05); }
 
-        /* Tầng giá */
-        .price-wheel { display: flex; gap: 15px; margin-bottom: 20px; }
+        .price-wheel { display: flex; gap: 10px; margin-bottom: 20px; }
         .p-btn { flex: 1; padding: 15px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; color: white; opacity: 0.6; }
-        .p-btn.active { opacity: 1; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .p-btn.active { opacity: 1; transform: translateY(-3px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
 
-        /* Khu vực hiển thị quà */
-        .gift-box { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 3px dashed #ccc; text-align: center; }
-        .btn-big { padding: 15px 30px; font-size: 18px; border-radius: 50px; border: none; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; width: 100%; margin: 10px 0; }
+        .btn-big { padding: 18px 30px; font-size: 18px; border-radius: 50px; border: none; color: white; cursor: pointer; font-weight: bold; width: 100%; margin: 10px 0; transition: 0.3s; }
+        .btn-big:hover { filter: brightness(1.1); transform: scale(1.01); }
         
-        input.big-input { width: 100%; padding: 15px; border: 3px solid var(--step5); border-radius: 15px; font-size: 16px; text-align: center; }
+        .ai-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-ai { padding: 15px; border-radius: 12px; border: none; color: white; font-weight: bold; cursor: pointer; }
         
-        .lucky-label { position: absolute; top: -15px; right: 20px; background: #ff4757; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        input.big-input { width: 100%; padding: 18px; border: 3px solid var(--s5); border-radius: 15px; font-size: 16px; text-align: center; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
-<h1 style="text-align: center; font-size: 35px; color: #2f3542; text-shadow: 2px 2px #fff;">🚩 ĐƯỜNG ĐUA MARKETING NHÍ V18.4</h1>
+<h1 style="text-align: center; font-size: 30px;">🚀 HỆ THỐNG MARKETING NHÍ V18.5</h1>
 
 <div class="station s1">
-    <h2>🏁 TRẠM 1: NẠP KHO HÀNG CỦA BỐ</h2>
-    <input type="file" id="csv" multiple accept=".csv" style="width: 100%; padding: 20px; border: 3px dashed var(--step1); border-radius: 15px;">
+    <h2>🏁 TRẠM 1: NẠP KHO HÀNG</h2>
+    <input type="file" id="csv" multiple accept=".csv" style="width: 100%; padding: 20px; border: 3px dashed var(--s1); border-radius: 15px;">
+    <p style="text-align:center; color: #666;">(Bé chọn file CSV sản phẩm mà bố đưa cho nhé)</p>
 </div>
 
-<div class="station s2">
-    <h2>🎯 TRẠM 2: AI LÀ NGƯỜI MAY MẮN?</h2>
+<div class="station s2" id="st2">
+    <h2>🎯 TRẠM 2: CHỌN NGƯỜI MAY MẮN</h2>
     <div id="mList" class="m-grid"></div>
 </div>
 
-<div class="station s3">
-    <h2>💰 TRẠM 3: CHỌN TẦNG GIÁ ĐỊNH MỆNH</h2>
+<div class="station s3" id="st3">
+    <h2>💰 TRẠM 3: TẦNG GIÁ ĐỊNH MỆNH</h2>
     <div class="price-wheel">
-        <button class="p-btn active" style="background:#2ecc71" onclick="setPrice('L', 0, 50000, this)">L (Dưới 50k)</button>
-        <button class="p-btn" style="background:#3498db" onclick="setPrice('T', 50000, 200000, this)">T (50k - 200k)</button>
-        <button class="p-btn" style="background:#9b59b6" onclick="setPrice('D', 200000, 1000000, this)">D (200k - 1tr)</button>
-        <button class="p-btn" style="background:#e67e22" onclick="setPrice('C', 1000000, 99999999, this)">C (Trên 1tr)</button>
+        <button class="p-btn" style="background:#2ecc71" onclick="setPrice(0, 50000, this)">L (Dưới 50k)</button>
+        <button class="p-btn" style="background:#3498db" onclick="setPrice(50000, 200000, this)">T (50k - 200k)</button>
+        <button class="p-btn" style="background:#9b59b6" onclick="setPrice(200000, 1000000, this)">D (200k - 1tr)</button>
+        <button class="p-btn active" style="background:#e67e22" onclick="setPrice(1000000, 99999999, this)">C (Trên 1tr)</button>
     </div>
-    <div id="autoSuggest" class="gift-box">
-        <p><i>Đang chờ chọn Người may mắn ở Trạm 2...</i></p>
+    <div id="autoSuggest" style="background: #f9f9f9; padding: 20px; border-radius: 15px; text-align: center; border: 2px solid #eee;">
+        <p>Đang chờ bé chọn Người may mắn...</p>
     </div>
 </div>
 
-<div class="station s4" id="station4" style="display:none">
-    <h2>🔗 TRẠM 4: LẤY LINK GỐC ĐỂ RÚT GỌN</h2>
-    <p id="prodNameDisplay" style="font-size: 20px; font-weight: bold;"></p>
-    <button class="btn-big" style="background: var(--step4);" onclick="openOriginal()">🚀 BẤM ĐỂ MỞ SHOPEE GỐC</button>
+<div class="station s4" id="st4">
+    <h2>🔗 TRẠM 4: RÚT GỌN LINK SHOPEE</h2>
+    <p id="targetProd" style="font-weight:bold; font-size:18px; color: var(--s4);"></p>
+    <button class="btn-big" style="background: var(--s4);" onclick="openShopeeAff()">1. MỞ TRANG RÚT GỌN SHOPEE</button>
+    <p style="font-size:13px; color:#666;">(Hệ thống đã tự copy link gốc, bé sang đó chỉ cần Dán và Rút Gọn thôi!)</p>
 </div>
 
-<div class="station s5" id="station5" style="display:none">
-    <h2>💎 TRẠM 5: DÁN LINK RÚT GỌN (AFFILIATE)</h2>
-    <input type="text" id="affLink" class="big-input" placeholder="Dán link rút gọn vào đây nè các bé ơi...">
-    <button class="btn-big" style="background: var(--g); background: #27ae60; margin-top: 15px;" onclick="saveAff()">✅ XÁC NHẬN VÀ LƯU VÀO KHO</button>
+<div class="station s5" id="st5">
+    <h2>💎 TRẠM 5: DÁN LINK RÚT GỌN</h2>
+    <input type="text" id="affLink" class="big-input" placeholder="Dán link Affiliate bé vừa tạo vào đây...">
+    <button class="btn-big" style="background: var(--s3);" onclick="confirmAff()">✅ XÁC NHẬN VÀ SANG BƯỚC VIẾT TRUYỆN</button>
 </div>
 
-<div class="station s6" id="station6" style="display:none">
-    <h2>📖 TRẠM 6: VIẾT TRUYỆN NGỤ NGÔN & ĐĂNG FB</h2>
-    <button class="btn-big" style="background: var(--step6);" onclick="goAI()">🧙‍♂️ NHỜ PHÙ THỦY AI VIẾT TRUYỆN</button>
-    <button class="btn-big" style="background: #333;" onclick="exportJson()">💾 XUẤT FILE FILES.JSON CHO BỐ</button>
+<div class="station s6" id="st6">
+    <h2>🧙‍♂️ TRẠM 6: PHÙ THỦY AI VIẾT TRUYỆN</h2>
+    <p style="background: #fff3f3; padding: 10px; border-radius: 10px; font-size: 14px;">Bấm chọn 1 phù thủy, hệ thống sẽ tự copy lời dẫn "Ngụ Ngôn" phù hợp với giới tính và lứa tuổi của người nhận!</p>
+    <div class="ai-group">
+        <button class="btn-ai" style="background:#10a37f" onclick="goAI('chatgpt')">ChatGPT</button>
+        <button class="btn-ai" style="background:#4285f4" onclick="goAI('gemini')">Gemini</button>
+        <button class="btn-ai" style="background:#000" onclick="goAI('grok')">Grok (X)</button>
+        <button class="btn-ai" style="background:#6a1b9a" onclick="goAI('deepseek')">DeepSeek</button>
+    </div>
+</div>
+
+<div class="station s7" id="st7">
+    <h2>📦 TRẠM CUỐI: XUẤT BẢN & ĐĂNG BÀI</h2>
+    <button class="btn-big" style="background: var(--s7);" onclick="exportJson()">💾 1. XUẤT FILE CHO GITHUB</button>
+    <button class="btn-big" style="background: #1877F2;" onclick="alert('Bé hãy dán link GitHub vào bài đăng Facebook kèm theo truyện AI vừa viết nhé!')">📱 2. ĐĂNG BÀI LÊN FACEBOOK</button>
+    <p style="text-align:center; font-size:12px;">Link GitHub của bé: <br><span id="finalGhLink" style="color:blue; font-weight:bold;"></span></p>
 </div>
 
 <script>
@@ -103,38 +117,36 @@
         {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
     ];
 
-    let warehouse = JSON.parse(localStorage.getItem('war_v18_4')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('war_v18_5')) || [];
     let selM = null;
     let selP = null;
-    let priceRange = { min: 0, max: 50000 };
+    let priceRange = { min: 1000000, max: 99999999 };
+    const ghBase = "https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html";
 
-    // 1. CSV
     document.getElementById('csv').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
             const text = await file.text();
             const lines = text.split('\n').slice(1);
             lines.forEach(l => {
-                const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const c = l.split(/,(?=(?:(?:[^\"" ]*\""){2})*[^\"" ]*$)/);
                 if(c.length >= 5) {
                     const id = c[0].trim();
-                    const url = c[c.length-1].trim().replace(/"/g, '');
+                    const url = c[c.length-1].trim().replace(/\""/g, '');
                     if(!warehouse.some(x => x.id === id)) {
-                        warehouse.push({ id, name: c[1].replace(/"/g, ''), price: parseInt(c[2].replace(/[^0-9]/g, '')), originalLink: url, linkAffiliate: "" });
+                        warehouse.push({ id, name: c[1].replace(/\""/g, ''), price: parseInt(c[2].replace(/[^0-9]/g, '')), originalLink: url, linkAffiliate: "" });
                     }
                 }
             });
         }
-        localStorage.setItem('war_v18_4', JSON.stringify(warehouse));
-        alert("Đã nhập kho thành công!");
+        localStorage.setItem('war_v18_5', JSON.stringify(warehouse));
+        document.getElementById('st2').classList.add('active');
+        renderM();
     };
 
-    // 2. Render Người
     function renderM() {
-        const lucky = fixedMems[Math.floor((new Date() - new Date("2024-01-01"))/(1000*60*60*24)) % fixedMems.length];
         document.getElementById('mList').innerHTML = fixedMems.map(m => `
             <button class="m-btn ${selM?.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>
-                ${lucky.n === m.n ? '<span class="lucky-label">MAY MẮN HÔM NAY</span>' : ''}
                 ${m.n}<br><small>${m.g} - ${m.d.split('-')[0]}</small>
             </button>
         `).join('');
@@ -142,13 +154,12 @@
 
     function selectM(m) { 
         selM = m; 
-        selP = null; // Reset quà khi chọn người mới
-        renderM(); 
+        document.getElementById('st3').classList.add('active');
         autoSuggest(); 
+        renderM();
     }
 
-    // 3. Tầng giá & Gợi ý tự động
-    function setPrice(t, min, max, btn) {
+    function setPrice(min, max, btn) {
         priceRange = { min, max };
         document.querySelectorAll('.p-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -158,62 +169,64 @@
     function autoSuggest() {
         if(!selM) return;
         const lastChar = selM.n.trim().slice(-1).toUpperCase();
-        let pool = warehouse.filter(p => 
-            p.name.trim().slice(-1).toUpperCase() === lastChar && 
-            p.price >= priceRange.min && p.price <= priceRange.max
-        );
-
+        let pool = warehouse.filter(p => p.name.trim().slice(-1).toUpperCase() === lastChar && p.price >= priceRange.min && p.price <= priceRange.max);
         const area = document.getElementById('autoSuggest');
         if(pool.length > 0) {
             selP = pool[Math.floor(Math.random() * pool.length)];
-            area.innerHTML = `
-                <div style="font-size:24px; color:var(--step3); margin-bottom:10px;">🌟 QUÀ ĐỊNH MỆNH ĐÃ CHỌN:</div>
-                <div style="font-size:20px; font-weight:bold;">${selP.name}</div>
-                <div style="color:#ff4757; font-size:22px;">Giá: ${selP.price.toLocaleString()}đ</div>
-                <button class="btn-big" style="background:var(--step3)" onclick="confirmGift()">ĐỒNG Ý - SANG TRẠM 4 THÔI!</button>
-            `;
+            area.innerHTML = `<h3>Món quà: ${selP.name}</h3><p style="color:red; font-weight:bold;">Giá: ${selP.price.toLocaleString()}đ</p><button class="btn-big" style="background:var(--s3)" onclick="confirmP()">OK! SANG TRẠM RÚT GỌN</button>`;
         } else {
-            area.innerHTML = `<p>Không tìm thấy quà kết thúc bằng chữ "<b>${lastChar}</b>" ở tầng giá này. Thử tầng giá khác xem bé!</p>`;
+            area.innerHTML = `<p>Hết quà đuôi "${lastChar}" ở mức giá này rồi bé ơi!</p>`;
         }
     }
 
-    // Các trạm tiếp theo
-    function confirmGift() {
-        document.getElementById('station4').style.display = 'block';
-        document.getElementById('prodNameDisplay').innerText = "Món quà: " + selP.name;
-        document.getElementById('station4').scrollIntoView({behavior: "smooth"});
+    function confirmP() {
+        document.getElementById('st4').classList.add('active');
+        document.getElementById('targetProd').innerText = "Đang xử lý: " + selP.name;
+        navigator.clipboard.writeText(selP.originalLink);
+        document.getElementById('st4').scrollIntoView();
     }
 
-    function openOriginal() {
-        window.open(selP.originalLink, '_blank');
-        document.getElementById('station5').style.display = 'block';
+    function openShopeeAff() {
+        window.open('https://affiliate.shopee.vn/offer/custom_link', '_blank');
+        document.getElementById('st5').classList.add('active');
     }
 
-    function saveAff() {
-        const link = document.getElementById('affLink').value;
-        if(!link) { alert("Dán link vào đã bé ơi!"); return; }
-        selP.linkAffiliate = link;
+    function confirmAff() {
+        const val = document.getElementById('affLink').value;
+        if(!val) return alert("Dán link đã bé!");
+        selP.linkAffiliate = val;
         const idx = warehouse.findIndex(x => x.id === selP.id);
         warehouse[idx] = selP;
-        localStorage.setItem('war_v18_4', JSON.stringify(warehouse));
-        alert("Đã lưu link thành công!");
-        document.getElementById('station6').style.display = 'block';
+        localStorage.setItem('war_v18_5', JSON.stringify(warehouse));
+        document.getElementById('st6').classList.add('active');
     }
 
-    function goAI() {
-        const ghUrl = `https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html?id=${selP.id}`;
-        let prompt = `Viết một câu chuyện ngụ ngôn hài hước về ${selM.n}. Vì cái duyên chữ cái cuối "${selM.n.slice(-1)}" mà định mệnh tặng món quà "${selP.name}". Kết bài nhờ mọi người click link GitHub này xem sự tích và mua ủng hộ: ${ghUrl}`;
+    function goAI(type) {
+        const age = 2026 - parseInt(selM.d.split('-')[0]);
+        const ghUrl = `${ghBase}?id=${selP.id}`;
+        document.getElementById('finalGhLink').innerText = ghUrl;
+        
+        let prompt = `Hãy đóng vai một bé thiếu nhi thông minh, viết một câu chuyện ngụ ngôn hài hước hoặc một bài thơ vui kể về việc tặng quà cho ${selM.n} (${selM.g}, ${age} tuổi). 
+        Lý do tặng món quà "${selP.name}" (giá ${selP.price.toLocaleString()}đ) là vì định mệnh: cả tên người nhận và món quà đều kết thúc bằng chữ "${selP.name.slice(-1)}". 
+        Kết bài hài hước nhờ mọi người click vào link GitHub này xem sự tích và mua ủng hộ: ${ghUrl}. (Nhắc mọi người dùng 4G để ủng hộ con)`;
+        
         navigator.clipboard.writeText(prompt);
-        alert("Đã copy truyện! Sang AI dán vào là xong nhé.");
-        window.open("https://chatgpt.com", "_blank");
+        alert("Đã copy Prompt! Đang mở " + type);
+        
+        const urls = {
+            chatgpt: "https://chatgpt.com",
+            gemini: "https://gemini.google.com",
+            grok: "https://x.com/i/grok",
+            deepseek: "https://chat.deepseek.com"
+        };
+        window.open(urls[type], "_blank");
+        document.getElementById('st7').classList.add('active');
     }
 
     function exportJson() {
         const blob = new Blob([JSON.stringify(warehouse, null, 2)], {type: 'application/json'});
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
-
-    renderM();
 </script>
 </body>
 </html>
