@@ -2,95 +2,66 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Marketing Gia Đình V18.2 - TRẠM ĐIỀU HÀNH</title>
+    <title>Hệ Thống Marketing 3 Anh Em - V18.3</title>
     <style>
-        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --dark: #2d3436; --x: #000000; --gpt: #10a37f; --shopee: #ff4742; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 15px; margin: 0; }
+        :root { --p: #ee4d2d; --s: #1877F2; --v: #9b59b6; --g: #27ae60; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); padding: 20px; font-size: 14px; }
+        .step-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 6px solid #ccc; }
         
-        /* BẢNG HƯỚNG DẪN TO ĐẸP */
-        .guide-box { background: linear-gradient(135deg, #6e8efb, #a777e3); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .guide-box h2 { margin: 0 0 10px 0; font-size: 20px; }
-        .guide-step { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; }
-        .step-item { background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; font-size: 13px; line-height: 1.4; border: 1px solid rgba(255,255,255,0.3); }
-        .step-num { display: block; font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+        /* Màu sắc theo bước */
+        .s1 { border-color: #3498db; } .s2 { border-color: #9b59b6; } .s3 { border-color: #e67e22; }
+        .s4 { border-color: #2ecc71; } .s5 { border-color: #f1c40f; } .s6 { border-color: #e74c3c; }
 
-        .box { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
-        h2 { color: var(--dark); border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 0; font-size: 16px; text-transform: uppercase; }
+        h2 { margin-top: 0; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+        .badge { background: #333; color: white; padding: 2px 10px; border-radius: 20px; font-size: 14px; }
         
-        /* NÚT BẤM */
-        .btn { padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-shopee { background: var(--p); color: white; }
-        .btn-gh { background: var(--v); color: white; }
+        .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 10px; }
+        .m-btn { padding: 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: white; text-align: left; transition: 0.2s; }
+        .m-btn.active { background: var(--v); color: white; border-color: var(--v); }
         
-        .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; max-height: 250px; overflow-y: auto; padding: 10px; background: #f9f9f9; border-radius: 8px; }
-        .m-btn { padding: 8px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #fff; font-size: 11px; text-align: left; position: relative; width: 100%; }
-        .m-btn.active { background: var(--v); color: white; font-weight: bold; border-color: var(--v); }
+        .price-filters { display: flex; gap: 10px; margin: 10px 0; }
+        .p-btn { flex: 1; padding: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; background: #eee; }
+        .p-btn.active { background: var(--p); color: white; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
+        th { background: #f1f1f1; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
         
-        table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
-        th { background: var(--dark); color: white; padding: 10px; }
-        td { border-bottom: 1px solid #eee; padding: 12px 8px; text-align: center; }
-        .input-aff { width: 140px; border: 2px solid var(--g); border-radius: 4px; padding: 5px; }
-        .btn-ai { font-size: 10px; padding: 8px; border-radius: 4px; border: none; color: white; cursor: pointer; font-weight: bold; margin: 2px; }
+        .inp { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box; }
+        .btn-action { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: white; }
     </style>
 </head>
 <body>
 
-<div style="max-width: 1300px; margin: auto;">
-    
-    <div class="guide-box">
-        <h2>🚩 HƯỚNG DẪN 4 BƯỚC CHO CÁC SIÊU NHÂN MARKETING</h2>
-        <div class="guide-step">
-            <div class="step-item">
-                <span class="step-num">1</span>
-                <b>COPY LINK GITHUB</b><br>Bấm nút màu trắng ở cột số 1 để lấy link dán Facebook.
-            </div>
-            <div class="step-item">
-                <span class="step-num">2</span>
-                <b>RÚT GỌN SHOPEE</b><br>Bấm nút Cam ↗️ để sang trang Shopee tạo link hoa hồng.
-            </div>
-            <div class="step-item">
-                <span class="step-num">3</span>
-                <b>DÁN LINK XANH</b><br>Dán cái link rút gọn vào ô viền xanh lá cây.
-            </div>
-            <div class="step-item">
-                <span class="step-num">4</span>
-                <b>XUẤT FILE & ĐĂNG</b><br>Bấm "XUẤT FILE" (Bố đẩy lên mạng) -> Bấm AI để lấy văn đăng bài.
-            </div>
-        </div>
-    </div>
+<h1 style="text-align: center; color: var(--s);">🚀 QUY TRÌNH MARKETING 6 BƯỚC</h1>
 
-    <div class="box" style="border-top: 5px solid var(--s);">
-        <h2>⚙️ CẤU HÌNH HỆ THỐNG (Dành cho bố & các bé)</h2>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-            <input type="text" id="ghLink" style="flex:1" placeholder="Link GitHub Pages của bố..." onchange="saveAll()">
-            <input type="file" id="csv" multiple accept=".csv" title="Chọn file CSV sản phẩm">
-            <button class="btn btn-gh" onclick="exportJson()">💾 XUẤT FILE CHO GITHUB</button>
-            <button class="btn btn-shopee" onclick="window.open('https://affiliate.shopee.vn/offer/custom_link', '_blank')">↗️ MỞ TRANG RÚT GỌN SHOPEE</button>
-            <button onclick="clearW()" style="background:#eee; border:none; padding:8px; border-radius:6px; cursor:pointer;">🗑️ DỌN KHO</button>
-        </div>
-    </div>
+<div class="step-card s1">
+    <h2><span class="badge">1</span> NHẬP KHO HÀNG (CSV)</h2>
+    <input type="file" id="csv" multiple accept=".csv" style="padding: 10px; background: #e3f2fd; border-radius: 8px; width: 100%;">
+</div>
 
-    <div class="box" style="border-top: 5px solid var(--v);">
-        <h2>👥 CHỌN NGƯỜI MAY MẮN (Gia đình & Bạn bè)</h2>
-        <div style="background: #e3f2fd; padding: 10px; border-radius: 8px; margin-bottom: 10px; display: flex; gap: 8px;">
-            <input type="text" id="newName" placeholder="Tên bạn mới..." style="width:180px">
-            <input type="date" id="newBirth">
-            <select id="newGen"><option value="Nam">Nam</option><option value="Nữ">Nữ</option></select>
-            <button class="btn" style="background:var(--g); color:white" onclick="addM()">THÊM VÀO DANH SÁCH</button>
-        </div>
-        <div id="mList" class="m-grid"></div>
-    </div>
+<div class="step-card s2">
+    <h2><span class="badge">2</span> CHỌN NGƯỜI MAY MẮN</h2>
+    <div id="mList" class="m-grid"></div>
+</div>
 
-    <div class="box" style="border-top: 5px solid var(--g);">
-        <h2>🎁 KHO QUÀ TẶNG ĐỊNH MỆNH</h2>
-        <table>
+<div class="step-card s3">
+    <h2><span class="badge">3</span> LỌC QUÀ THEO ĐỊNH MỆNH (Họ Tên & Giá)</h2>
+    <div class="price-filters">
+        <button class="p-btn" onclick="setPrice('L', 0, 50000, this)">L (Dưới 50k)</button>
+        <button class="p-btn" onclick="setPrice('T', 50000, 200000, this)">T (50k - 200k)</button>
+        <button class="p-btn" onclick="setPrice('D', 200000, 1000000, this)">D (200k - 1tr)</button>
+        <button class="p-btn active" onclick="setPrice('C', 1000000, 99999999, this)">C (Trên 1tr)</button>
+    </div>
+    <div id="productGallery">
+        <table id="pTable">
             <thead>
                 <tr>
                     <th>Sản phẩm</th>
                     <th>Giá</th>
-                    <th>1. Link GitHub (Dán FB)</th>
-                    <th>2. Link Affiliate (Dán vào đây)</th>
-                    <th>3. Viết bài bằng AI</th>
+                    <th>4. Lấy link gốc</th>
+                    <th>5. Dán Link Affiliate</th>
+                    <th>6. Viết truyện & Đăng</th>
                 </tr>
             </thead>
             <tbody id="pArea"></tbody>
@@ -98,8 +69,13 @@
     </div>
 </div>
 
+<div class="step-card s4">
+    <h2><span class="badge">LƯU Ý</span> ĐẨY HÀNG LÊN QUẦY (GITHUB)</h2>
+    <p>Bấm nút này sau khi đã dán xong các link Affiliate ở Bước 5:</p>
+    <button class="btn-action" style="background: var(--g); padding: 15px 30px; font-size: 16px;" onclick="exportJson()">💾 XUẤT FILE "FILES.JSON" CHO GITHUB</button>
+</div>
+
 <script>
-    // Dữ liệu và logic cũ được giữ nguyên nhưng tối ưu lại hàm hiển thị
     const fixedMems = [
         {n:"NGUYỄN KHẮC NĂNG", d:"1944-06-04", g:"Nam"}, {n:"TÔ THỊ HÀ", d:"1948-08-29", g:"Nữ"},
         {n:"NGUYỄN MINH NAM", d:"1971-03-03", g:"Nam"}, {n:"THÂN THỊ KIM ANH", d:"1981-09-23", g:"Nữ"},
@@ -119,36 +95,12 @@
         {n:"LÊ THỊ PHƯƠNG", d:"1990-06-26", g:"Nữ"}, {n:"NGUYỄN HOÀI NAM", d:"2004-06-02", g:"Nam"}
     ];
 
-    let extraMems = JSON.parse(localStorage.getItem('extra_v18_2')) || [];
-    let warehouse = JSON.parse(localStorage.getItem('war_v18_2')) || [];
+    let warehouse = JSON.parse(localStorage.getItem('war_v18_3')) || [];
     let selM = null;
+    let priceRange = { min: 1000000, max: 99999999 };
+    const ghBase = "https://namnguyen7133-png.github.io/cua-hang-di-dong/001-kho-hang.html";
 
-    function saveAll() {
-        localStorage.setItem('extra_v18_2', JSON.stringify(extraMems));
-        localStorage.setItem('war_v18_2', JSON.stringify(warehouse));
-        localStorage.setItem('gh_v18_2', document.getElementById('ghLink').value);
-    }
-
-    function addM() {
-        const n = document.getElementById('newName').value.toUpperCase();
-        const d = document.getElementById('newBirth').value;
-        const g = document.getElementById('newGen').value;
-        if(n && d) { extraMems.unshift({n, d, g}); document.getElementById('newName').value=""; saveAll(); renderM(); }
-    }
-
-    function renderM() {
-        const all = [...extraMems, ...fixedMems];
-        const lucky = all[Math.floor((new Date() - new Date("2024-01-01"))/(1000*60*60*24)) % all.length];
-        document.getElementById('mList').innerHTML = `
-            <div style="grid-column: 1/-1; background: #fff3bf; padding: 10px; border-radius: 8px; border: 2px dashed #f59f00; margin-bottom: 10px;">
-                <strong>🌟 NGƯỜI MAY MẮN:</strong> 
-                <button class="m-btn ${selM?.n === lucky.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(lucky)})'>🎉 ${lucky.n} (Click chọn)</button>
-            </div>
-        ` + all.map((m, i) => `<button class="m-btn ${selM?.n === m.n ? 'active' : ''}" onclick='selectM(${JSON.stringify(m)})'>${m.n}</button>`).join('');
-    }
-
-    function selectM(m) { selM = m; renderM(); renderW(); }
-
+    // 1. Xử lý CSV
     document.getElementById('csv').onchange = async (e) => {
         const files = Array.from(e.target.files);
         for (const file of files) {
@@ -158,51 +110,77 @@
                 const c = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 if(c.length >= 5) {
                     const id = c[0].trim();
+                    const url = c[c.length-1].trim().replace(/"/g, ''); // Giả định link shopee gốc ở cột cuối
                     if(!warehouse.some(x => x.id === id)) {
-                        warehouse.push({ id, name: c[1].replace(/"/g, ''), price: parseInt(c[2].replace(/[^0-9]/g, '')), linkAffiliate: "" });
+                        warehouse.push({ id, name: c[1].replace(/"/g, ''), price: parseInt(c[2].replace(/[^0-9]/g, '')), originalLink: url, linkAffiliate: "" });
                     }
                 }
             });
         }
-        saveAll(); renderW();
+        localStorage.setItem('war_v18_3', JSON.stringify(warehouse));
+        renderW();
     };
 
+    // 2. Render danh sách người
+    function renderM() {
+        const lucky = fixedMems[Math.floor((new Date() - new Date("2024-01-01"))/(1000*60*60*24)) % fixedMems.length];
+        document.getElementById('mList').innerHTML = fixedMems.map(m => `
+            <button class="m-btn ${selM?.n === m.n ? 'active' : ''} ${lucky.n === m.n ? 'lucky-border' : ''}" onclick='selectM(${JSON.stringify(m)})'>
+                <b>${m.n}</b><br><small>${m.g} - ${m.d.split('-')[0]}</small>
+            </button>
+        `).join('');
+    }
+
+    function selectM(m) { selM = m; renderM(); renderW(); }
+
+    // 3. Lọc theo giá
+    function setPrice(type, min, max, btn) {
+        priceRange = { min, max };
+        document.querySelectorAll('.p-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderW();
+    }
+
+    // 4 & 5 & 6. Hiển thị bảng hàng
     function renderW() {
         if(!selM) return;
         const lastChar = selM.n.trim().slice(-1).toUpperCase();
-        let pool = warehouse.filter(p => p.name.trim().slice(-1).toUpperCase() === lastChar);
-        
-        document.getElementById('pArea').innerHTML = pool.slice(0, 10).map(p => {
-            const gh = `${document.getElementById('ghLink').value}?id=${p.id}`;
-            return `
+        let pool = warehouse.filter(p => 
+            p.name.trim().slice(-1).toUpperCase() === lastChar && 
+            p.price >= priceRange.min && p.price <= priceRange.max
+        );
+
+        document.getElementById('pArea').innerHTML = pool.map(p => `
             <tr>
-                <td style="text-align:left"><b>${p.name}</b></td>
+                <td><b>${p.name}</b></td>
                 <td style="color:var(--p)">${p.price.toLocaleString()}đ</td>
-                <td><button onclick="copyLink('${gh}')" style="cursor:pointer; background:#fff; border:1px solid #ccc; padding:5px;">📋 Copy Link GitHub</button></td>
-                <td><input type="text" class="input-aff" id="shopee_${p.id}" value="${p.linkAffiliate || ''}" onchange="updateAff('${p.id}', this.value)" placeholder="Dán link xanh..."></td>
+                <td><button onclick="window.open('${p.originalLink}', '_blank')">🔗 Mở Shopee Gốc</button></td>
+                <td><input type="text" class="inp" placeholder="Dán link rút gọn..." onchange="updateAff('${p.id}', this.value)" value="${p.linkAffiliate}"></td>
                 <td>
-                    <button class="btn-ai" style="background:var(--gpt)" onclick="goAI('ChatGPT','${p.id}')">🤖 GPT</button>
-                    <button class="btn-ai" style="background:var(--x)" onclick="goAI('Grok','${p.id}')">🐦 Grok</button>
+                    <button class="btn-action" style="background:var(--gpt)" onclick="goAI('${p.id}')">✍️ Viết Truyện</button>
                 </td>
-            </tr>`;
-        }).join('');
+            </tr>
+        `).join('');
     }
 
-    function copyLink(txt) { navigator.clipboard.writeText(txt); alert("Đã copy Link GitHub để dán vào Facebook!"); }
-    
     function updateAff(id, val) {
         const p = warehouse.find(x => x.id === id);
         if(p) p.linkAffiliate = val;
-        saveAll();
+        localStorage.setItem('war_v18_3', JSON.stringify(warehouse));
     }
 
-    function goAI(ai, id) {
+    function goAI(id) {
         const p = warehouse.find(x => x.id === id);
-        const ghUrl = `${document.getElementById('ghLink').value}?id=${p.id}`;
-        let prompt = `Đóng vai 3 anh em nhà con, viết bài Facebook: Hôm nay ${selM.n} là người may mắn! Tặng quà "${p.name}" vì duyên chữ cái cuối "${selM.n.slice(-1)}". Mọi người vào link này xem quà ủng hộ con nhé: ${ghUrl} (Dặn mọi người dùng 4G mua hàng ạ)`;
+        const ghUrl = `${ghBase}?id=${p.id}`;
+        let prompt = `Viết một câu chuyện ngụ ngôn hoặc hài hước ngắn kể về việc: 
+        Nhân vật chính là ${selM.n} (${selM.g === 'Nam' ? 'ông/anh' : 'bà/chị'}). 
+        Vì có cái tên kết thúc bằng chữ "${selM.n.slice(-1)}" nên định mệnh đã đưa họ đến với món quà "${p.name}".
+        Kết bài kêu gọi mọi người vào link GitHub này để xem sự tích và ủng hộ con mua sữa: ${ghUrl}.
+        (Dặn thêm mọi người dùng mạng 4G để hệ thống ghi nhận chính xác ạ)`;
+        
         navigator.clipboard.writeText(prompt);
-        alert("Đã copy lời dẫn! Hãy sang AI và chuẩn bị ảnh người thân.");
-        window.open(ai === 'ChatGPT' ? "https://chatgpt.com" : "https://x.com/i/grok", "_blank");
+        alert("Đã copy truyện! Bố sang AI dán vào và lấy bài đăng Facebook kèm ảnh người thân nhé.");
+        window.open("https://chatgpt.com", "_blank");
     }
 
     function exportJson() {
@@ -210,8 +188,6 @@
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'files.json'; a.click();
     }
 
-    function clearW() { if(confirm("Xóa kho hàng?")) { warehouse=[]; saveAll(); renderW(); } }
-    if(localStorage.getItem('gh_v18_2')) document.getElementById('ghLink').value = localStorage.getItem('gh_v18_2');
     renderM();
 </script>
 </body>
