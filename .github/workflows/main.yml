@@ -2,29 +2,26 @@ name: Robot_Tu_Dong_Lay_Hang
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-permissions:
-  contents: write # Đây là dòng cực kỳ quan trọng để sửa lỗi X đỏ
+    - cron: '0 0 * * *' # Tự động chạy 7h sáng mỗi ngày
+  workflow_dispatch: # Nút bấm chạy tay
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Cai dat Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: Cai dat thu vien
-        run: pip install pandas openpyxl
-      - name: Chay Robot
+      - name: Install dependencies
+        run: pip install pandas
+      - name: Run Robot
         run: python crawler.py
-      - name: Luu ket qua
+      - name: Commit and Push changes
         run: |
           git config --global user.name "Robot-Nam-Nguyen"
-          git config --global user.email "bot@github.com"
-          git add database.csv
-          git commit -m "Robot cap nhat database.csv" || echo "No changes"
+          git config --global user.email "robot@github.com"
+          git add database.csv database10.csv database6.csv
+          git commit -m "Robot cap nhat database moi" || exit 0
           git push
