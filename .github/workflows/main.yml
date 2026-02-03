@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Cai dat thu vien
-        run: pip install pandas
+       run: pip install pandas openpyxl
       - name: Chay Robot
         run: |
           if [ -f crawler.py ]; then
