@@ -1,4 +1,23 @@
-async function loadProduct() {
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Gia Đình</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background: #f4f4f4; }
+        .card { background: white; max-width: 400px; margin: auto; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        img { width: 100%; border-radius: 10px; }
+        .price { color: #ee4d2d; font-size: 24px; font-weight: bold; margin: 15px 0; }
+        .btn { background: #ee4d2d; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; display: inline-block; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card" id="app">⏳ Đang tải sản phẩm...</div>
+
+<script>
+    async function loadProduct() {
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
         const app = document.getElementById('app');
@@ -7,26 +26,25 @@ async function loadProduct() {
             const response = await fetch('files.json');
             const data = await response.json();
             
-            // Robot tìm đúng "id" bạn vừa nạp
-            const p = data.find(x => String(x.id) === String(productId));
+            // Tìm kiếm thông minh: Thử cả cột "id" và "Mã sản phẩm"
+            const p = data.find(x => String(x.id) === String(productId) || String(x["Mã sản phẩm"]) === String(productId));
 
             if (p) {
                 app.innerHTML = `
-                    <div class="img-box">
-                        <img src="https://down-vn.img.susercontent.com/file/${productId}" onerror="this.src='https://via.placeholder.com/400?text=San+Pham+Gia+Dinh'">
-                    </div>
-                    <div class="info">
-                        <h1>${p.name}</h1>
-                        <div class="price">${p.price}</div>
-                        <p style="color:#777">Sản phẩm chất lượng cao - Giá ưu đãi</p>
-                        <a href="${p.affiliate_link}" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
-                    </div>
+                    <img src="https://down-vn.img.susercontent.com/file/${productId}">
+                    <h2>${p.name || p["Tên sản phẩm"]}</h2>
+                    <div class="price">${p.price || p["Giá"]}</div>
+                    <a href="${p.affiliate_link || p["Link ưu đãi"]}" class="btn">🛒 MUA NGAY TRÊN SHOPEE</a>
                 `;
             } else {
-                app.innerHTML = `<div class="error-box">❌ Không tìm thấy sản phẩm ID: ${productId}</div>`;
+                app.innerHTML = "❌ Sản phẩm này chưa có trong kho!";
             }
         } catch (e) {
-            app.innerHTML = `<div class="error-box">❌ Lỗi Robot: Hãy kiểm tra file files.json</div>`;
+            app.innerHTML = "❌ Lỗi: Bạn hãy kiểm tra lại file files.json nhé!";
         }
     }
     loadProduct();
+</script>
+
+</body>
+</html>
