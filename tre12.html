@@ -2,91 +2,108 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Kho của con</title>
+    <title>Cửa Hàng Quà Tặng Của Con</title>
     <style>
-        /* Thêm hiệu ứng cho kệ hàng */
-        .product-card:hover { transform: scale(1.02); transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn-add { background: #2196F3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 10px; }
+        :root { --primary: #ee4d2d; --secondary: #2196F3; --bg: #f4f4f4; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: #333; }
+        
+        /* ĐẸP: Hiệu ứng Header lung linh */
+        .header { background: linear-gradient(135deg, var(--primary), #ff7337); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        
+        /* SÁNG TẠO: Khu vực nhắc hẹn sinh nhật */
+        .birthday-zone { background: white; margin: 15px; padding: 15px; border-radius: 12px; border-left: 5px solid var(--secondary); display: flex; align-items: center; justify-content: space-between; }
+        .alert-text { color: var(--primary); font-weight: bold; animation: pulse 2s infinite; }
+        
+        /* ĐÚNG: Kệ hàng Grid chuẩn Shopee */
+        .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 15px; }
+        .card { background: white; border-radius: 10px; overflow: hidden; transition: 0.3s; position: relative; border: 1px solid #eee; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 130px; object-fit: cover; }
+        .info { padding: 10px; text-align: center; }
+        .price { color: var(--primary); font-size: 1.1em; font-weight: bold; margin: 5px 0; }
+        .buy-btn { background: var(--primary); color: white; border: none; padding: 7px; width: 100%; border-radius: 0 0 10px 10px; cursor: pointer; }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
     </style>
 </head>
-<body style="font-family: sans-serif; margin: 0; background: #f0f2f5;">
+<body>
 
-<div style="background: white; padding: 10px; text-align: center; border-bottom: 2px solid #ee4d2d;">
-    <h2 style="margin: 0; color: #ee4d2d;">📦 KHO CỦA CON</h2>
+<div class="header">
+    <h1 style="margin:0; font-size: 1.5em;">🎁 SIÊU THỊ QUÀ TẶNG</h1>
+    <p style="margin:5px 0 0; opacity: 0.9; font-size: 0.9em;">Robot săn hàng tự động cho bé</p>
 </div>
 
-<div style="text-align: center; background: #e3f2fd; padding: 10px;">
-    <button class="btn-add" onclick="themBanMoi()">🎂 Thêm Bạn Bè & Ngày Sinh</button>
-    <div id="birthday-alert" style="color: #d32f2f; font-weight: bold; margin-top: 5px;"></div>
+<div class="birthday-zone">
+    <div>
+        <div id="birthday-msg">Hôm nay chưa có sinh nhật ai cả...</div>
+        <div style="font-size: 0.8em; color: #66)6;">Bé hãy thêm bạn bè để Robot nhắc quà nhé!</div>
+    </div>
+    <button onclick="themBan()" style="background: var(--secondary); color:white; border:none; padding:10px; border-radius:8px; cursor:pointer;">+ Thêm Bạn</button>
 </div>
 
-<iframe src="../index.html?tre=12" style="width:100%;height:60vh;border:none"></iframe>
+<iframe src="../index.html?tre=12" style="width:100%; height:45vh; border:none; background:white;"></iframe>
 
-<div id="market" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; padding: 15px; background: #f9f9f9; border-radius: 10px; margin: 10px;"></div>
+<div class="market-grid" id="market">
+    </div>
 
 <script src="../js/tre-score.js"></script>
-<script src="../js/post-proof.js"></script>
-<script src="../js/badge.js"></script>
-<script src="../js/ranking.js"></script>
-<script src="../js/time-lock.js"></script>
-<script src="../js/reminder.js"></script>
 <script src="../js/reward.js"></script>
 
 <script>
-    // 1. Hàm thêm bạn bè mới (Lưu vào máy) [cite: 2026-01-31]
-    function themBanMoi() {
-        const name = prompt("Nhập tên bạn bè:");
-        const bday = prompt("Nhập ngày sinh (Định dạng: Ngày-Tháng, ví dụ: 03-02):");
-        if (name && bday) {
-            let list = JSON.parse(localStorage.getItem('friend_list')) || [];
-            list.push({ name: name, bday: bday });
-            localStorage.setItem('friend_list', JSON.stringify(list));
-            checkBirthday(); // Kiểm tra ngay sau khi thêm
-            alert("Đã nhớ sinh nhật bạn " + name);
+    // SÁNG TẠO: Quản lý danh sách bạn bè bằng bộ nhớ trình duyệt [cite: 2026-01-31]
+    function themBan() {
+        const name = prompt("Nhập tên bạn bè mới:");
+        const date = prompt("Nhập ngày sinh (Ví dụ: 03-02):");
+        if(name && date) {
+            let list = JSON.parse(localStorage.getItem('my_friends')) || [];
+            list.push({name, date});
+            localStorage.setItem('my_friends', JSON.stringify(list));
+            location.reload(); 
         }
     }
 
-    // 2. Hàm nhắc sinh nhật hôm nay
-    function checkBirthday() {
+    function checkBirthdays() {
         const today = new Date();
-        const currentDay = String(today.getDate()).padStart(2, '0') + "-" + String(today.getMonth() + 1).padStart(2, '0');
-        let list = JSON.parse(localStorage.getItem('friend_list')) || [];
-        let congrats = list.filter(f => f.bday === currentDay);
+        const now = String(today.getDate()).padStart(2, '0') + "-" + String(today.getMonth() + 1).padStart(2, '0');
+        let list = JSON.parse(localStorage.getItem('my_friends')) || [];
+        let match = list.filter(f => f.date === now);
         
-        const alertBox = document.getElementById('birthday-alert');
-        if (congrats.length > 0) {
-            alertBox.innerHTML = "🎉 Chúc mừng sinh nhật: " + congrats.map(f => f.name).join(", ") + "! Đừng quên chọn quà nhé!";
+        if(match.length > 0) {
+            document.getElementById('birthday-msg').innerHTML = 
+                `<span class="alert-text">🎉 CHÚC MỪNG SINH NHẬT: ${match.map(m => m.name).join(', ')}!</span>`;
         }
     }
 
-    // 3. Hàm bốc hàng từ Robot
-    async function loadRobotData() {
+    // ĐÚNG: Kết nối với dữ liệu từ Robot Python
+    async function loadMarket() {
         try {
-            const response = await fetch('database.csv');
-            const text = await response.text();
-            const rows = text.split('\n').slice(1); 
-            const market = document.getElementById('market');
+            const res = await fetch('database.csv');
+            const data = await res.text();
+            const rows = data.split('\n').slice(1);
+            const container = document.getElementById('market');
             
-            market.innerHTML = rows.map(row => {
-                const columns = row.split(',');
-                if(columns.length < 4) return '';
-                const [name, price, img, link] = columns;
+            container.innerHTML = rows.map(row => {
+                const [name, price, img, link] = row.split(',');
+                if(!name) return '';
                 return `
-                    <div class="product-card" style="background:white; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; cursor:pointer;" onclick="window.open('${link.trim()}')">
-                        <img src="${img.trim()}" style="width:100%; height:120px; object-fit:cover; border-radius:5px;">
-                        <div style="font-size:12px; margin:5px 0; height:32px; overflow:hidden; font-weight:bold;">${name}</div>
-                        <div style="color:#ee4d2d; font-weight:bold;">${parseInt(price).toLocaleString()}đ</div>
+                    <div class="card" onclick="window.open('${link.trim()}')">
+                        <img src="${img.trim()}" onerror="this.src='https://via.placeholder.com/150'">
+                        <div class="info">
+                            <div style="font-size:12px; font-weight:bold; height:32px; overflow:hidden;">${name}</div>
+                            <div class="price">${parseInt(price).toLocaleString()}đ</div>
+                        </div>
+                        <button class="buy-btn">CHỌN QUÀ</button>
                     </div>
                 `;
             }).join('');
         } catch (e) {
-            document.getElementById('market').innerHTML = "<p style='text-align:center'>Robot đang đi chợ, vui lòng quay lại sau!</p>";
+            document.getElementById('market').innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Robot đang đi lấy hàng, bé đợi tí nhé...</p>";
         }
     }
 
-    // Khởi chạy khi mở web
-    loadRobotData();
-    checkBirthday();
+    // Chạy đồng thời các tính năng
+    loadMarket();
+    checkBirthdays();
 </script>
 
 </body>
