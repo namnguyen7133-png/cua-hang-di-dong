@@ -13,38 +13,32 @@
     </style>
 </head>
 <body>
+    <div class="card" id="app">⏳ Đang tải sản phẩm...</div>
 
-<div class="card" id="app">⏳ Đang tải sản phẩm...</div>
-
-<script>
-    async function loadProduct() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
-        const app = document.getElementById('app');
-
-        try {
-            const response = await fetch('files.json');
-            const data = await response.json();
-            
-            // Tìm kiếm thông minh: Thử cả cột "id" và "Mã sản phẩm"
-            const p = data.find(x => String(x.id) === String(productId) || String(x["Mã sản phẩm"]) === String(productId));
-
-            if (p) {
-                app.innerHTML = `
-                    <img src="https://down-vn.img.susercontent.com/file/${productId}">
-                    <h2>${p.name || p["Tên sản phẩm"]}</h2>
-                    <div class="price">${p.price || p["Giá"]}</div>
-                    <a href="${p.affiliate_link || p["Link ưu đãi"]}" class="btn">🛒 MUA NGAY TRÊN SHOPEE</a>
-                `;
-            } else {
-                app.innerHTML = "❌ Sản phẩm này chưa có trong kho!";
+    <script>
+        async function loadProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const app = document.getElementById('app');
+            try {
+                const response = await fetch('files.json');
+                const data = await response.json();
+                const p = data.find(x => String(x.id) === String(productId) || String(x["Mã sản phẩm"]) === String(productId));
+                if (p) {
+                    app.innerHTML = `
+                        <img src="https://down-vn.img.susercontent.com/file/${productId}">
+                        <h2>${p.name || p["Tên sản phẩm"]}</h2>
+                        <div class="price">${p.price || p["Giá"]}</div>
+                        <a href="${p.affiliate_link || p["Link ưu đãi"]}" target="_blank" class="btn">🛒 MUA NGAY TRÊN SHOPEE</a>
+                    `;
+                } else {
+                    app.innerHTML = "❌ Không tìm thấy sản phẩm!";
+                }
+            } catch (e) {
+                app.innerHTML = "❌ Lỗi: Hãy kiểm tra file files.json";
             }
-        } catch (e) {
-            app.innerHTML = "❌ Lỗi: Bạn hãy kiểm tra lại file files.json nhé!";
         }
-    }
-    loadProduct();
-</script>
-
+        loadProduct();
+    </script>
 </body>
 </html>
