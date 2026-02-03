@@ -1,5 +1,4 @@
-<script>
-    async function loadProduct() {
+async function loadProduct() {
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
         const app = document.getElementById('app');
@@ -8,26 +7,26 @@
             const response = await fetch('files.json');
             const data = await response.json();
             
-            // Robot tìm kiếm linh hoạt: khớp cả số và chữ
-            const p = data.find(x => String(x.id) === String(productId) || String(x["Mã sản phẩm"]) === String(productId));
+            // Robot tìm đúng "id" bạn vừa nạp
+            const p = data.find(x => String(x.id) === String(productId));
 
             if (p) {
                 app.innerHTML = `
                     <div class="img-box">
-                        <img src="https://down-vn.img.susercontent.com/file/${productId}">
+                        <img src="https://down-vn.img.susercontent.com/file/${productId}" onerror="this.src='https://via.placeholder.com/400?text=San+Pham+Gia+Dinh'">
                     </div>
                     <div class="info">
-                        <h1>${p.name || p["Tên sản phẩm"]}</h1>
-                        <div class="price">${p.price || p["Giá"]}</div>
-                        <a href="${p.affiliate_link || p["Link ưu đãi"]}" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
+                        <h1>${p.name}</h1>
+                        <div class="price">${p.price}</div>
+                        <p style="color:#777">Sản phẩm chất lượng cao - Giá ưu đãi</p>
+                        <a href="${p.affiliate_link}" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
                     </div>
                 `;
             } else {
-                app.innerHTML = "❌ Không tìm thấy sản phẩm trong kho!";
+                app.innerHTML = `<div class="error-box">❌ Không tìm thấy sản phẩm ID: ${productId}</div>`;
             }
         } catch (e) {
-            app.innerHTML = "❌ Lỗi tải dữ liệu files.json!";
+            app.innerHTML = `<div class="error-box">❌ Lỗi Robot: Hãy kiểm tra file files.json</div>`;
         }
     }
     loadProduct();
-</script>
