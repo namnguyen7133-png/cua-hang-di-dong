@@ -1,0 +1,32 @@
+name: Robot_Tu_Dong_Lay_Hang
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Robot tự chạy lúc 7h sáng mỗi ngày
+  workflow_dispatch:   # Tạo nút bấm để bạn chạy tay bất cứ lúc nào
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cai dat Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Cai dat thu vien
+        run: pip install pandas
+      - name: Chay Robot
+        run: |
+          if [ -f crawler.py ]; then
+            python crawler.py
+          else
+            echo "Chưa có file crawler.py, Robot tạm nghỉ!"
+          fi
+      - name: Luu ket qua
+        run: |
+          git config --global user.name "Robot-Nam-Nguyen"
+          git config --global user.email "bot@github.com"
+          git add database.csv || echo "Không có file mới"
+          git commit -m "Robot cap nhat database.csv" || echo "Không có gì thay đổi"
+          git push
