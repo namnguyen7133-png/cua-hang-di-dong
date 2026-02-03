@@ -1,9 +1,46 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head><meta charset="UTF-8"><title>Kho của con</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Cửa Hàng Quà Tặng - Bé 10 Tuổi</title>
+    <style>
+        :root { --primary: #2196F3; --secondary: #4CAF50; --bg: #f9f9f9; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: #333; }
+        .header { background: linear-gradient(135deg, var(--primary), #00bcd4); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .birthday-zone { background: white; margin: 15px; padding: 15px; border-radius: 12px; border-left: 5px solid var(--secondary); display: flex; align-items: center; justify-content: space-between; }
+        .alert-text { color: #ff5722; font-weight: bold; animation: pulse 2s infinite; }
+        .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 15px; }
+        .card { background: white; border-radius: 10px; overflow: hidden; transition: 0.3s; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 160px; object-fit: cover; }
+        .info { padding: 10px; text-align: center; }
+        .price { color: #ee4d2d; font-size: 1.1em; font-weight: bold; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
 <body>
-<h2>📦 KHO CỦA CON</h2>
-<iframe src="../index.html?tre=12" style="width:100%;height:90vh;border:none"></iframe>
+
+<div class="header">
+    <h1 style="margin:0; font-size: 1.5em;">🎁 CỬA HÀNG CỦA ANH HAI (10T)</h1>
+    <p style="margin:5px 0 0; opacity: 0.9;">Robot săn hàng thông minh cho bé 10 tuổi</p>
+</div>
+
+<div class="birthday-zone">
+    <div>
+        <div id="birthday-msg">Hôm nay chưa có sinh nhật ai cả...</div>
+        <div style="font-size: 0.8em; color: #666;">Bé hãy thêm bạn ở lớp 4-5 vào đây nhé!</div>
+    </div>
+    <button onclick="themBan()" style="background: var(--secondary); color:white; border:none; padding:10px 15px; border-radius:8px; cursor:pointer; font-weight:bold;">+ Thêm Bạn Mới</button>
+</div>
+
+<div class="market-grid" id="market">
+    <p style="grid-column: 1/-1; text-align: center;">Robot đang đi lấy đồ chơi cho bé 10 tuổi...</p>
+</div>
+
+<div style="padding: 15px;">
+    <h3 style="margin-left: 10px;">📊 BẢNG ĐIỂM CỦA CON (10T)</h3>
+    <iframe src="../index.html?tre=10" style="width:100%; height:80vh; border:none; border-radius:15px; background:white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></iframe>
+</div>
 
 <script src="../js/tre-score.js"></script>
 <script src="../js/post-proof.js"></script>
@@ -12,5 +49,63 @@
 <script src="../js/time-lock.js"></script>
 <script src="../js/reminder.js"></script>
 <script src="../js/reward.js"></script>
+
+<script>
+    // 1. TÍNH NĂNG BẠN BÈ RIÊNG BIỆT [cite: 2026-01-31]
+    function themBan() {
+        const name = prompt("Nhập tên bạn mới của bé 10T:");
+        const date = prompt("Nhập ngày sinh (Ví dụ: 03-02):");
+        if(name && date) {
+            // Lưu vào kho 'my_friends_10' để không lẫn với bé 12T hay 6T [cite: 2026-01-31]
+            let list = JSON.parse(localStorage.getItem('my_friends_10')) || [];
+            list.push({name, date});
+            localStorage.setItem('my_friends_10', JSON.stringify(list));
+            location.reload(); 
+        }
+    }
+
+    function checkBirthdays() {
+        const today = new Date();
+        const now = String(today.getDate()).padStart(2, '0') + "-" + String(today.getMonth() + 1).padStart(2, '0');
+        let list = JSON.parse(localStorage.getItem('my_friends_10')) || [];
+        let match = list.filter(f => f.date === now);
+        if(match.length > 0) {
+            document.getElementById('birthday-msg').innerHTML = `<span class="alert-text">🎉 CHÚC MỪNG SINH NHẬT BẠN: ${match.map(m => m.name).join(', ')}!</span>`;
+        }
+    }
+
+    // 2. ROBOT BỐC HÀNG CHO BÉ 10 TUỔI
+    async function loadMarket() {
+        try {
+            // Nhớ tạo file database10.csv trên GitHub nhé!
+            const res = await fetch('database10.csv');
+            const data = await res.text();
+            const rows = data.split('\n').slice(1);
+            const container = document.getElementById('market');
+            
+            container.innerHTML = rows.map(row => {
+                const cols = row.split(',');
+                if(cols.length < 4) return '';
+                const [name, price, img, link] = cols;
+                return `
+                    <div class="card" onclick="window.open('${link.trim()}', '_blank')" style="cursor:pointer;">
+                        <img src="${img.trim()}" onerror="this.src='https://via.placeholder.com/150?text=Do+Choi+10T'">
+                        <div class="info">
+                            <div style="font-size:13px; font-weight:bold; height:32px; overflow:hidden;">${name}</div>
+                            <div class="price">${parseInt(price).toLocaleString()}đ</div>
+                            <button style="background:var(--primary); color:white; border:none; width:100%; padding:8px; margin-top:5px; border-radius:5px; cursor:pointer;">XEM QUÀ</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        } catch (e) {
+            container.innerHTML = "<p>Bố ơi, hãy tạo file database10.csv để Robot bỏ quà vào đây nhé!</p>";
+        }
+    }
+
+    loadMarket();
+    checkBirthdays();
+</script>
+
 </body>
 </html>
