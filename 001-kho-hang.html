@@ -1,46 +1,32 @@
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
-    const app = document.getElementById('app');
-
     async function loadProduct() {
-        if (!productId) {
-            app.innerHTML = `<div class="error-box">❌ Không tìm thấy mã sản phẩm!</div>`;
-            return;
-        }
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const app = document.getElementById('app');
 
         try {
             const response = await fetch('files.json');
             const data = await response.json();
             
-            // Robot tìm sản phẩm theo ID
-            const p = data.find(x => x.id === productId || x.Mã_sản_phẩm === productId);
+            // Robot tìm kiếm linh hoạt: khớp cả số và chữ
+            const p = data.find(x => String(x.id) === String(productId) || String(x["Mã sản phẩm"]) === String(productId));
 
             if (p) {
-                // Lấy link rút gọn có hoa hồng (ưu tiên cột Link ưu đãi)
-                const affLink = p.Link_ưu_đãi || p.affiliate_link || `https://shopee.vn/product/0/${p.id}`;
-
                 app.innerHTML = `
                     <div class="img-box">
-                        <img src="${p.img_url || 'https://down-vn.img.susercontent.com/file/' + p.id}" onerror="this.src='https://via.placeholder.com/400x400?text=Sản+Phẩm+Gia+Đình'">
+                        <img src="https://down-vn.img.susercontent.com/file/${productId}">
                     </div>
                     <div class="info">
-                        <h1>${p.Tên_sản_phẩm || p.name}</h1>
-                        <div class="price">Giá Ưu Đãi: ${p.Giá || 'Liên hệ'}</div>
-                        <p style="color:#777">Sản phẩm có lượt bán ${p.Doanh_thu || 'khủng'} - Hoa hồng ${p.Tỉ_lệ_hoa_hồng || ''}</p>
-                        
-                        <a href="${affLink}" target="_blank" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
-                    </div>
-                    <div style="margin-top:20px">
-                        <a href="index.html" style="color:var(--s); text-decoration:none; font-size:14px;">← Quay lại cửa hàng</a>
+                        <h1>${p.name || p["Tên sản phẩm"]}</h1>
+                        <div class="price">${p.price || p["Giá"]}</div>
+                        <a href="${p.affiliate_link || p["Link ưu đãi"]}" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
                     </div>
                 `;
-                document.title = (p.Tên_sản_phẩm || p.name) + " - Cửa Hàng Gia Đình";
             } else {
-                app.innerHTML = `<div class="error-box">❌ Sản phẩm chưa cập nhật vào kho!</div>`;
+                app.innerHTML = "❌ Không tìm thấy sản phẩm trong kho!";
             }
-        } catch (error) {
-            app.innerHTML = `<div class="error-box">❌ Lỗi Robot tải dữ liệu!</div>`;
+        } catch (e) {
+            app.innerHTML = "❌ Lỗi tải dữ liệu files.json!";
         }
     }
     loadProduct();
