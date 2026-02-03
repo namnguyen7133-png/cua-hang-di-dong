@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vương Quốc Quà Tặng Của 3 Công Chúa</title>
+    <style>
+        :root {
+            --pink: #ff85a2;
+            --purple: #a29bfe;
+            --mint: #55efc4;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: #fff5f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            color: #d63384;
+        }
+        .header h1 { margin: 0; font-size: 2.5em; text-shadow: 2px 2px white; }
+        .header p { font-size: 1.2em; opacity: 0.8; }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        .princess-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.1);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .princess-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--pink);
+        }
+
+        .princess-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 8px solid #fdf2f4;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .princess-card h2 { color: #d63384; margin: 10px 0; }
+        .princess-card .age { 
+            background: var(--pink); color: white; padding: 5px 15px; 
+            border-radius: 20px; font-size: 0.9em; display: inline-block;
+        }
+
+        /* Màu riêng cho từng bé */
+        .card-12 { border-bottom: 8px solid var(--pink); }
+        .card-10 { border-bottom: 8px solid var(--purple); }
+        .card-6 { border-bottom: 8px solid var(--mint); }
+
+        .sparkle { position: absolute; top: 10px; right: 20px; font-size: 1.5em; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>👑 VƯƠNG QUỐC QUÀ TẶNG</h1>
+    <p>Chào mừng 3 nàng công chúa xinh đẹp của ba!</p>
+</div>
+
+<div class="container">
+    <div class="princess-card card-12" onclick="window.location.href='tre12.html'">
+        <div class="sparkle">✨</div>
+        <img src="https://via.placeholder.com/200/ff85a2/ffffff?text=Chi+Ca" alt="Chị Cả">
+        <h2>Chị Cả</h2>
+        <span class="age">12 Tuổi</span>
+        <p style="color: #888; font-style: italic; margin-top: 15px;">Shop đồ sành điệu</p>
+    </div>
+
+    <div class="princess-card card-10" onclick="window.location.href='tre10.html'">
+        <div class="sparkle">🌸</div>
+        <img src="https://via.placeholder.com/200/a29bfe/ffffff?text=Chi+Hai" alt="Chị Hai">
+        <h2>Chị Hai</h2>
+        <span class="age" style="background: var(--purple);">10 Tuổi</span>
+        <p style="color: #888; font-style: italic; margin-top: 15px;">Shop đồ sáng tạo</p>
+    </div>
+
+    <div class="princess-card card-6" onclick="window.location.href='tre6.html'">
+        <div class="sparkle">🧸</div>
+        <img src="https://via.placeholder.com/200/55efc4/ffffff?text=Em+Ut" alt="Em Út">
+        <h2>Em Út</h2>
+        <span class="age" style="background: var(--mint);">6 Tuổi</span>
+        <p style="color: #888; font-style: italic; margin-top: 15px;">Shop đồ dễ thương</p>
+    </div>
+</div>
+
+<footer style="margin-top: 50px; color: #d63384; font-size: 0.9em; padding-bottom: 30px;">
+    💖 Yêu các con nhất trên đời! 💖
+</footer>
+
+</body>
+</html>
