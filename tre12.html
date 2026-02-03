@@ -2,10 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Siêu Thị Quà Tặng Của Con</title>
+    <title>Cửa Hàng Quà Tặng Của Con</title>
     <style>
         :root { --primary: #ee4d2d; --secondary: #2196F3; --bg: #f4f4f4; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: #333; }
         .header { background: linear-gradient(135deg, var(--primary), #ff7337); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .birthday-zone { background: white; margin: 15px; padding: 15px; border-radius: 12px; border-left: 5px solid var(--secondary); display: flex; align-items: center; justify-content: space-between; }
         .alert-text { color: var(--primary); font-weight: bold; animation: pulse 2s infinite; }
@@ -37,14 +37,14 @@
     </div>
 
 <div style="padding: 15px;">
-    <iframe src="index.html?tre=12" style="width:100%; height:80vh; border:10px solid white; border-radius:15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></iframe>
+    <iframe src="index.html?tre=12" style="width:100%; height:80vh; border:none; border-radius:15px; background:white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></iframe>
 </div>
 
 <script src="../js/tre-score.js"></script>
 <script src="../js/reward.js"></script>
 
 <script>
-    // QUẢN LÝ BẠN BÈ [cite: 2026-01-31]
+    // 1. TÍNH NĂNG QUẢN LÝ BẠN BÈ [cite: 2026-01-31]
     function themBan() {
         const name = prompt("Nhập tên bạn bè mới:");
         const date = prompt("Nhập ngày sinh (Ví dụ: 03-02):");
@@ -66,7 +66,7 @@
         }
     }
 
-    // HIỂN THỊ HÀNG HÓA
+    // 2. TÍNH NĂNG BỐC HÀNG TỪ ROBOT
     async function loadMarket() {
         try {
             const res = await fetch('database.csv');
@@ -79,23 +79,25 @@
                 if(cols.length < 4) return '';
                 const [name, price, img, link] = cols;
                 return `
-                    <div class="card" onclick="window.open('${link.trim()}', '_blank')">
-                        <img src="${img.trim()}" onerror="this.src='https://via.placeholder.com/150'">
+                    <div class="card" onclick="window.open('${link.trim()}', '_blank')" style="cursor:pointer;">
+                        <img src="${img.trim()}" style="width:100%; height:180px; object-fit:cover;" onerror="this.src='https://via.placeholder.com/150'">
                         <div class="info">
                             <div style="font-size:13px; font-weight:bold; height:32px; overflow:hidden;">${name}</div>
                             <div class="price">${parseInt(price).toLocaleString()}đ</div>
-                            <button style="background:var(--primary); color:white; border:none; width:100%; padding:8px; margin-top:5px; border-radius:5px; cursor:pointer;">XEM CHI TIẾT</button>
+                            <button style="background:var(--primary); color:white; border:none; width:100%; padding:8px; margin-top:5px; border-radius:5px; cursor:pointer; font-weight:bold;">XEM TRÊN SHOPEE</button>
                         </div>
                     </div>
                 `;
             }).join('');
         } catch (e) {
-            document.getElementById('market').innerHTML = "Đang đợi Robot mang hàng về...";
+            document.getElementById('market').innerHTML = "<p>Đang tải hàng...</p>";
         }
     }
 
+    // Chạy các lệnh
     loadMarket();
     checkBirthdays();
 </script>
+
 </body>
 </html>
