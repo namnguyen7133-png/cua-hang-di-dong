@@ -1,78 +1,47 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cửa Hàng Gia Đình - Chi Tiết Sản Phẩm</title>
-    <style>
-        :root { --p: #ee4d2d; --s: #1877F2; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; max-width: 500px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; text-align: center; padding-bottom: 30px; }
-        .img-box { width: 100%; height: 350px; background: #eee; display: flex; align-items: center; justify-content: center; }
-        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .info { padding: 20px; }
-        h1 { color: #333; font-size: 22px; margin: 10px 0; }
-        .price { color: var(--p); font-size: 28px; font-weight: bold; margin: 10px 0; }
-        .btn-buy { background: var(--p); color: white; text-decoration: none; padding: 15px 40px; border-radius: 30px; display: inline-block; font-weight: bold; font-size: 18px; margin-top: 20px; transition: 0.3s; }
-        .btn-buy:hover { transform: scale(1.05); background: #d73211; }
-        .loading { padding: 50px; color: #666; }
-        .error-box { padding: 50px; color: red; }
-    </style>
-</head>
-<body>
-
-<div class="card" id="app">
-    <div class="loading">⏳ Đang tìm sản phẩm...</div>
-</div>
-
 <script>
-    // 1. Lấy mã ID sản phẩm từ địa chỉ Web (Ví dụ: ?id=22183344512)
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
     const app = document.getElementById('app');
 
-    // 2. Hàm tải dữ liệu từ file files.json bố đã xuất lên GitHub
     async function loadProduct() {
         if (!productId) {
-            app.innerHTML = `<div class="error-box">❌ Không tìm thấy mã sản phẩm!<br>Vui lòng quay lại sau.</div>`;
+            app.innerHTML = `<div class="error-box">❌ Không tìm thấy mã sản phẩm!</div>`;
             return;
         }
 
         try {
-            // Tải file dữ liệu (Đảm bảo file files.json nằm cùng thư mục với file này)
             const response = await fetch('files.json');
             const data = await response.json();
             
-            // Tìm sản phẩm có ID trùng với ID trên link
-            const p = data.find(x => x.id === productId);
+            // Robot tìm sản phẩm theo ID
+            const p = data.find(x => x.id === productId || x.Mã_sản_phẩm === productId);
 
             if (p) {
-                // Nếu tìm thấy, hiển thị ra màn hình
+                // Lấy link rút gọn có hoa hồng (ưu tiên cột Link ưu đãi)
+                const affLink = p.Link_ưu_đãi || p.affiliate_link || `https://shopee.vn/product/0/${p.id}`;
+
                 app.innerHTML = `
                     <div class="img-box">
-                        <img src="https://down-vn.img.susercontent.com/file/${p.id}" onerror="this.src='https://via.placeholder.com/400x400?text=Sản+Phẩm+Gia+Đình'">
+                        <img src="${p.img_url || 'https://down-vn.img.susercontent.com/file/' + p.id}" onerror="this.src='https://via.placeholder.com/400x400?text=Sản+Phẩm+Gia+Đình'">
                     </div>
                     <div class="info">
-                        <h1>${p.name}</h1>
-                        <div class="price">Giá Ưu Đãi</div>
-                        <p style="color:#777">Sản phẩm được lựa chọn bởi Hệ Thống Marketing Gia Đình</p>
-                        <a href="https://shopee.vn/product/0/${p.id}" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
+                        <h1>${p.Tên_sản_phẩm || p.name}</h1>
+                        <div class="price">Giá Ưu Đãi: ${p.Giá || 'Liên hệ'}</div>
+                        <p style="color:#777">Sản phẩm có lượt bán ${p.Doanh_thu || 'khủng'} - Hoa hồng ${p.Tỉ_lệ_hoa_hồng || ''}</p>
+                        
+                        <a href="${affLink}" target="_blank" class="btn-buy">🛒 MUA NGAY TRÊN SHOPEE</a>
                     </div>
                     <div style="margin-top:20px">
                         <a href="index.html" style="color:var(--s); text-decoration:none; font-size:14px;">← Quay lại cửa hàng</a>
                     </div>
                 `;
-                document.title = p.name + " - Cửa Hàng Gia Đình";
+                document.title = (p.Tên_sản_phẩm || p.name) + " - Cửa Hàng Gia Đình";
             } else {
-                app.innerHTML = `<div class="error-box">❌ Sản phẩm (ID: ${productId}) không tồn tại trong kho!</div>`;
+                app.innerHTML = `<div class="error-box">❌ Sản phẩm chưa cập nhật vào kho!</div>`;
             }
         } catch (error) {
-            app.innerHTML = `<div class="error-box">❌ Lỗi tải dữ liệu!<br>Bố hãy kiểm tra xem đã nhấn nút "Xuất files.json" chưa nhé.</div>`;
+            app.innerHTML = `<div class="error-box">❌ Lỗi Robot tải dữ liệu!</div>`;
         }
     }
-
     loadProduct();
 </script>
-
-</body>
-</html>
