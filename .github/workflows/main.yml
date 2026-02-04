@@ -22,6 +22,7 @@ jobs:
         run: |
           git config --global user.name "Robot-Nam-Nguyen"
           git config --global user.email "robot@github.com"
-          git add database.csv database10.csv database6.csv
-          git commit -m "Robot cap nhat database moi" || exit 0
+          # Đã thêm friends.csv vào lệnh dưới đây để Robot biết đường lưu lại
+          git add friends.csv database.csv database10.csv database6.csv
+          git commit -m "Robot cap nhat database va dien link friends" || exit 0
           git push
