@@ -1,0 +1,14 @@
+{
+  "priority_order": [
+    "menh_day",
+    "menh_week",
+    "menh_month",
+    "menh_quarter",
+    "menh_year"
+  ],
+  "five_elements": ["Moc", "Hoa", "Tho", "Kim", "Thuy"],
+  "score_forward": {
+    "main": 100,
+    "order": [80, 60, 40, 20]
+  }
+}
