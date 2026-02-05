@@ -1,0 +1,11 @@
+{
+  "use_menh_day": true,
+  "use_menh_week": true,
+  "use_menh_month": true,
+  "use_menh_quarter": true,
+  "use_menh_year": true,
+  "use_zodiac": true,
+  "use_5_pillars_score": true,
+  "reverse_score_if_tie": true,
+  "random_if_still_tie": true
+}
