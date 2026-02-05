@@ -2,8 +2,8 @@ name: Robot_He_Thong_Lixi_Va_Crawler
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Chạy lúc 7h sáng giờ VN
-  workflow_dispatch: # Nút bấm chạy tay trên GitHub
+    - cron: '0 0 * * *' # Tự động chạy lúc 7h sáng giờ VN
+  workflow_dispatch: # Cho phép bấm chạy tay bất cứ lúc nào
 
 jobs:
   build:
@@ -19,17 +19,20 @@ jobs:
       - name: Install dependencies
         run: pip install pandas
 
-      - name: Run Robot Crawler (Lay du lieu cu)
+      - name: Run Robot Crawler
         run: python crawler.py
 
-      - name: Run Tiem Li Xi (Chon Sep va Qua moi)
+      - name: Run Tiem Li Xi
         run: python run.py
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "Robot-Nam-Nguyen"
           git config --global user.email "robot@github.com"
-          # Them tat ca cac file da thay doi: databases, lich su, va index.html
-          git add data/history.csv index.html friends.csv database.csv database10.csv database6.csv
-          git commit -m "Robot: Cap nhat database & Chon Sep Li Xi moi" || exit 0
+          
+          # QUAN TRỌNG: Cập nhật đường dẫn file đúng cấu trúc mới
+          git add index.html database.csv database10.csv database6.csv
+          git add data/history.csv data/friends.csv data/products.csv
+          
+          git commit -m "Robot: Cap nhat lich su va index.html" || exit 0
           git push
