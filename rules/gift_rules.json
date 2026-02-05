@@ -1,0 +1,14 @@
+{
+  "by_relationship": {
+    "dan_ong": "kiem_tien",
+    "phu_nu": "tinh_cam",
+    "tre_em": "do_choi",
+    "nguoi_gia": "suc_khoe",
+    "cha_me": "gia_dinh"
+  },
+  "tie_breakers": [
+    "last_chars_match",
+    "word_count_match",
+    "random"
+  ]
+}
