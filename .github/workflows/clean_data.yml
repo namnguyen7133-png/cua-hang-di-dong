@@ -1,0 +1,32 @@
+name: Robot Lam Sach Du Lieu
+on:
+  push:
+    paths:
+      - 'raw_data/*.csv' # Robot sẽ thức dậy khi bạn dán file vào thư mục này
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install pandas
+
+      - name: Chạy Robot dọn dẹp
+        run: |
+          python robot_clean.py
+          
+      - name: Luu lai du lieu sạch
+        run: |
+          git config --global user.name 'Robot-Affiliate'
+          git config --global user.email 'robot@affiliate.com'
+          git add processed_data/*.csv
+          git commit -m "Robot đã dọn dẹp dữ liệu ngày $(date +%F)"
+          git push
