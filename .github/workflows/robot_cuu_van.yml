@@ -1,25 +1,27 @@
-name: Robot Cuu Van Phan Loai
+name: Robot Cuu Van Tu Dong
+
 on:
   schedule:
-    - cron: "0 23 * * *" # Chạy lúc 6h sáng VN
-  workflow_dispatch: # Cho phép bạn bấm chạy thủ công từ điện thoại
+    # 1h, 5h, 12h giờ Quốc tế tương ứng 8h, 12h, 19h Việt Nam
+    - cron: '0 1,5,12 * * *'
+  workflow_dispatch: # Giúp bạn bấm chạy thủ công trên điện thoại bất cứ lúc nào
 
 jobs:
-  build:
+  run-robot:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Lay code ve
         uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-      - name: Run Robot Cuu Van
-        run: python robot_cuu_van.py
-      - name: Commit result
+
+      - name: Chay Python Robot
         run: |
-          git config --global user.name "Robot-Cuu-Van"
-          git config --global user.email "robot@cuuvan.com"
-          git add *.csv
-          git commit -m "Robot phân loại theo Cửu Vận $(date +%F)" || exit 0
+          python engine/story_engine.py 
+          # Tôi thấy bạn có file story_engine.py trong ảnh, ta sẽ dùng nó làm bộ não chính
+
+      - name: Day ket qua len Github
+        run: |
+          git config --global user.name "Robot-Cua-Hang"
+          git config --global user.email "bot@github.com"
+          git add .
+          git commit -m "Robot da cap nhat link va don dep file HTML" || exit 0
           git push
