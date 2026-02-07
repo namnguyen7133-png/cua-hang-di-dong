@@ -1,4 +1,5 @@
 import datetime
+import os
 
 # Dữ liệu chuẩn Cửu Vận bạn đã cung cấp
 DATA = {
@@ -14,14 +15,28 @@ DATA = {
 }
 
 def logic_cuu_van():
+    # Tính toán vận
     day_of_year = datetime.datetime.now().timetuple().tm_yday
     van = (day_of_year % 9) or 9
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     
-    # Tạo file báo cáo kết quả
-    with open(f"KET_QUA_VAN_{van}.csv", "w", encoding="utf-8-sig") as f:
-        f.write("Ngày, Vận, Ngành hàng ưu tiên\n")
-        f.write(f"{today}, Vận {van}, {DATA[van]}")
+    # 1. Đảm bảo file kết quả chui vào đúng chỗ, không nằm đè lên friends.csv
+    target_dir = 'processed_data'
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    # 2. Tạo tên file có ngày tháng để không bị trùng lặp
+    file_name = f"KET_QUA_VAN_{today}.csv"
+    file_path = os.path.join(target_dir, file_name)
+    
+    # 3. Ghi kết quả
+    try:
+        with open(file_path, "w", encoding="utf-8-sig") as f:
+            f.write("Ngày, Vận, Ngành hàng ưu tiên\n")
+            f.write(f"{today}, Vận {van}, {DATA[van]}")
+        print(f"Robot Cử Vạn: Đã xem quẻ xong! Kết quả cất tại {file_path}")
+    except Exception as e:
+        print(f"Robot Cử Vạn: Đại ca ơi, không ghi được sổ rồi: {e}")
 
 if __name__ == "__main__":
     logic_cuu_van()
