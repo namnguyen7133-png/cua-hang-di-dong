@@ -1,34 +1,74 @@
-stt,birthday,gender,last_chars,word_count,age,img_url,product_link,element,zodiac
-1,04/06/1944,Nam,N-C-G,3,82,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Song Tử
-2,29/08/1948,Nu,O-I-A,3,78,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Xử Nữ
-3,03/03/1971,Nam,N-H-M,3,55,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Song Ngư
-4,23/09/1981,Nu,N-I-M-H,4,45,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Thiên Bình
-5,28/09/2014,Nu,N-O-N-N,4,12,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Thiên Bình
-6,25/07/2016,Nu,N-O-H-U,4,10,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Hỏa,Sư Tử
-7,05/02/2020,Nu,N-O-H-C,4,6,https://down-cvs-vn.img.susercontent.com/sg-11134201-7rfh8-m9y3lu0rp6zt11.webp,https://s.shopee.vn/5fj08y0YQn,Thổ,Bảo Bình
-8,07/01/1974,Nu,N-I-H-G,4,52,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Ma Kết
-9,23/05/1973,Nam,O-Y-G,3,53,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Song Tử
-10,12/10/2000,Nam,O-A-H,3,26,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Thiên Bình
-11,05/04/2005,Nu,O-A-H,3,21,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Bạch Dương
-12,06/11/1978,Nu,N-I-H-G,4,48,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Bọ Cạp
-13,21/09/1978,Nam,G-H-G,3,48,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Xử Nữ
-14,03/06/2010,Nam,G-I-H,3,16,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Mộc,Song Tử
-15,14/11/2015,Nu,G-N-H-H,4,11,https://down-cvs-vn.img.susercontent.com/sg-11134201-7rfh8-m9y3lu0rp6zt11.webp,https://s.shopee.vn/5fj08y0YQn,Kim,Bọ Cạp
-16,09/08/1960,Nu,O-M-E,3,66,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Sư Tử
-17,23/10/1983,Nam,N-N-H,3,43,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Thiên Yết
-18,24/03/2001,Nam,N-E-H,3,25,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Bạch Dương
-19,12/12/1948,Nu,O-I-I,3,78,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Nhân Mã
-20,17/06/1996,Nam,O-T-G,3,30,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Song Tử
-21,10/10/1964,Nu,O-I-G,3,62,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Thiên Bình
-22,24/04/1974,Nam,U-N-P,3,52,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Kim Ngưu
-23,08/02/1946,Nu,N-I-I,3,80,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Bảo Bình
-24,30/11/1957,Nam,N-N-C,3,69,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Nhân Mã
-25,08/08/1954,Nu,N-I-M,3,72,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Sư Tử
-26,18/04/1955,Nam,N-N-U,3,71,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Bạch Dương
-27,08/08/1954,Nu,N-I-M,3,72,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Sư Tử
-28,21/05/1958,Nu,N-I-H,3,68,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Kim Ngưu
-29,21/05/1980,Nu,N-I-H-T,4,46,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Kim Ngưu
-30,21/05/1983,Nam,N-N-N,3,43,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Kim Ngưu
-31,26/03/2010,Nu,N-N-I,3,16,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Mộc,Bạch Dương
-32,26/06/1990,Nu,E-I-G,3,36,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thổ,Cự Giải
-33,02/06/2004,Nam,N-I-M,3,22,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Song Tử
+stt,ten_doi_tuong,birthday,gender,nhom,phu_huynh,dien_thoai,img_url,product_link,element,zodiac
+1,Lão Niên 1,04/06/1944,Nam,Phu_Huynh,N-C-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Song Tử
+2,Lão Niên 2,29/08/1948,Nu,Phu_Huynh,O-I-A,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Xử Nữ
+3,Trung Niên 3,03/03/1971,Nam,Phu_Huynh,N-H-M,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Song Ngư
+4,Trung Niên 4,23/09/1981,Nu,Phu_Huynh,N-I-M-H,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Thiên Bình
+5,Thanh Niên 5,28/09/2014,Nu,Phu_Huynh,N-O-N-N,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Thiên Bình
+6,Thanh Niên 6,25/07/2016,Nu,Phu_Huynh,N-O-H-U,000000000,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Hỏa,Sư Tử
+7,Thanh Niên 7,05/02/2020,Nu,Phu_Huynh,N-O-H-C,000000000,https://down-cvs-vn.img.susercontent.com/sg-11134201-7rfh8-m9y3lu0rp6zt11.webp,https://s.shopee.vn/5fj08y0YQn,Thổ,Bảo Bình
+8,Trung Niên 8,07/01/1974,Nu,Phu_Huynh,N-I-H-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Ma Kết
+9,Trung Niên 9,23/05/1973,Nam,Phu_Huynh,O-Y-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Song Tử
+10,Thanh Niên 10,12/10/2000,Nam,Phu_Huynh,O-A-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Thiên Bình
+11,Thanh Niên 11,05/04/2005,Nu,Phu_Huynh,O-A-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Bạch Dương
+12,Trung Niên 12,06/11/1978,Nu,Phu_Huynh,N-I-H-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Bọ Cạp
+13,Trung Niên 13,21/09/1978,Nam,Phu_Huynh,G-H-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Xử Nữ
+14,Thanh Niên 14,03/06/2010,Nam,Phu_Huynh,G-I-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Mộc,Song Tử
+15,Thanh Niên 15,14/11/2015,Nu,Phu_Huynh,G-N-H-H,000000000,https://down-cvs-vn.img.susercontent.com/sg-11134201-7rfh8-m9y3lu0rp6zt11.webp,https://s.shopee.vn/5fj08y0YQn,Kim,Bọ Cạp
+16,Lão Niên 16,09/08/1960,Nu,Phu_Huynh,O-M-E,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Sư Tử
+17,Trung Niên 17,23/10/1983,Nam,Phu_Huynh,N-N-H,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Thiên Yết
+18,Thanh Niên 18,24/03/2001,Nam,Phu_Huynh,N-E-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Bạch Dương
+19,Lão Niên 19,12/12/1948,Nu,Phu_Huynh,O-I-I,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Nhân Mã
+20,Thanh Niên 20,17/06/1996,Nam,Phu_Huynh,O-T-G,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Song Tử
+21,Lão Niên 21,10/10/1964,Nu,Phu_Huynh,O-I-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Thiên Bình
+22,Trung Niên 22,24/04/1974,Nam,Phu_Huynh,U-N-P,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Kim Ngưu
+23,Lão Niên 23,08/02/1946,Nu,Phu_Huynh,N-I-I,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Bảo Bình
+24,Lão Niên 24,30/11/1957,Nam,Phu_Huynh,N-N-C,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Nhân Mã
+25,Lão Niên 25,08/08/1954,Nu,Phu_Huynh,N-I-M,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Sư Tử
+26,Lão Niên 26,18/04/1955,Nam,Phu_Huynh,N-N-U,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Bạch Dương
+27,Lão Niên 27,08/08/1954,Nu,Phu_Huynh,N-I-M,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Sư Tử
+28,Lão Niên 28,21/05/1958,Nu,Phu_Huynh,N-I-H,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Kim Ngưu
+29,Trung Niên 29,21/05/1980,Nu,Phu_Huynh,N-I-H-T,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Kim Ngưu
+30,Trung Niên 30,21/05/1983,Nam,Phu_Huynh,N-N-N,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Kim Ngưu
+31,Thanh Niên 31,26/03/2010,Nu,Phu_Huynh,N-N-I,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Mộc,Bạch Dương
+32,Thanh Niên 32,26/06/1990,Nu,Phu_Huynh,E-I-G,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thổ,Cự Giải
+33,Thanh Niên 33,02/06/2004,Nam,Phu_Huynh,N-I-M,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Song Tử
+34,Lại Đức Phúc An,06/07/2020,Nam,Hoc_Sinh,Nguyễn Linh Chi,0977471991,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
+35,Phan Hạ An,14/06/2020,Nu,Hoc_Sinh,Nguyễn Thị Mai,0941940771,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Tử
+36,Lại Ngọc Huyền Anh,26/01/2020,Nu,Hoc_Sinh,Nghiêm Thị Kim Liên,0936345665,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
+37,Nguyễn Trần Phúc Anh,19/09/2020,Nam,Hoc_Sinh,Nguyễn Văn Hiến,0987333059,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Xử Nữ
+38,Nguyễn Vũ Bảo Anh,13/02/2020,Nu,Hoc_Sinh,Vũ Thị Hằng,0945596834,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
+39,Nguyễn Ngọc Bích,15/04/2020,Nu,Hoc_Sinh,Nguyễn Hướng Dương,0559817131,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
+40,Đặng Hữu Đạt,13/10/2020,Nam,Hoc_Sinh,Đặng Đình Hùng,0904324395,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+41,Bùi Phúc Đăng,11/08/2020,Nam,Hoc_Sinh,Hoàng Thị Gấm,0345901455,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Sư Tử
+42,Phạm Minh Đức,26/01/2020,Nam,Hoc_Sinh,Vũ Thị Thùy Linh,0989211837,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
+43,Hoàng Nhật Hào,15/12/2020,Nam,Hoc_Sinh,Hoàng Hoài Nam,0963861980,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
+44,Nguyễn Khả Hân,13/04/2020,Nu,Hoc_Sinh,Phạm Thị Huyên,0974648328,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
+45,Nguyễn Phạm Gia Hân,31/05/2020,Nu,Hoc_Sinh,Phạm Thuý Hiền,0943846080,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Tử
+46,Đỗ Minh Hiếu,14/04/2020,Nam,Hoc_Sinh,Phạm Thị Đào,0918184813,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
+47,Phạm Tuấn Khang,25/12/2020,Nam,Hoc_Sinh,Nguyễn Thị Thuỷ,0965056299,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Ma Kết
+48,Dương Nam Khánh,22/04/2020,Nam,Hoc_Sinh,Nguyễn Thị Ngọc,0983966437,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Kim Ngưu
+49,Nguyễn Đăng Khánh,15/01/2020,Nam,Hoc_Sinh,Phan Bích Ngọc,0936220392,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Ma Kết
+50,Đỗ Tuệ Lâm,04/12/2020,Nu,Hoc_Sinh,ĐỖ ĐĂNG HÙNG,0989612391,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
+51,Phan Thái Linh,25/09/2020,Nam,Hoc_Sinh,Lê Thị Oanh,0989545824,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+52,Vũ Nhã Linh,04/11/2020,Nu,Hoc_Sinh,Tống Thị Huế,0936279682,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bọ Cạp
+53,Nguyễn Nhật Minh,20/01/2020,Nam,Hoc_Sinh,Nguyễn Thị Dịu,0985583812,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
+54,Tạ Quang Minh,03/12/2020,Nam,Hoc_Sinh,Dương Băng Ly,0961705555,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
+55,Tôn Quang Tuấn Minh,25/11/2020,Nam,Hoc_Sinh,Lưu thị phương thảo,0978625525,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
+56,Vũ Nhật Minh,09/07/2020,Nam,Hoc_Sinh,Vũ Lê Dũng,0943933234,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
+57,Nguyễn Gia Mỹ,11/03/2020,Nu,Hoc_Sinh,Đào thị Phương Đông,0379265983,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Ngư
+58,Ngô Bảo Nam,09/12/2020,Nam,Hoc_Sinh,Ngô Thành Công,0868713082,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
+59,Nguyễn Bảo Ngân,27/08/2020,Nu,Hoc_Sinh,Phan Thị Ngọc Yến,0965548729,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Xử Nữ
+60,Nguyễn Tô Bích Ngọc,02/05/2020,Nu,Hoc_Sinh,Thân Thị Kim Anh,0852868713,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Kim Ngưu
+61,Nguyễn Khôi Nguyên,09/10/2020,Nam,Hoc_Sinh,Nguyễn Thị Trà My,0904826919,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+62,Vũ Khánh Nguyên,09/07/2020,Nam,Hoc_Sinh,Vũ Lê Dũng,0943933234,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
+63,Lâm Yến Nhi,09/07/2020,Nu,Hoc_Sinh,Nguyễn Linh Giang,0966280198,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
+64,Phạm Linh Nhi,24/08/2020,Nu,Hoc_Sinh,Ninh Thị Tuyết,0337956936,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Xử Nữ
+65,Nguyễn Minh Phương,04/10/2020,Nu,Hoc_Sinh,Nguyễn Thị Thảo Vân,0966442993,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+66,Đặng Hữu Thành,13/10/2020,Nam,Hoc_Sinh,Đặng Đình Hùng,0904324395,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+67,Trần Quốc Thành,18/06/2020,Nam,Hoc_Sinh,Trần Quốc Đạt,0868042322,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Tử
+68,Cao Ngọc Đan Thư,16/10/2020,Nu,Hoc_Sinh,Lê Thị Ngọc Phương,0936380937,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+69,Trần Thanh Vy,17/04/2020,Nu,Hoc_Sinh,Nguyễn Phương Ly,0922896108,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
+70,Hoàng Trường Phong,26/09/2020,Nam,Hoc_Sinh,Hoàng Phụ Huynh,0967953482,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+71,Dương Khang Long,30/07/2020,Nam,Hoc_Sinh,Dương Tuấn Tú,0965146996,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Sư Tử
+72,Doãn Hà Linh,25/09/2020,Nu,Hoc_Sinh,Nguyễn Thị Phương,0968041500,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
+73,Bé Thứ 40,01/01/2020,Nam,Hoc_Sinh,Phu Huynh 40,0900000000,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Ma Kết
