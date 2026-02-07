@@ -1,0 +1,25 @@
+name: Robot Cuu Van Phan Loai
+on:
+  schedule:
+    - cron: "0 23 * * *" # Chạy lúc 6h sáng VN
+  workflow_dispatch: # Cho phép bạn bấm chạy thủ công từ điện thoại
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Run Robot Cuu Van
+        run: python robot_cuu_van.py
+      - name: Commit result
+        run: |
+          git config --global user.name "Robot-Cuu-Van"
+          git config --global user.email "robot@cuuvan.com"
+          git add *.csv
+          git commit -m "Robot phân loại theo Cửu Vận $(date +%F)" || exit 0
+          git push
