@@ -1,11 +1,10 @@
 tt,ten_doi_tuong,birthday,gender,,,nhom,phu_huynh,dien_thoai,,,,,,,,,,,,,
-STT,HỌ TÊN,NGÀY SINH,GIỚI TÍNH,Chữ cuối mỗi từ (tự động),Số lượng sản phẩm,Nhóm,Phụ huynh,só  điện thoại,địa chỉ,img_url,product_link,element,zodiac,,,,,,,công thức,#VALUE!
-1,NGUYỄN KHẮC NĂNG,4/6/1944,T,n c g,3,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
-2,TÔ THỊ HÀ,29/8/1948,G,ô ị à,3,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
-3,NGUYỄN MINH NAM,3/3/1971,T,n h m,3,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
-4,THÂN THỊ KIM ANH,23/9/1981,G,n ị m h,4,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
-5,NGUYỄN TÔ NGÂN AN,28/9/2014,G,n ô n n,4,Học_sinh,,,,,,,,,,,,,,,#VALUE!
-6,NGUYỄN TÔ MINH CHÂU,25/7/2016,G,n ô h u,4,Học_sinh,,,,,,,,,,,,,,,#VALUE!
+STT,HỌ TÊN,NGÀY SINH,GIỚI TÍNH,Chữ cuối mỗi từ (tự động),Số lượng sản phẩm,Nhóm,Phụ huynh,só  điện thoại,địa chỉ,img_url,product_link,element,zodiac
+2,TÔ THỊ HÀ,29/8/1948,G,ô ị à,3,Phụ_huynh,,,,,,,,,,,,,,,
+3,NGUYỄN MINH NAM,3/3/1971,T,n h m,3,Phụ_huynh,,,,,,,,,,,,,,,
+4,THÂN THỊ KIM ANH,23/9/1981,G,n ị m h,4,Phụ_huynh,,,,,,,,,,,,,,,
+5,NGUYỄN TÔ NGÂN AN,28/9/2014,G,n ô n n,4,Học_sinh,,,,,,,,,,,,,,,
+6,NGUYỄN TÔ MINH CHÂU,25/7/2016,G,n ô h u,4,Học_sinh,,,,,,,,,,,,,,,
 7,NGUYỄN TÔ BÍCH NGỌC,5/2/2020,G,n ô h c,4,Học_sinh,,,,,,,,,,,,,,,
 8,NGUYỄN THỊ MINH HẰNG,7/1/1974,G,n ị h g,4,Phụ_huynh,,,,,,,,,,,,,,,
 9,NGÔ QUÝ CƯỜNG,23/5/1973,T,ô ý g,3,Phụ_huynh,,,,,,,,,,,,,,,
