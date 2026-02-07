@@ -16,6 +16,15 @@ if not os.path.exists('processed_data'):
 
 # 3. Robot bắt đầu làm việc
 for file_path in raw_files:
+    # Lấy tên file để kiểm tra
+    ten_file_goc = os.path.basename(file_path)
+
+    # --- ĐOẠN SỬA ĐỂ BẢO VỆ FILE CỦA BẠN ---
+    if ten_file_goc.lower() == "friends.csv":
+        print(f"Robot: Phát hiện file quan trọng '{ten_file_goc}'! Tôi sẽ bỏ qua không xóa hay sửa nó.")
+        continue 
+    # ---------------------------------------
+
     try:
         # Đọc dữ liệu
         df = pd.read_csv(file_path)
