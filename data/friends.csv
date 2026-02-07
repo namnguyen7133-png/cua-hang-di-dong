@@ -1,74 +1,73 @@
-stt,ten_doi_tuong,birthday,gender,nhom,phu_huynh,dien_thoai,img_url,product_link,element,zodiac
-1,Lão Niên 1,04/06/1944,Nam,Phu_Huynh,N-C-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Song Tử
-2,Lão Niên 2,29/08/1948,Nu,Phu_Huynh,O-I-A,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Xử Nữ
-3,Trung Niên 3,03/03/1971,Nam,Phu_Huynh,N-H-M,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Song Ngư
-4,Trung Niên 4,23/09/1981,Nu,Phu_Huynh,N-I-M-H,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Thiên Bình
-5,Thanh Niên 5,28/09/2014,Nu,Phu_Huynh,N-O-N-N,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Thiên Bình
-6,Thanh Niên 6,25/07/2016,Nu,Phu_Huynh,N-O-H-U,000000000,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Hỏa,Sư Tử
-7,Thanh Niên 7,05/02/2020,Nu,Phu_Huynh,N-O-H-C,000000000,https://down-cvs-vn.img.susercontent.com/sg-11134201-7rfh8-m9y3lu0rp6zt11.webp,https://s.shopee.vn/5fj08y0YQn,Thổ,Bảo Bình
-8,Trung Niên 8,07/01/1974,Nu,Phu_Huynh,N-I-H-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Ma Kết
-9,Trung Niên 9,23/05/1973,Nam,Phu_Huynh,O-Y-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Song Tử
-10,Thanh Niên 10,12/10/2000,Nam,Phu_Huynh,O-A-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Thiên Bình
-11,Thanh Niên 11,05/04/2005,Nu,Phu_Huynh,O-A-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Bạch Dương
-12,Trung Niên 12,06/11/1978,Nu,Phu_Huynh,N-I-H-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Bọ Cạp
-13,Trung Niên 13,21/09/1978,Nam,Phu_Huynh,G-H-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Xử Nữ
-14,Thanh Niên 14,03/06/2010,Nam,Phu_Huynh,G-I-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Mộc,Song Tử
-15,Thanh Niên 15,14/11/2015,Nu,Phu_Huynh,G-N-H-H,000000000,https://down-cvs-vn.img.susercontent.com/sg-11134201-7rfh8-m9y3lu0rp6zt11.webp,https://s.shopee.vn/5fj08y0YQn,Kim,Bọ Cạp
-16,Lão Niên 16,09/08/1960,Nu,Phu_Huynh,O-M-E,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Sư Tử
-17,Trung Niên 17,23/10/1983,Nam,Phu_Huynh,N-N-H,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Thiên Yết
-18,Thanh Niên 18,24/03/2001,Nam,Phu_Huynh,N-E-H,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Kim,Bạch Dương
-19,Lão Niên 19,12/12/1948,Nu,Phu_Huynh,O-I-I,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Nhân Mã
-20,Thanh Niên 20,17/06/1996,Nam,Phu_Huynh,O-T-G,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Song Tử
-21,Lão Niên 21,10/10/1964,Nu,Phu_Huynh,O-I-G,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Thiên Bình
-22,Trung Niên 22,24/04/1974,Nam,Phu_Huynh,U-N-P,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Kim Ngưu
-23,Lão Niên 23,08/02/1946,Nu,Phu_Huynh,N-I-I,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thổ,Bảo Bình
-24,Lão Niên 24,30/11/1957,Nam,Phu_Huynh,N-N-C,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Hỏa,Nhân Mã
-25,Lão Niên 25,08/08/1954,Nu,Phu_Huynh,N-I-M,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Sư Tử
-26,Lão Niên 26,18/04/1955,Nam,Phu_Huynh,N-N-U,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Bạch Dương
-27,Lão Niên 27,08/08/1954,Nu,Phu_Huynh,N-I-M,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Kim,Sư Tử
-28,Lão Niên 28,21/05/1958,Nu,Phu_Huynh,N-I-H,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Kim Ngưu
-29,Trung Niên 29,21/05/1980,Nu,Phu_Huynh,N-I-H-T,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Mộc,Kim Ngưu
-30,Trung Niên 30,21/05/1983,Nam,Phu_Huynh,N-N-N,000000000,https://down-cvs-vn.img.susercontent.com/senior-product.webp,https://s.shopee.vn/InstaxMiniEvo,Thủy,Kim Ngưu
-31,Thanh Niên 31,26/03/2010,Nu,Phu_Huynh,N-N-I,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Mộc,Bạch Dương
-32,Thanh Niên 32,26/06/1990,Nu,Phu_Huynh,E-I-G,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thổ,Cự Giải
-33,Thanh Niên 33,02/06/2004,Nam,Phu_Huynh,N-I-M,000000000,https://down-zl-vn.img.susercontent.com/vn-11134207-820l4-mj5e3i67rx8lbe.webp,https://s.shopee.vn/3B1fCEuDYo,Thủy,Song Tử
-34,Lại Đức Phúc An,06/07/2020,Nam,Hoc_Sinh,Nguyễn Linh Chi,0977471991,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
-35,Phan Hạ An,14/06/2020,Nu,Hoc_Sinh,Nguyễn Thị Mai,0941940771,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Tử
-36,Lại Ngọc Huyền Anh,26/01/2020,Nu,Hoc_Sinh,Nghiêm Thị Kim Liên,0936345665,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
-37,Nguyễn Trần Phúc Anh,19/09/2020,Nam,Hoc_Sinh,Nguyễn Văn Hiến,0987333059,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Xử Nữ
-38,Nguyễn Vũ Bảo Anh,13/02/2020,Nu,Hoc_Sinh,Vũ Thị Hằng,0945596834,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
-39,Nguyễn Ngọc Bích,15/04/2020,Nu,Hoc_Sinh,Nguyễn Hướng Dương,0559817131,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
-40,Đặng Hữu Đạt,13/10/2020,Nam,Hoc_Sinh,Đặng Đình Hùng,0904324395,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-41,Bùi Phúc Đăng,11/08/2020,Nam,Hoc_Sinh,Hoàng Thị Gấm,0345901455,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Sư Tử
-42,Phạm Minh Đức,26/01/2020,Nam,Hoc_Sinh,Vũ Thị Thùy Linh,0989211837,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
-43,Hoàng Nhật Hào,15/12/2020,Nam,Hoc_Sinh,Hoàng Hoài Nam,0963861980,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
-44,Nguyễn Khả Hân,13/04/2020,Nu,Hoc_Sinh,Phạm Thị Huyên,0974648328,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
-45,Nguyễn Phạm Gia Hân,31/05/2020,Nu,Hoc_Sinh,Phạm Thuý Hiền,0943846080,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Tử
-46,Đỗ Minh Hiếu,14/04/2020,Nam,Hoc_Sinh,Phạm Thị Đào,0918184813,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
-47,Phạm Tuấn Khang,25/12/2020,Nam,Hoc_Sinh,Nguyễn Thị Thuỷ,0965056299,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Ma Kết
-48,Dương Nam Khánh,22/04/2020,Nam,Hoc_Sinh,Nguyễn Thị Ngọc,0983966437,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Kim Ngưu
-49,Nguyễn Đăng Khánh,15/01/2020,Nam,Hoc_Sinh,Phan Bích Ngọc,0936220392,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Ma Kết
-50,Đỗ Tuệ Lâm,04/12/2020,Nu,Hoc_Sinh,ĐỖ ĐĂNG HÙNG,0989612391,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
-51,Phan Thái Linh,25/09/2020,Nam,Hoc_Sinh,Lê Thị Oanh,0989545824,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-52,Vũ Nhã Linh,04/11/2020,Nu,Hoc_Sinh,Tống Thị Huế,0936279682,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bọ Cạp
-53,Nguyễn Nhật Minh,20/01/2020,Nam,Hoc_Sinh,Nguyễn Thị Dịu,0985583812,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bảo Bình
-54,Tạ Quang Minh,03/12/2020,Nam,Hoc_Sinh,Dương Băng Ly,0961705555,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
-55,Tôn Quang Tuấn Minh,25/11/2020,Nam,Hoc_Sinh,Lưu thị phương thảo,0978625525,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
-56,Vũ Nhật Minh,09/07/2020,Nam,Hoc_Sinh,Vũ Lê Dũng,0943933234,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
-57,Nguyễn Gia Mỹ,11/03/2020,Nu,Hoc_Sinh,Đào thị Phương Đông,0379265983,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Ngư
-58,Ngô Bảo Nam,09/12/2020,Nam,Hoc_Sinh,Ngô Thành Công,0868713082,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Nhân Mã
-59,Nguyễn Bảo Ngân,27/08/2020,Nu,Hoc_Sinh,Phan Thị Ngọc Yến,0965548729,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Xử Nữ
-60,Nguyễn Tô Bích Ngọc,02/05/2020,Nu,Hoc_Sinh,Thân Thị Kim Anh,0852868713,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Kim Ngưu
-61,Nguyễn Khôi Nguyên,09/10/2020,Nam,Hoc_Sinh,Nguyễn Thị Trà My,0904826919,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-62,Vũ Khánh Nguyên,09/07/2020,Nam,Hoc_Sinh,Vũ Lê Dũng,0943933234,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
-63,Lâm Yến Nhi,09/07/2020,Nu,Hoc_Sinh,Nguyễn Linh Giang,0966280198,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Cự Giải
-64,Phạm Linh Nhi,24/08/2020,Nu,Hoc_Sinh,Ninh Thị Tuyết,0337956936,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Xử Nữ
-65,Nguyễn Minh Phương,04/10/2020,Nu,Hoc_Sinh,Nguyễn Thị Thảo Vân,0966442993,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-66,Đặng Hữu Thành,13/10/2020,Nam,Hoc_Sinh,Đặng Đình Hùng,0904324395,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-67,Trần Quốc Thành,18/06/2020,Nam,Hoc_Sinh,Trần Quốc Đạt,0868042322,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Song Tử
-68,Cao Ngọc Đan Thư,16/10/2020,Nu,Hoc_Sinh,Lê Thị Ngọc Phương,0936380937,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-69,Trần Thanh Vy,17/04/2020,Nu,Hoc_Sinh,Nguyễn Phương Ly,0922896108,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Bạch Dương
-70,Hoàng Trường Phong,26/09/2020,Nam,Hoc_Sinh,Hoàng Phụ Huynh,0967953482,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-71,Dương Khang Long,30/07/2020,Nam,Hoc_Sinh,Dương Tuấn Tú,0965146996,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Sư Tử
-72,Doãn Hà Linh,25/09/2020,Nu,Hoc_Sinh,Nguyễn Thị Phương,0968041500,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Thiên Bình
-73,Bé Thứ 40,01/01/2020,Nam,Hoc_Sinh,Phu Huynh 40,0900000000,https://down-zl-vn.img.susercontent.com/sg-11134201-22100-du6ribsglyiv74.webp,https://s.shopee.vn/3fxvnRKADA,Thổ,Ma Kết
+tt,ten_doi_tuong,birthday,gender,,,nhom,phu_huynh,dien_thoai,,,,,,,,,,,,,
+STT,HỌ TÊN,NGÀY SINH,GIỚI TÍNH,Chữ cuối mỗi từ (tự động),Số lượng sản phẩm,Nhóm,Phụ huynh,só  điện thoại,địa chỉ,img_url,product_link,element,zodiac,,,,,,,công thức,#VALUE!
+1,NGUYỄN KHẮC NĂNG,4/6/1944,T,n c g,3,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
+2,TÔ THỊ HÀ,29/8/1948,G,ô ị à,3,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
+3,NGUYỄN MINH NAM,3/3/1971,T,n h m,3,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
+4,THÂN THỊ KIM ANH,23/9/1981,G,n ị m h,4,Phụ_huynh,,,,,,,,,,,,,,,#VALUE!
+5,NGUYỄN TÔ NGÂN AN,28/9/2014,G,n ô n n,4,Học_sinh,,,,,,,,,,,,,,,#VALUE!
+6,NGUYỄN TÔ MINH CHÂU,25/7/2016,G,n ô h u,4,Học_sinh,,,,,,,,,,,,,,,#VALUE!
+7,NGUYỄN TÔ BÍCH NGỌC,5/2/2020,G,n ô h c,4,Học_sinh,,,,,,,,,,,,,,,
+8,NGUYỄN THỊ MINH HẰNG,7/1/1974,G,n ị h g,4,Phụ_huynh,,,,,,,,,,,,,,,
+9,NGÔ QUÝ CƯỜNG,23/5/1973,T,ô ý g,3,Phụ_huynh,,,,,,,,,,,,,,,
+10,NGÔ GIA BÁCH,12/10/2000,T,ô a h,3,Phụ_huynh,,,,,,,,,,,,,,,
+11,NGÔ GIALINH,5/4/2005,G,ô h,2,Học_sinh,,,,,,,,,,,,,,,
+12,NGUYỄN THỊ MINH PHƯƠNG,6/11/1978,G,n ị h g,4,Phụ_huynh,,,,,,,,,,,,,,,
+13,HOÀNG ANH DŨNG,21/9/1978,T,g h g,3,Phụ_huynh,,,,,,,,,,,,,,,
+14,HOÀNG HẢI VINH,3/6/2010,T,g i h,3,Học_sinh,,,,,,,,,,,,,,,
+15,HOÀNG THIÊN BẠCH ANH,14/11/2015,G,g n h h,4,Học_sinh,,,,,,,,,,,,,,,
+16,TÔ KIM HUỆ,9/8/1960,G,ô m ệ,3,Phụ_huynh,,,,,,,,,,,,,,,
+17,NGUYỄN TUẤN ANH,23/10/1983,T,n n h,3,Phụ_huynh,,,,,,,,,,,,,,,
+18,NGUYỄN THẾ ANH,24/3/2001,T,n ế h,3,Học_sinh,,,,,,,,,,,,,,,
+19,NGÔ THỊ MAI,12/12/1948,G,ô ị i,3,Phụ_huynh,,,,,,,,,,,,,,,
+20,TÔ VIỆT HƯNG,17/6/1996,T,ô t g,3,Phụ_huynh,,,,,,,,,,,,,,,
+21,TÔ THỊ HỒNG,10/10/1964,G,ô ị g,3,Phụ_huynh,,,,,,,,,,,,,,,
+22,VŨ VĂN HIỆP,24/4/1974,T,ũ n p,3,Phụ_huynh,,,,,,,,,,,,,,,
+23,NGUYỄN THỊ CHI,8/2/1946,G,n ị i,3,Phụ_huynh,,,,,,,,,,,,,,,
+24,NGUYỄN TẤN BẮC,30/11/1957,T,n n c,3,Phụ_huynh,,,,,,,,,,,,,,,
+25,NGUYỄN THỊ TÂM,8/8/1954,G,n ị m,3,Phụ_huynh,,,,,,,,,,,,,,,
+26,THÂN VĂN GIỮ ,18/4/1955,T,n n ữ,3,Phụ_huynh,,,,,,,,,,,,,,,
+27,NGUYỄN THỊ BÌNH,21/5/1958,G,n ị h,3,Phụ_huynh,,,,,,,,,,,,,,,
+28,THÂN THỊ BÍCH NGUYỆT,21/5/1980,G,n ị h t,4,Phụ_huynh,,,,,,,,,,,,,,,
+29,THÂN VĂN TUẤN,21/5/1983,T,n n n,3,Phụ_huynh,,,,,,,,,,,,,,,
+30,THÂN YẾN NHI,26/3/2010,G,n n i,3,Học_sinh,,,,,,,,,,,,,,,
+31,LÊ THỊ PHƯƠNG,26/6/1990,G,ê ị g,3,Phụ_huynh,,,,,,,,,,,,,,,
+32,NGUYỄN HOÀI NAM,2/6/2004,T,n i m,3,Học_sinh,,,,,,,,,,,,,,,
+33,LẠI ĐỨC PHÚC AN,6/7/2020,T,i c c n,4,Học_sinh,Nguyễn Linh Chi,0977471991,"P2109 toà A2 Chung cư 151A Nguyễn Đức Cảnh, Tương Mai, Hoàng Mai, Hà Nội",,,,,,,,,,,,
+34,PHAN HẠ AN,14/6/2020,G,n ạ n,3,Học_sinh,Nguyễn Thị Mai,941940771,70 Nguyễn Đức Cảnh,,,,,,,,,,,,
+35,LẠI NGỌC HUYỀN ANH,26/1/2020,G,i c n h,4,Học_sinh,Nghiêm Thị Kim Liên,0936345665,"21 ngõ 365 phố Vọng, phường Đồng Tâm, Hai Bà Trưng, Hà Nội",,,,,,,,,,,,
+36,NGUYỄN TRẦN PHÚC ANH,19/9/2020,T,n n c h,4,Học_sinh,Nguyễn Văn Hiến,987333059,"P2105-N01B CC K35 Tân Mai, Tương Mai, Hoàng Mai, Hà Nội",,,,,,,,,,,,
+37,NGUYỄN VŨ BẢO ANH,13/2/2020,T,n ũ o h,4,Học_sinh,Vũ Thị Hằng,945596834,"P1709-N03A CC K35 Tân Mai, Tương Mai, Hoàng Mai, Hà Nội",,,,,,,,,,,,
+38,NGUYỄN NGỌC BÍCH,15/4/2020,G,n c h,3,Học_sinh,Nguyễn Hướng Dương,559817131,42 nguyễn đức cảnh ,,,,,,,,,,,,
+39,ĐẶNG HỮU ĐẠT,13/10/2020,T,g u t,3,Học_sinh,Đặng Đình Hùng,0904324395,"P804 nhà N01B Chung cư K35 Tân Mai, phường Tương Mai, quận Hoàng Mai, HN",,,,,,,,,,,,
+40,BÙI PHÚC ĐĂNG,11/8/2020,T,i c g,3,Học_sinh,Hoàng Thị Gấm,0345901455,"Chung cư K35 Tân Mai, phường Tương Mai, quận Hoàng Mai, HN",,,,,,,,,,,,
+41,PHẠM MINH ĐỨC,26/1/2020,T,m h c,3,Học_sinh,Vũ Thị Thùy Linh,989211837,"Ngách 69/151 Nguyễn Đức Cảnh, Hoàng Mai, Hà Nội.",,,,,,,,,,,,
+42,HOÀNG NHẬT HÀO,15/12/2020,T,g t o,3,Học_sinh,Hoàng Hoài Nam ,0963861980,"60 Nguyễn Đức Cảnh, Tương Mai, Hoàng Mai, HN",,,,,,,,,,,,
+43,NGUYỄN KHẢ HÂN,13/4/2020,G,n ả n,3,Học_sinh,Phạm Thị Huyên,0974648328,chung cư k35 Tân Mai,,,,,,,,,,,,
+44,NGUYỄN PHẠM GIA HÂN,31/5/2020,G,n m a n,4,Học_sinh,Phạm Thuý Hiền,0943846080,"46 ngõ 113 Nguyễn Chính, Thịnh Liệt, Hoàng Mai, HN",,,,,,,,,,,,
+45,ĐỖ MINH HIẾU,14/4/2020,T,ỗ h u,3,Học_sinh,Phạm Thị Đào,918184813,"Nhà 30 ngách 1 ngõ 122 lĩnh nam, mai động, Hoàng Mai, Hà nội",,,,,,,,,,,,
+46,PHẠM TUẤN KHANG,25/12/2020,T,m n g,3,Học_sinh,Nguyễn Thị Thuỷ,0965056299,"Tầng 3 số 24 Q100,Tương Mai,Hoàng Mai,Hà Nội",,,,,,,,,,,,
+47,DƯƠNG NAM KHÁNH,22/4/2020,T,g m h,3,Học_sinh,Nguyễn Thị Ngọc,0983966437,"Số nhà 27, Ngõ 225 Nguyễn Đức Cảnh, phường Tương Mai, quận Hoàng Mai, Hà Nội",,,,,,,,,,,,
+48,NGUYỄN ĐĂNG KHÁNH,15/1/2020,T,n g h,3,Học_sinh,Phan Bích Ngọc,0936220392,181 Nguyễn An Ninh - Phường Đồng Tâm - HBT - HN,,,,,,,,,,,,
+49,ĐỖ TUỆ LÂM,4/12/2020,G,ỗ ệ m,3,Học_sinh,ĐỖ ĐĂNG HÙNG,989612391,1605 CT1 GELEXIA YÊN SỞ HOÀNG MAI HÀ NỘI,,,,,,,,,,,,
+50,PHAN THÁI LINH,25/9/2020,G,n i h,3,Học_sinh,Lê Thị Oanh,989545824,"Số 40, Ngõ 333, Phố Vọng",,,,,,,,,,,,
+51,VŨ NHÃ LINH,4/11/2020,G,ũ ã h,3,Học_sinh,Tống Thị Huế,936279682,"60 Nguyễn Đức Cảnh, Hà Nội",,,,,,,,,,,,
+52,NGUYỄN NHẬT MINH,20/1/2020,T,n t h,3,Học_sinh,Nguyễn Thị Dịu,985583812,415 trần đại nghĩa - tương mai - hoàng mai,,,,,,,,,,,,
+53,TẠ QUANG MINH,3/12/2020,T,ạ g h,3,Học_sinh,Dương Băng Ly,961705555,169 nguyễn an ninh-đồng tâm- hai bà trưng - hà nội,,,,,,,,,,,,
+54,TÔN QUANG TUẤN MINH,25/11/2020,T,n g n h,4,Học_sinh,Lưu thị phương thảo ,978625525,K35 tân mai,,,,,,,,,,,,
+55,VŨ NHẬT MINH,9/7/2020,T,ũ t h,3,Học_sinh,Vũ Lê Dũng,0943933234,"Số 10, ngõ 259/5 phố Vọng, Đồng Tâm, Hai Bà Trưng, Hà Nội",,,,,,,,,,,,
+56,NGUYỄN GIA MỸ,11/3/2020,G,n a ỹ,3,Học_sinh,Đào thị Phương Đông,"0,0379265983","Số nhà 14, ngách 12/52 phố lương khánh thiện, tương mai, hoàng mai, hà nội",,,,,,,,,,,,
+57,NGÔ BẢO NAM,9/12/2020,T,ô o m,3,Học_sinh,Ngô Thành Công,0868713082,"136 Nguyễn An Ninh, Tương Mai, Hoàng Mai",,,,,,,,,,,,
+58,NGUYỄN BẢO NGÂN,27/8/2020,G,n o n,3,Học_sinh,Phan Thị Ngọc Yến,0965548729,"10D-Q8, Ngõ 126 Nguyễn An Ninh",,,,,,,,,,,,
+59,NGUYỄN TÔ BÍCH NGỌC,2/5/2020,G,n ô h c,4,Học_sinh,Thân Thị Kim Anh,852868713,"Số 6 Tổ 25 Trương Định,Tương Mai,Hoàng mai,HN",,,,,,,,,,,,
+60,NGUYỄN KHÔI NGUYÊN,9/10/2020,T,n i n,3,Học_sinh,Nguyễn Thị Trà My,0904826919,"Số 17, ngách 176, ngõ Trại Cá, Trương Định, Hai Bà Trưng, HN",,,,,,,,,,,,
+61,VŨ KHÁNH NGUYÊN,9/7/2020,T,ũ h n,3,Học_sinh,Vũ Lê Dũng,0943933234,"Số 10, ngõ 259/5 phố Vọng, Đồng Tâm, Hai Bà Trưng, Hà Nội",,,,,,,,,,,,
+62,LÂM YẾN NHI,9/7/2020,G,m n i,3,Học_sinh,Nguyễn Linh Giang,0966280198,"54 ngõ 41 Trường Chinh, Phương Liệt, TX, HN",,,,,,,,,,,,
+63,PHẠM LINH NHI,24/8/2020,G,m h i,3,Học_sinh,Ninh Thị Tuyết,0337956936,"Khu nhà A-B tập thể Lương Khánh Thiện, Tương Mai, Hoàng Mai, Hà Nội",,,,,,,,,,,,
+64,NGUYỄN MINH PHƯƠNG,4/10/2020,G,n h g,3,Học_sinh,Nguyễn Thị Thảo Vân,0966442993,"37 ngõ 67 đường Giáp Bát, Giáp Bát, Hoàng Mai, Hà Nội",,,,,,,,,,,,
+65,ĐẶNG HỮU THÀNH,13/10/2020,T,g u h,3,Học_sinh,Đặng Đình Hùng,0904324395,"P804 nhà N01B Chung cư K35 Tân Mai, phường Tương Mai, quận Hoàng Mai, HN",,,,,,,,,,,,
+66,TRẦN QUỐC THÀNH,18/6/2020,T,n c h,3,Học_sinh,Trần Quốc Đạt,868042322,138 nguyễn đức cảnh,,,,,,,,,,,,
+67,CAO NGỌC ĐAN THƯ,16/10/2020,G,o c n ư,4,Học_sinh,Lê Thị Ngọc Phương,0936380937,4 ngõ 151/35  Nguyễn Đức Cảnh - HM - HN,,,,,,,,,,,,
+68,TRẦN THANH VY,17/4/2020,G,n h y,3,Học_sinh,Nguyễn Phương Ly,0922896108,"205 nguyễn đức cảnh, tương mai, hoàng mai, hn",,,,,,,,,,,,
+69,HOÀNG TRƯỜNG PHONG,26/9/2020,T,g g g,3,Học_sinh,,967953482,Số nhà 89 tổ 48 phường tương mai,,,,,,,,,,,,
+70,DƯƠNG KHANG LONG,30/7/2020,T,g g g,3,Học_sinh,Dương Tuấn Tú,965146996,"75/151 Nguyễn Đức Cảnh, Tương Mai, Hoàng Mai, Hà Nội ",,,,,,,,,,,,
+71,DOÃN HÀ LINH,25/9/2020,G,n à h,3,Học_sinh,Nguyễn Thị Phương,968041500,7k11 nguyễn an ninh- hoàng mai- hà nội,,,,,,,,,,,,
