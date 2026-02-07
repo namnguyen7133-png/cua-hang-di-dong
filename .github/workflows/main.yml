@@ -2,8 +2,9 @@ name: Robot_He_Thong_Lixi_Va_Crawler
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 00:00 UTC tương đương 07:00 sáng giờ Việt Nam
+    - cron: '0 22 * * *' # Chạy lúc 05:00 sáng giờ Việt Nam (sau robot dọn dẹp 1 tiếng)
   workflow_dispatch: # Giữ cái này để thỉnh thoảng bạn tự bấm chạy tay
+
 jobs:
   build:
     runs-on: ubuntu-latest
