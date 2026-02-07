@@ -1,0 +1,7 @@
+{
+  "protection_rules": {
+    "target_file": "friends.csv",
+    "action": "LOCK_AND_IGNORE",
+    "reason": "Bao ve danh sach ban be va o nhap ten moi"
+  }
+}
