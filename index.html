@@ -1,65 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siêu Thị Quà Tặng 3 Chị Em</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 100%);
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0;
-        }
-        h1 { color: #d81b60; font-size: 2.5em; text-shadow: 2px 2px white; margin-bottom: 40px; }
-        .container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 90%; }
-        .shop-card {
-            background: white; padding: 40px; border-radius: 25px; width: 250px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-decoration: none;
-            transition: 0.3s; cursor: pointer; border: none;
-        }
-        .shop-card:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .icon { font-size: 60px; display: block; margin-bottom: 20px; }
-        .name { font-size: 1.6em; font-weight: bold; }
-        
-        /* Màu sắc rực rỡ */
-        .pink { color: #ff4d94; border-bottom: 10px solid #ff4d94; }
-        .green { color: #4CAF50; border-bottom: 10px solid #4CAF50; }
-        .orange { color: #ee4d2d; border-bottom: 10px solid #ee4d2d; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VƯƠNG QUỐC LÌ XÌ 2026</title>
+<style>
+body { text-align:center; font-family:'Segoe UI', Arial; background:#fff5f5; padding:20px; }
+.header { background:#d63031; color:white; padding:20px; border-radius:15px; margin-bottom:20px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:15px; max-width:1000px; margin:auto; }
+.card { background:white; padding:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,.1);
+        text-decoration:none; color:#d63031; font-weight:bold; border:2px solid #ff7675; position:relative; overflow:hidden;}
+.best-choice { border: 3px solid #f1c40f; background: #fff9e6; transform: scale(1.05); }
+.badge { position:absolute; top:0; right:0; background:#f1c40f; color:black; font-size:10px; padding:2px 5px; }
+</style>
 </head>
-<body onload="fireworks()">
-
-    <h1>🎁 VÀO CỬA HÀNG CỦA BÉ</h1>
-
-    <div class="container">
-        <a href="tre12.html" class="shop-card orange">
-            <span class="icon">💃</span>
-            <span class="name">Chị Ngân An</span>
-        </a>
-        <a href="tre10.html" class="shop-card green">
-            <span class="icon">🧸</span>
-            <span class="name">Chị Minh Châu</span>
-        </a>
-        <a href="tre6.html" class="shop-card pink">
-            <span class="icon">🍭</span>
-            <span class="name">Bé Bích Ngọc</span>
-        </a>
-    </div>
-
-    <script>
-        function fireworks() {
-            var duration = 5 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-            var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
-            }, 250);
-        }
-    </script>
-</body>
-</html>
+<body>
+<div class="header">
+    <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
+    <p>Mệnh Giờ Hệ Thống: <strong>8</strong></p>
+</div>
+<div class="grid">
+</div><p style='margin-top:20px; color:#999;'>Last Update: 16:00:02</p></body></html>
