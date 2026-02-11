@@ -1,33 +1,31 @@
-name: Robot Lam Sach Du Lieu
-on:
-  schedule:
-    - cron: "0 21 * * *" # Tự động chạy lúc 4h sáng VN hàng ngày
-  push:
-    paths:
-      - 'raw_data/*.csv'
+import json
+import datetime
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+def calculate_menh_hour():
+    now = datetime.datetime.now() # Giờ hệ thống
+    day = now.day
+    hour = now.hour
+    
+    # Công thức: ngày * giờ hiện tại mod 24 (Nếu 0 lấy 24)
+    raw_calc = (day * hour) % 24
+    menh_hour_value = raw_calc if raw_calc != 0 else 24
+    
+    return menh_hour_value, now.strftime("%H:%M - %d/%m/%Y")
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: pip install pandas
-
-      - name: Chạy Robot dọn dẹp
-        run: python robot_clean.py
-          
-      - name: Luu lai du lieu sạch
-        run: |
-          git config --global user.name 'Robot-Affiliate'
-          git config --global user.email 'robot@affiliate.com'
-          git add processed_data/*.csv
-          git commit -m "Robot đã dọn dẹp dữ liệu ngày $(date +%F)" || exit 0
-          git push
+def main():
+    menh_hour, time_str = calculate_menh_hour()
+    
+    print(f"--- ROBOT BRAIN REPORT ---")
+    print(f"Thời gian: {time_str}")
+    print(f"Chỉ số Mệnh Giờ hiện tại: {menh_hour}")
+    
+    # Logic: Nếu vượt qua 37% tiến trình (Threshold)
+    # Và chỉ số Mệnh Giờ này khớp với Mệnh chủ trong rules.json
+    # Thì Robot thực hiện lệnh "Chốt Sếp"
+    
+    with open('rules.json', 'r') as f:
+        rules = json.load(f)
+        # Tại đây bạn có thể viết thêm logic so sánh menh_hour với five_elements
+        
+if __name__ == "__main__":
+    main()
