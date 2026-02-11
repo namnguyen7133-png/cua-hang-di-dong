@@ -1,5 +1,6 @@
 {
   "priority_order": [
+    "menh_hour",
     "menh_day",
     "menh_week",
     "menh_month",
@@ -10,5 +11,10 @@
   "score_forward": {
     "main": 100,
     "order": [80, 60, 40, 20]
+  },
+  "optimal_stopping_threshold": 0.37,
+  "time_logic": {
+    "hour_calc": "(day * current_hour) % 24",
+    "if_zero": 24
   }
 }
