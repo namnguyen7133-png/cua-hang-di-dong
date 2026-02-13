@@ -1,24 +1,132 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VƯƠNG QUỐC LÌ XÌ 2026</title>
+
 <style>
-body { text-align:center; font-family:'Segoe UI', Arial; background:#fff5f5; padding:20px; }
-.header { background:#d63031; color:white; padding:20px; border-radius:15px; margin-bottom:20px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:15px; max-width:1000px; margin:auto; }
-.card { background:white; padding:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,.1);
-        text-decoration:none; color:#d63031; font-weight:bold; border:2px solid #ff7675; position:relative; overflow:hidden;}
-.best-choice { border: 3px solid #f1c40f; background: #fff9e6; transform: scale(1.05); }
-.badge { position:absolute; top:0; right:0; background:#f1c40f; color:black; font-size:10px; padding:2px 5px; }
+body {
+    text-align: center;
+    font-family: 'Segoe UI', Arial;
+    background: #fff5f5;
+    padding: 20px;
+}
+
+.header {
+    background: #d63031;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    text-decoration: none;
+    color: #d63031;
+    font-weight: bold;
+    border: 2px solid #ff7675;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.best-choice {
+    border: 3px solid #f1c40f;
+    background: #fff9e6;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #f1c40f;
+    color: black;
+    font-size: 11px;
+    padding: 3px 6px;
+    border-bottom-left-radius: 8px;
+}
 </style>
 </head>
+
 <body>
+
 <div class="header">
     <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
-    <p>Mệnh Giờ Hệ Thống: <strong>12</strong></p>
+    <p>Mệnh Giờ Hệ Thống: <strong>GIỜ VÀNG</strong></p>
 </div>
+
 <div class="grid">
-</div><p style='margin-top:20px; color:#999;'>Last Update: 15:51:26</p></body></html>
+
+    <!-- ===== CARD SẢN PHẨM MẪU 1 ===== -->
+    <a class="card best-choice"
+       href="001-kho-hang.html?id=SP_018"
+       target="_blank">
+
+        <div class="badge">GIỜ VÀNG</div>
+        Trà Dưỡng Nhan<br>
+        <small style="color:#666">Hợp chữ: m – h – n</small>
+
+        <!-- CHỈ NGƯỜI QUẢN LÝ XEM -->
+        <span style="display:none">
+            Người trùng tên: Minh Châu, Bích Ngọc
+            Hoa hồng cao – bán chạy
+        </span>
+    </a>
+
+    <!-- ===== CARD SẢN PHẨM MẪU 2 ===== -->
+    <a class="card"
+       href="001-kho-hang.html?id=SP_021"
+       target="_blank">
+
+        Nam Ngọc Trai<br>
+        <small style="color:#666">Hợp chữ: n – g – t</small>
+
+        <span style="display:none">
+            Người trùng tên: Ngân An
+            Doanh số ổn định
+        </span>
+    </a>
+
+    <!-- ===== CARD SẢN PHẨM MẪU 3 ===== -->
+    <a class="card"
+       href="001-kho-hang.html?id=SP_033"
+       target="_blank">
+
+        Yến Sào Chưng Sẵn<br>
+        <small style="color:#666">Hợp chữ: y – s – n</small>
+
+        <span style="display:none">
+            Người trùng tên: Minh Nam
+            Hàng cao cấp
+        </span>
+    </a>
+
+</div>
+
+<p style="margin-top:20px; color:#999;">
+    Last Update: <span id="time"></span>
+</p>
+
+<script>
+document.getElementById("time").innerText =
+    new Date().toLocaleTimeString("vi-VN");
+</script>
+
+</body>
+</html>
