@@ -2,7 +2,14 @@
   {
     "id": "11526582452",
     "name": "Tổng hợp đồ chơi nhà tắm cho bé",
-    "price": "79,0k",
-    "affiliate_link": "https://s.shopee.vn/8zz5f3uoHA"
+    "price": "79.000đ",
+    "affiliate_link": "https://s.shopee.vn/8zz5f3uoHA",
+    "bot_meta": {
+      "hop_chu": "d-c-b",
+      "gio_vang": "19:00–21:00",
+      "menh": "Thủy",
+      "uu_tien": 1
+    }
   }
 ]
+
