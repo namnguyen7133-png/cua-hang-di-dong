@@ -1,148 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIỆM LÌ XÌ ROBOT BRAIN 2026</title>
-
+<title>VƯƠNG QUỐC LÌ XÌ 2026</title>
 <style>
-body{
-  margin:0;
-  padding:20px;
-  font-family:'Segoe UI',Arial,sans-serif;
-  background:#fff5f5;
-  text-align:center;
-}
-.header{
-  background:#d63031;
-  color:white;
-  padding:25px;
-  border-radius:18px;
-  margin-bottom:25px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:20px;
-  max-width:1000px;
-  margin:auto;
-}
-.card{
-  background:white;
-  padding:15px;
-  border-radius:14px;
-  border:2px solid #ff7675;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
-  text-decoration:none;
-  color:#d63031;
-  font-weight:bold;
-  position:relative;
-}
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-.price{
-  color:#e74c3c;
-  margin-top:10px;
-}
-.badge{
-  position:absolute;
-  top:0;
-  right:0;
-  background:#f1c40f;
-  color:black;
-  font-size:10px;
-  padding:3px 6px;
-  border-radius:0 12px 0 12px;
-}
-
-/* NÚT QUẢN LÝ – KHÁCH KHÔNG HIỂU */
-.admin{
-  margin:20px;
-}
-.admin button{
-  padding:12px 22px;
-  border:none;
-  border-radius:25px;
-  background:#27ae60;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-.footer{
-  margin-top:30px;
-  color:#999;
-  font-size:13px;
-}
+body { text-align:center; font-family:'Segoe UI', Arial; background:#fff5f5; padding:20px; }
+.header { background:#d63031; color:white; padding:20px; border-radius:15px; margin-bottom:20px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:15px; max-width:1000px; margin:auto; }
+.card { background:white; padding:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,.1);
+        text-decoration:none; color:#d63031; font-weight:bold; border:2px solid #ff7675; position:relative; overflow:hidden;}
+.best-choice { border: 3px solid #f1c40f; background: #fff9e6; transform: scale(1.05); }
+.badge { position:absolute; top:0; right:0; background:#f1c40f; color:black; font-size:10px; padding:2px 5px; }
 </style>
 </head>
-
 <body>
-
 <div class="header">
-  <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
-  <p>Mệnh Giờ Hệ Thống: <strong>GIỜ VÀNG</strong></p>
+    <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
+    <p>Mệnh Giờ Hệ Thống: <strong>3</strong></p>
 </div>
-
-<!-- NÚT DÀNH CHO BẠN -->
-<div class="admin">
-  <button onclick="manualMode()">✅ Tôi đang rảnh – làm tay</button>
-</div>
-
-<div class="grid" id="products">
-  ⏳ Đang tải sản phẩm...
-</div>
-
-<div class="footer" id="time"></div>
-
-<script>
-async function loadProducts(){
-  const box = document.getElementById("products");
-  try{
-    const res = await fetch("files.json");
-    const data = await res.json();
-
-    if(!data || data.length===0){
-      box.innerHTML = "❌ Hôm nay chưa có sản phẩm";
-      return;
-    }
-
-    box.innerHTML = "";
-    data.forEach(p=>{
-      box.innerHTML += `
-        <a class="card" href="product.html?id=${p.id}">
-          <span class="badge">HOT</span>
-          <img src="https://down-vn.img.susercontent.com/file/${p.id}">
-          <div>${p.name}</div>
-          <div class="price">${p.price}</div>
-        </a>
-      `;
-    });
-
-  }catch(e){
-    box.innerHTML = "❌ Lỗi tải files.json";
-  }
-}
-
-function manualMode(){
-  alert(
-`BẠN ĐANG Ở CHẾ ĐỘ LÀM TAY
-
-👉 Việc cần làm:
-1. Sửa files.json
-2. Đặt: "manual_override": true
-3. Push GitHub
-
-⛔ BOT 07:00 sẽ TỰ DỪNG`
-  );
-}
-
-document.getElementById("time").innerText =
-  "Last Update: " + new Date().toLocaleTimeString("vi-VN");
-
-loadProducts();
-</script>
-
-</body>
-</html>
+<div class="grid">
+</div><p style='margin-top:20px; color:#999;'>Last Update: 15:40:24</p></body></html>
