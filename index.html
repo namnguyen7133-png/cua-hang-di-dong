@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VƯƠNG QUỐC LÌ XÌ 2026</title>
+<title>🧧 TIỆM LÌ XÌ ROBOT BRAIN 2026</title>
 
 <style>
 body {
     text-align: center;
-    font-family: 'Segoe UI', Arial;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background: #fff5f5;
     padding: 20px;
 }
@@ -25,7 +25,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 15px;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -39,16 +39,23 @@ body {
     font-weight: bold;
     border: 2px solid #ff7675;
     position: relative;
-    overflow: hidden;
 }
 
-.card:hover {
-    transform: scale(1.03);
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.best-choice {
-    border: 3px solid #f1c40f;
-    background: #fff9e6;
+.price {
+    color: #ee4d2d;
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+/* 🔒 ẨN LOGIC NỘI BỘ – KHÁCH KHÔNG THẤY */
+.manager-only {
+    display: none;
 }
 
 .badge {
@@ -57,9 +64,9 @@ body {
     right: 0;
     background: #f1c40f;
     color: black;
-    font-size: 11px;
+    font-size: 10px;
     padding: 3px 6px;
-    border-bottom-left-radius: 8px;
+    border-radius: 0 10px 0 10px;
 }
 </style>
 </head>
@@ -68,55 +75,11 @@ body {
 
 <div class="header">
     <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
-    <p>Mệnh Giờ Hệ Thống: <strong>GIỜ VÀNG</strong></p>
+    <p>Mệnh Giờ Hệ Thống: <strong>12</strong></p>
 </div>
 
-<div class="grid">
-
-    <!-- ===== CARD SẢN PHẨM MẪU 1 ===== -->
-    <a class="card best-choice"
-       href="001-kho-hang.html?id=SP_018"
-       target="_blank">
-
-        <div class="badge">GIỜ VÀNG</div>
-        Trà Dưỡng Nhan<br>
-        <small style="color:#666">Hợp chữ: m – h – n</small>
-
-        <!-- CHỈ NGƯỜI QUẢN LÝ XEM -->
-        <span style="display:none">
-            Người trùng tên: Minh Châu, Bích Ngọc
-            Hoa hồng cao – bán chạy
-        </span>
-    </a>
-
-    <!-- ===== CARD SẢN PHẨM MẪU 2 ===== -->
-    <a class="card"
-       href="001-kho-hang.html?id=SP_021"
-       target="_blank">
-
-        Nam Ngọc Trai<br>
-        <small style="color:#666">Hợp chữ: n – g – t</small>
-
-        <span style="display:none">
-            Người trùng tên: Ngân An
-            Doanh số ổn định
-        </span>
-    </a>
-
-    <!-- ===== CARD SẢN PHẨM MẪU 3 ===== -->
-    <a class="card"
-       href="001-kho-hang.html?id=SP_033"
-       target="_blank">
-
-        Yến Sào Chưng Sẵn<br>
-        <small style="color:#666">Hợp chữ: y – s – n</small>
-
-        <span style="display:none">
-            Người trùng tên: Minh Nam
-            Hàng cao cấp
-        </span>
-    </a>
-
+<div class="grid" id="grid">
+    ⏳ Đang tải kho hàng...
 </div>
 
 <p style="margin-top:20px; color:#999;">
@@ -126,6 +89,45 @@ body {
 <script>
 document.getElementById("time").innerText =
     new Date().toLocaleTimeString("vi-VN");
+
+async function loadProducts() {
+    const grid = document.getElementById("grid");
+    try {
+        const res = await fetch("files.json");
+        const data = await res.json();
+
+        grid.innerHTML = "";
+
+        data.forEach(p => {
+            const id = p.id || p["Mã sản phẩm"];
+            const name = p.name || p["Tên sản phẩm"];
+            const price = p.price || p["Giá"];
+            const img = "https://down-vn.img.susercontent.com/file/" + id;
+
+            grid.innerHTML += `
+                <a class="card" href="product.html?id=${id}" target="_blank">
+                    <span class="badge">HOT</span>
+
+                    <img src="${img}" alt="${name}">
+                    <div>${name}</div>
+                    <div class="price">${price}</div>
+
+                    <!-- LOGIC BOT – KHÁCH KHÔNG THẤY -->
+                    <div class="manager-only">
+                        Hợp chữ: ${p["Hợp chữ"] || ""}
+                        | Giờ vàng: ${p["Giờ vàng"] || ""}
+                        | Mệnh: ${p["Mệnh"] || ""}
+                    </div>
+                </a>
+            `;
+        });
+
+    } catch (e) {
+        grid.innerHTML = "❌ Không đọc được file files.json";
+    }
+}
+
+loadProducts();
 </script>
 
 </body>
