@@ -41,19 +41,17 @@ body {
     position: relative;
 }
 
-.card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.card:hover {
+    transform: scale(1.03);
 }
 
 .price {
     color: #ee4d2d;
-    font-size: 16px;
-    margin: 8px 0;
+    font-size: 15px;
+    margin-top: 6px;
 }
 
-/* 🔒 ẨN LOGIC NỘI BỘ – KHÁCH KHÔNG THẤY */
+/* 🔒 ẨN LOGIC BOT – KHÁCH KHÔNG THẤY */
 .manager-only {
     display: none;
 }
@@ -75,7 +73,7 @@ body {
 
 <div class="header">
     <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
-    <p>Mệnh Giờ Hệ Thống: <strong>12</strong></p>
+    <p>Mệnh Giờ Hệ Thống: <strong>GIỜ VÀNG</strong></p>
 </div>
 
 <div class="grid" id="grid">
@@ -92,6 +90,7 @@ document.getElementById("time").innerText =
 
 async function loadProducts() {
     const grid = document.getElementById("grid");
+
     try {
         const res = await fetch("files.json");
         const data = await res.json();
@@ -99,24 +98,21 @@ async function loadProducts() {
         grid.innerHTML = "";
 
         data.forEach(p => {
-            const id = p.id || p["Mã sản phẩm"];
-            const name = p.name || p["Tên sản phẩm"];
-            const price = p.price || p["Giá"];
-            const img = "https://down-vn.img.susercontent.com/file/" + id;
+            const id = p.id;
+            const name = p.name;
+            const price = p.price;
 
             grid.innerHTML += `
                 <a class="card" href="product.html?id=${id}" target="_blank">
                     <span class="badge">HOT</span>
-
-                    <img src="${img}" alt="${name}">
                     <div>${name}</div>
                     <div class="price">${price}</div>
 
                     <!-- LOGIC BOT – KHÁCH KHÔNG THẤY -->
                     <div class="manager-only">
-                        Hợp chữ: ${p["Hợp chữ"] || ""}
-                        | Giờ vàng: ${p["Giờ vàng"] || ""}
-                        | Mệnh: ${p["Mệnh"] || ""}
+                        Hợp chữ: ${p.bot_meta?.hop_chu || ""}
+                        | Giờ vàng: ${p.bot_meta?.gio_vang || ""}
+                        | Mệnh: ${p.bot_meta?.menh || ""}
                     </div>
                 </a>
             `;
