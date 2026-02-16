@@ -1,24 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VƯƠNG QUỐC LÌ XÌ 2026</title>
-<style>
-body { text-align:center; font-family:'Segoe UI', Arial; background:#fff5f5; padding:20px; }
-.header { background:#d63031; color:white; padding:20px; border-radius:15px; margin-bottom:20px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:15px; max-width:1000px; margin:auto; }
-.card { background:white; padding:15px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,.1);
-        text-decoration:none; color:#d63031; font-weight:bold; border:2px solid #ff7675; position:relative; overflow:hidden;}
-.best-choice { border: 3px solid #f1c40f; background: #fff9e6; transform: scale(1.05); }
-.badge { position:absolute; top:0; right:0; background:#f1c40f; color:black; font-size:10px; padding:2px 5px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VƯƠNG QUỐC LÌ XÌ 2026</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff5f5;
+    }
+
+    .header {
+      background: #d63031;
+      color: #fff;
+      padding: 22px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .header p {
+      margin: 8px 0 0;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #d63031;
+      font-weight: bold;
+      border: 2px solid #ff7675;
+      position: relative;
+    }
+
+    .best-choice {
+      border-color: #f1c40f;
+      background: #fff9e6;
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: #f1c40f;
+      color: #000;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    .js-status {
+      margin: 18px auto 0;
+      padding: 8px 14px;
+      width: fit-content;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
-<div class="header">
+
+  <div class="header">
     <h1>🧧 TIỆM LÌ XÌ ROBOT BRAIN 🧧</h1>
     <p>Mệnh Giờ Hệ Thống: <strong>9</strong></p>
-</div>
-<div class="grid">
-</div><p style='margin-top:20px; color:#999;'>Last Update: 15:24:04</p></body></html>
+  </div>
+
+  <div class="grid" id="product-grid">
+    <!-- SẢN PHẨM SẼ ĐƯỢC ĐỔ VÀO SAU -->
+  </div>
+
+  <div class="footer" id="last-update">
+    Last Update: 15:24:04
+  </div>
+
+  <!-- DAY 10 – STEP 10.1 : KIỂM TRA JS -->
+  <script>
+    (function () {
+      const status = document.createElement('div');
+      status.className = 'js-status';
+      status.textContent = 'STATUS: JS LOADED OK';
+      document.body.appendChild(status);
+      console.log('[DAY10-STEP10.1] JS LOADED OK');
+    })();
+  </script>
+
+</body>
+</html>
