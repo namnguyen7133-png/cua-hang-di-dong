@@ -1,75 +1,119 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🤖 Shop Robot – Tự Động</title>
+
   <style>
     body {
-      font-family: Segoe UI, Arial, sans-serif;
       margin: 0;
-      background: #f5f7fb;
-      text-align: center;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #333;
     }
+
     header {
       background: linear-gradient(135deg, #6c5ce7, #00cec9);
-      color: white;
+      color: #fff;
       padding: 40px 20px;
+      text-align: center;
     }
-    h1 { margin: 0; }
-    .note {
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    header p {
       margin-top: 10px;
-      font-size: 0.95em;
       opacity: 0.9;
+      font-size: 0.95em;
     }
+
     .container {
-      padding: 40px 20px;
       max-width: 1200px;
       margin: auto;
+      padding: 40px 20px;
     }
+
     .status {
-      background: #fff;
-      border-radius: 16px;
+      background: #ffffff;
+      border-radius: 14px;
       padding: 20px;
       margin-bottom: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      text-align: center;
+      font-size: 0.95em;
+      color: #555;
     }
+
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
     }
+
     .product {
-      background: white;
-      border-radius: 20px;
-      padding: 20px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 22px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    footer {
-      margin: 40px 0;
-      color: #888;
+
+    .product h3 {
+      margin: 0 0 10px;
+      font-size: 1.05em;
+      color: #2d3436;
+    }
+
+    .product p {
+      margin: 6px 0;
       font-size: 0.9em;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .price {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #d63031;
+      font-size: 1em;
+    }
+
+    .cta {
+      margin-top: 14px;
+      font-size: 0.9em;
+      color: #0984e3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.85em;
+      color: #888;
     }
   </style>
 </head>
+
 <body>
 
 <header>
   <h1>🤖 SHOP ROBOT</h1>
-  <div class="note">
-    Khu vận hành tự động – Không chỉnh tay
-  </div>
+  <p>Khu vận hành tự động – Gợi ý sản phẩm theo dữ liệu</p>
 </header>
 
 <div class="container">
 
-  <div class="status">
-    <h3>📡 Trạng thái Robot</h3>
-    <p>Đang chờ dữ liệu từ Google Sheet…</p>
+  <div class="status" id="robot-status">
+    📡 Robot đang tải dữ liệu sản phẩm…
   </div>
 
   <div class="products" id="product-list">
-    <!-- ROBOT SẼ ĐỔ SẢN PHẨM VÀO ĐÂY -->
+    <!-- Robot render sản phẩm tại đây -->
   </div>
 
 </div>
@@ -77,6 +121,52 @@
 <footer>
   © Shop Robot – Vận hành tự động
 </footer>
+
+<script>
+  /************ DATA MẪU – SAU NÀY THAY BẰNG SHEET / JSON ************/
+  const products = [
+    {
+      title: "Sản phẩm phù hợp nhu cầu sử dụng hằng ngày",
+      desc: "Thiết kế đơn giản, dễ dùng, giá hợp lý. Shop chọn lọc theo dữ liệu.",
+      price: "129.000đ",
+      cta: "Xem chi tiết sản phẩm bên dưới."
+    },
+    {
+      title: "Mẫu đang được nhiều người lựa chọn",
+      desc: "Gọn nhẹ – dễ sử dụng – phù hợp nhiều đối tượng.",
+      price: "189.000đ",
+      cta: "Tham khảo thêm tại đây."
+    },
+    {
+      title: "Sản phẩm tiện dụng – giá hợp lý",
+      desc: "Đáp ứng tốt nhu cầu cơ bản. Thông tin mang tính tham khảo.",
+      price: "259.000đ",
+      cta: "Bấm để xem thông tin và ưu đãi."
+    }
+  ];
+
+  /************ ROBOT RENDER ************/
+  const list = document.getElementById("product-list");
+  const status = document.getElementById("robot-status");
+
+  function renderProducts(data) {
+    list.innerHTML = "";
+    data.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <div class="price">Giá: ${item.price}</div>
+        <div class="cta">${item.cta}</div>
+      `;
+      list.appendChild(div);
+    });
+    status.innerText = "✅ Robot đã cập nhật sản phẩm mới nhất.";
+  }
+
+  renderProducts(products);
+</script>
 
 </body>
 </html>
